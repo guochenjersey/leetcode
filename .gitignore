@@ -4,3 +4,7 @@
 *.idx
 *.out
 *.synctex.gz
+**/*/target
+**/*.iml
+**/.idea
+**/.DS_store
