@@ -31,10 +31,4 @@ public class Kata26 {
 
         return size + 1;
     }
-
-    public static void main(String[] args) {
-        int[] input = new int[]{1, 1, 2, 2, 2, 3};
-        System.out.println(removeDuplicate(input));
-        System.out.println(ToStringBuilder.reflectionToString(input));
-    }
 }
