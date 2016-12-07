@@ -12,6 +12,7 @@ import org.black.lotus.org.black.lotus.support.ListNode;
  return 1->2->2->4->3->5.
  */
 public class Kata86 {
+
     public ListNode partition(ListNode node, int x) {
         if (node == null) {
             return null;
