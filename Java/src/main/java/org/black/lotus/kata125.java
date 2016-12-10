@@ -19,7 +19,7 @@ import java.util.List;
 
  Subscribe to see which companies asked this question
  */
-public class kata125 {
+public class Kata125 {
 
     public boolean isPalindrome(String s) {
         if (s == null || s.length() == 0) {
@@ -28,7 +28,7 @@ public class kata125 {
         String filteredString = extractAlphanumeric(s);
         int tail = filteredString.length() - 1, head = 0;
         while (head <= tail) {
-            if (s.charAt(head) == s.charAt(tail)) {
+            if (Character.toUpperCase(filteredString.charAt(head)) == Character.toUpperCase(filteredString.charAt(tail))) {
                 ++head;
                 --tail;
             } else {
