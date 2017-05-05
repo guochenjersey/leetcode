@@ -23,4 +23,15 @@ public class Kata554Test {
 
         assertEquals(2, kata554.leastBricks(wall));
     }
+
+    @Test
+    public void testKata554Memory() {
+        Kata554 kata554 = new Kata554();
+        List<List<Integer>> wall = new ArrayList<>();
+        wall.add(Arrays.asList(100000000));
+        wall.add(Arrays.asList(100000000));
+        wall.add(Arrays.asList(100000000));
+
+        assertEquals(3, kata554.leastBricks(wall));
+    }
 }

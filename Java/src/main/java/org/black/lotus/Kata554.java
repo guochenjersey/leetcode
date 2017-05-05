@@ -36,7 +36,8 @@ public class Kata554 {
         wall.stream().forEach(row -> {
             HashMap<Integer, Integer> transformedRow = new HashMap<>();
             Integer rowIndex = 0;
-            for (Integer brick : row) {
+            for (int i = 0; i < row.size(); i++) {
+                Integer brick = row.get(i);
                 while (brick > 0) {
                     transformedRow.put(rowIndex, 1);
                     rowIndex++;
@@ -47,25 +48,24 @@ public class Kata554 {
                         rowIndex++;
                     }
                 }
-                // fill the gap with next brick
-                transformedRow.put(rowIndex++, 0);
-                rowMaps.add(transformedRow);
+                if (i < row.size() - 1) {
+                    // fill the gap with next brick
+                    transformedRow.put(rowIndex++, 0);
+                }
             }
+            rowMaps.add(transformedRow);
         });
 
-        int minSoFar = 0;
+        int minSoFar = Integer.MAX_VALUE;
         int columnNumbers = rowMaps.get(0).size();
         int rowNumbers = rowMaps.size();
-        for (int i = 0; i < rowNumbers; ++i) {
+        for (int i = 0; i < columnNumbers; ++i) {
             int bricks = 0;
-            for (int j = 0; j < columnNumbers; ++j) {
-                Integer value = rowMaps.get(j).get(i);
-                if (value == null) {
-                    value = 0;
-                }
+            for (int j = 0; j < rowNumbers; ++j) {
+                Integer value = rowMaps.get(j).getOrDefault(i, 0);
                 bricks += value;
             }
-            minSoFar = Math.min(bricks, minSoFar)
+            minSoFar = Math.min(bricks, minSoFar);
         }
 
         return minSoFar;
