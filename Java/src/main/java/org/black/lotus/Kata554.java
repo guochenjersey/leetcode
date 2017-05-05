@@ -1,7 +1,7 @@
 package org.black.lotus;
 
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.BitSet;
 import java.util.List;
 
 /**
@@ -31,39 +31,40 @@ public class Kata554 {
             return 0;
         }
 
-        List<HashMap<Integer, Integer>> rowMaps = new ArrayList<>();
-
+        List<BitSet> rowMaps = new ArrayList<>();
         wall.stream().forEach(row -> {
-            HashMap<Integer, Integer> transformedRow = new HashMap<>();
+            BitSet rowBitSet = new BitSet(32);
             Integer rowIndex = 0;
             for (int i = 0; i < row.size(); i++) {
                 Integer brick = row.get(i);
                 while (brick > 0) {
-                    transformedRow.put(rowIndex, 1);
+                    rowBitSet.set(rowIndex, true);
                     rowIndex++;
                     brick--;
                     // fill the gap of the brick
                     if (brick > 0) {
-                        transformedRow.put(rowIndex, 1);
+                        rowBitSet.set(rowIndex, true);
                         rowIndex++;
                     }
                 }
                 if (i < row.size() - 1) {
                     // fill the gap with next brick
-                    transformedRow.put(rowIndex++, 0);
+                    rowBitSet.set(rowIndex++, false);
                 }
             }
-            rowMaps.add(transformedRow);
+            rowMaps.add(rowBitSet);
         });
 
         int minSoFar = Integer.MAX_VALUE;
-        int columnNumbers = rowMaps.get(0).size();
+        int columnNumbers = wall.get(0).stream().mapToInt(Integer::intValue).sum() * 2 - 1;
         int rowNumbers = rowMaps.size();
         for (int i = 0; i < columnNumbers; ++i) {
             int bricks = 0;
             for (int j = 0; j < rowNumbers; ++j) {
-                Integer value = rowMaps.get(j).getOrDefault(i, 0);
-                bricks += value;
+                boolean value = rowMaps.get(j).get(i);
+                if (value) {
+                    bricks += 1;
+                }
             }
             minSoFar = Math.min(bricks, minSoFar);
         }
