@@ -17,8 +17,8 @@ public class Kata86 {
         if (node == null) {
             return null;
         }
-        ListNode res = null, resHead = null, greaterThanNode = null,
-                greatherOrEqualHead = null;
+        ListNode res = null, resHead = null,
+                greaterThanNode = null, greaterOrEqualHead = null;
         while (node != null) {
             if (node.val < x) {
                 if (res == null) {
@@ -29,9 +29,9 @@ public class Kata86 {
                     res = res.next;
                 }
             } else {
-                if (greatherOrEqualHead == null) {
-                    greatherOrEqualHead = node;
-                    greaterThanNode = greatherOrEqualHead;
+                if (greaterOrEqualHead == null) {
+                    greaterOrEqualHead = node;
+                    greaterThanNode = greaterOrEqualHead;
                 } else {
                     greaterThanNode.next = node;
                     greaterThanNode = greaterThanNode.next;
@@ -40,10 +40,10 @@ public class Kata86 {
             node = node.next;
         }
 
-        if (greatherOrEqualHead != null && res != null) {
-            res.next = greatherOrEqualHead;
-        } else if (greatherOrEqualHead != null && res == null) {
-            resHead = greatherOrEqualHead;
+        if (greaterOrEqualHead != null && res != null) {
+            res.next = greaterOrEqualHead;
+        } else if (greaterOrEqualHead != null) {
+            resHead = greaterOrEqualHead;
         }
 
         return resHead;

@@ -13,6 +13,7 @@ package org.black.lotus;
 public class Kata3 {
 
     public int lengthOfLongestSubstring(String s) {
+
         int res = 0;
 
         return res;
