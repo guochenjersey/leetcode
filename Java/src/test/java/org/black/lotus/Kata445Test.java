@@ -3,11 +3,11 @@ package org.black.lotus;
 import org.black.lotus.org.black.lotus.support.ListNode;
 import org.junit.Test;
 
+import java.util.ArrayDeque;
+import java.util.Deque;
+
 import static org.junit.Assert.*;
 
-/**
- * Created by chenguo on 5/5/17.
- */
 public class Kata445Test {
 
     @Test
@@ -54,4 +54,30 @@ public class Kata445Test {
         ListNode node = kata445.addTwoNumbers(one, nine);
         node.println();
     }
+
+    @Test
+    public void testDeque() {
+        Deque<String> deque = new ArrayDeque<>();
+        deque.push("First");
+        deque.push("Second");
+
+        while (!deque.isEmpty()) {
+            System.out.println(deque.pop());
+        }
+
+        deque.push("First");
+        deque.push("Second");
+
+        while (!deque.isEmpty()) {
+            System.out.println(deque.pollLast());
+        }
+
+        deque.offer("First");
+        deque.offer("Second");
+
+        while (!deque.isEmpty()) {
+            System.out.println(deque.pollLast());
+        }
+    }
+
 }
