@@ -34,6 +34,7 @@ public class Kata445 {
             l2 = l2.next;
         }
 
+        // check if there is anything need to carry
         boolean shouldCarry = false;
         while (!l1Deque.isEmpty() && !l2Deque.isEmpty()) {
             ListNode p1 = l1Deque.pop();
@@ -50,13 +51,16 @@ public class Kata445 {
         }
 
         if (l1Deque.isEmpty() && l2Deque.isEmpty() && shouldCarry) {
+            // if both stacks are empty, we create a head node.
             ListNode node = new ListNode(1);
             res.push(node);
         } else if (l1Deque.isEmpty() || l2Deque.isEmpty()) {
+            // if one of stack is still available
             handleLeftOver(l1Deque, res, shouldCarry);
             handleLeftOver(l2Deque, res, shouldCarry);
         }
 
+        // revert to backward
         ListNode head = res.peekFirst(), node;
         while (res.peekLast() != null) {
             ListNode tempNode;
@@ -84,6 +88,7 @@ public class Kata445 {
             updated = true;
         }
         if (updated && shouldCarry) {
+            // if the final node need to carry
             res.push(new ListNode(1));
         }
     }
