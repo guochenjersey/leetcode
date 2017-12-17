@@ -5,7 +5,6 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.io.Writer;
 import java.net.Socket;
-
 import org.apache.http.HttpHost;
 import org.apache.http.auth.UsernamePasswordCredentials;
 import org.apache.http.impl.client.ProxyClient;
@@ -16,30 +15,30 @@ import org.apache.http.protocol.HTTP;
  */
 public class ProxyTunnelDemo {
 
-    public final static void main(String[] args) throws Exception {
+  public static final void main(String[] args) throws Exception {
 
-        ProxyClient proxyClient = new ProxyClient();
-        HttpHost target = new HttpHost("uobuat.qa.flextrade.com", 9100);
-        HttpHost proxy = new HttpHost("sgp.dev", 3128);
-        UsernamePasswordCredentials credentials = new UsernamePasswordCredentials("user", "pwd");
-        Socket socket = proxyClient.tunnel(proxy, target, credentials);
-        try {
-            Writer out = new OutputStreamWriter(socket.getOutputStream(), HTTP.DEF_CONTENT_CHARSET);
-            out.write("GET / HTTP/1.1\r\n");
-            out.write("Host: " + target.toHostString() + "\r\n");
-            out.write("Agent: whatever\r\n");
-            out.write("Connection: close\r\n");
-            out.write("\r\n");
-            out.flush();
-            BufferedReader in = new BufferedReader(
-                    new InputStreamReader(socket.getInputStream(), HTTP.DEF_CONTENT_CHARSET));
-            String line = null;
-            while ((line = in.readLine()) != null) {
-                System.out.println(line);
-            }
-        } finally {
-            socket.close();
-        }
+    ProxyClient proxyClient = new ProxyClient();
+    HttpHost target = new HttpHost("uobuat.qa.flextrade.com", 9100);
+    HttpHost proxy = new HttpHost("sgp.dev", 3128);
+    UsernamePasswordCredentials credentials = new UsernamePasswordCredentials("user", "pwd");
+    Socket socket = proxyClient.tunnel(proxy, target, credentials);
+    try {
+      Writer out = new OutputStreamWriter(socket.getOutputStream(), HTTP.DEF_CONTENT_CHARSET);
+      out.write("GET / HTTP/1.1\r\n");
+      out.write("Host: " + target.toHostString() + "\r\n");
+      out.write("Agent: whatever\r\n");
+      out.write("Connection: close\r\n");
+      out.write("\r\n");
+      out.flush();
+      BufferedReader in =
+          new BufferedReader(
+              new InputStreamReader(socket.getInputStream(), HTTP.DEF_CONTENT_CHARSET));
+      String line = null;
+      while ((line = in.readLine()) != null) {
+        System.out.println(line);
+      }
+    } finally {
+      socket.close();
     }
-
+  }
 }

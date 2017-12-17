@@ -1,4 +1,3 @@
 package org.black.lotus.oo.design;
 
-public interface ParkingLot {
-}
+public interface ParkingLot {}

@@ -1,4 +1,3 @@
 package org.black.lotus.oo.design;
 
-public interface Vehicle {
-}
+public interface Vehicle {}
