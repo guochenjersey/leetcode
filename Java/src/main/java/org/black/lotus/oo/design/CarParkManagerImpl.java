@@ -2,16 +2,11 @@ package org.black.lotus.oo.design;
 
 import com.google.common.collect.Lists;
 import java.util.LinkedList;
-import javax.annotation.PostConstruct;
 
 public class CarParkManagerImpl implements CarParkManager {
 
   private LinkedList<ParkingLotPool> pool;
 
-  @PostConstruct
-  public void init() {
-    pool = Lists.newLinkedList();
-  }
 
   @Override
   public void enter(Vehicle vehicle) {

@@ -1,6 +1,5 @@
 package org.black.lotus;
 
-
 /**
  *
  *
