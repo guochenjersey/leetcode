@@ -5,16 +5,16 @@ import java.util.Queue;
 
 public class BinaryTree {
 
-  public static <T> int getTreeNodeNum(TreeNode<T> root) {
+  public static int getTreeNodeNum(TreeNode root) {
     if (root == null) {
       return 0;
     }
 
-    Queue<TreeNode<T>> treeNodes = new LinkedList<>();
+    Queue<TreeNode> treeNodes = new LinkedList<>();
     int tradeNodeCounter = 1;
     treeNodes.add(root);
     while (!treeNodes.isEmpty()) {
-      TreeNode<T> head = treeNodes.remove();
+      TreeNode head = treeNodes.remove();
       if (head.left != null) {
         treeNodes.add(head.left);
         ++tradeNodeCounter;
@@ -30,8 +30,8 @@ public class BinaryTree {
   }
 }
 
-class TreeNode<T> {
-  T val;
-  TreeNode<T> left;
-  TreeNode<T> right;
+class TreeNode {
+  public Integer val;
+  public TreeNode left;
+  public TreeNode right;
 }
