@@ -9,7 +9,10 @@ import java.util.Set;
 import java.util.TreeSet;
 
 /**
- * Difference between Tree and Graph is graph has circle.
+ * Difference between Tree and Graph are
+ * 1) graph has circle.
+ * 2) visited nodes equals all nodes number. All nodes must be reachable.
+ *
  * */
 public class GraphValidTree {
 
@@ -28,6 +31,9 @@ public class GraphValidTree {
         return false;
       }
 
+      /*
+       * undirected graph route comparision.
+       * */
       Path that = (Path) toCheck;
       return (that.from.equals(from) && that.to.equals(to)) ||
           (that.from.equals(to) && that.to.equals(from));
@@ -40,6 +46,7 @@ public class GraphValidTree {
   }
 
   public boolean validTree(int n, int[][] edges) {
+    // check special case.
     if (n == 1 && edges.length == 0) {
       return true;
     } else if (n > 1 && edges.length == 0) {
@@ -53,8 +60,11 @@ public class GraphValidTree {
     return helper(map, queue, visitedNodes, visitedPaths) && visitedNodes.size() == n;
   }
 
-  private boolean helper(Map<Integer, Set<Integer>> map, Queue<Integer> queue,
-      Set<Integer> visitedNodes, Set<Path> visitedPaths) {
+  private boolean helper(Map<Integer, Set<Integer>> map,
+      Queue<Integer> queue,
+      Set<Integer> visitedNodes,
+      Set<Path> visitedPaths) {
+    // BFS search
     while (!queue.isEmpty()) {
       Integer node = queue.poll();
       if (visitedNodes.contains(node)) {
@@ -63,6 +73,9 @@ public class GraphValidTree {
       visitedNodes.add(node);
       Set<Integer> successorNodes = map.get(node);
       successorNodes.forEach(successor -> {
+        /*
+         * Say if 0 -> 1 visited, 1 as successor shouldn't add 1 -> 0 anymore.
+         * */
         if (!visitedPaths.contains(new Path(node, successor))) {
           visitedPaths.add(new Path(node, successor));
           queue.offer(successor);
@@ -74,7 +87,7 @@ public class GraphValidTree {
   }
 
   /**
-   * node -> nodes it can reach
+   * convert from edges to node -> nodes it can reach
    */
   private Map<Integer, Set<Integer>> toMap(int[][] edges) {
     Map<Integer, Set<Integer>> res = new HashMap<>();
