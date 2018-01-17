@@ -1,13 +1,9 @@
 package org.black.lotus.lintcode;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Map;
 import java.util.Queue;
-import java.util.Set;
 
 public class CourseScheduleII {
 
@@ -20,68 +16,45 @@ public class CourseScheduleII {
    * @return: the course order
    */
   public int[] findOrder(int numCourses, int[][] prerequisites) {
-    Map<Integer, List<Integer>> prerequisitesMap = toMap(prerequisites);
+    // Write your code here
+    List[] edges = new ArrayList[numCourses];
+    int[] degree = new int[numCourses];
 
-    for (int i = 0 ; i< numCourses; ++i) {
-      Queue<Integer> queue = new LinkedList<>();
-      queue.offer(i);
-      Set<Integer> coursesSet = initCoursesSet(numCourses);
-      List<Integer> res = new LinkedList<>();
-      try {
-        findAllCourses(queue, prerequisitesMap, numCourses, res, coursesSet);
-      } catch (CircleException e) {
-        return new int[0];
-      }
-      if (res.size() == numCourses && coursesSet.size() == 0) {
-        int[] resArray = new int[res.size()];
-        for (int j = 0; j < res.size(); ++j) {
-          resArray[j] = res.get(j);
-        }
+    for (int i = 0;i < numCourses; i++)
+      edges[i] = new ArrayList<Integer>();
 
-        return resArray;
+    for (int i = 0; i < prerequisites.length; i++) {
+      degree[prerequisites[i][0]] ++ ;
+      edges[prerequisites[i][1]].add(prerequisites[i][0]);
+    }
+
+    Queue queue = new LinkedList();
+    for(int i = 0; i < degree.length; i++){
+      if (degree[i] == 0) {
+        queue.add(i);
       }
     }
+
+    int count = 0;
+    int[] order = new int[numCourses];
+    while(!queue.isEmpty()){
+      int course = (int)queue.poll();
+      order[count] = course;
+      count ++;
+      int n = edges[course].size();
+      for(int i = n - 1; i >= 0 ; i--){
+        int pointer = (int)edges[course].get(i);
+        degree[pointer]--;
+        if (degree[pointer] == 0) {
+          queue.add(pointer);
+        }
+      }
+    }
+
+    if (count == numCourses)
+      return order;
 
     return new int[0];
-  }
-
-  private void findAllCourses(Queue<Integer> queue,
-      Map<Integer, List<Integer>> prerequisitesMap,
-      int numCourses,
-      List<Integer> res,
-      Set<Integer> courseSet) throws CircleException {
-    int visitedCourses = 0;
-    while (!queue.isEmpty()) {
-      if (visitedCourses < numCourses) {
-        Integer course = queue.poll();
-        courseSet.remove(course);
-        res.add(course);
-        visitedCourses++;
-        prerequisitesMap.getOrDefault(course, new ArrayList<>()).forEach(queue::offer);
-      } else {
-        throw new CircleException();
-      }
-    }
-  }
-
-  private Map<Integer, List<Integer>> toMap(int[][] prerequisites) {
-    Map<Integer, List<Integer>> prerequisiteMap = new HashMap<>();
-
-    for (int[] prerequisite : prerequisites) {
-      prerequisiteMap.putIfAbsent(prerequisite[1], new ArrayList<>());
-      prerequisiteMap.get(prerequisite[1]).add(prerequisite[0]);
-    }
-
-    return prerequisiteMap;
-  }
-
-  private Set<Integer> initCoursesSet(int numCourses) {
-    Set<Integer> coursesSet = new HashSet<>();
-    for (int i = 0; i < numCourses; ++i) {
-      coursesSet.add(i);
-    }
-
-    return coursesSet;
   }
 
   public static void main(String... args) {

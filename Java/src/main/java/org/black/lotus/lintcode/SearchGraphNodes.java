@@ -51,18 +51,27 @@ public class SearchGraphNodes {
 
     List<UndirectedGraphNode> visitedNodes = new ArrayList<>();
     Queue<UndirectedGraphNode> queue = new LinkedList<>();
-
-    return null;
+    queue.offer(node);
+    visitedNodes.add(node);
+    return findTarget(values, queue, visitedNodes, target);
   }
 
-  private UndirectedGraphNode findTarget(ArrayList<UndirectedGraphNode> graph,
-      Map<UndirectedGraphNode, Integer> valueMap, Queue<UndirectedGraphNode> queue,
-      List<UndirectedGraphNode> visitedNodes) {
+  private UndirectedGraphNode findTarget(Map<UndirectedGraphNode, Integer> valueMap,
+      Queue<UndirectedGraphNode> queue,
+      List<UndirectedGraphNode> visitedNodes,
+      Integer target) {
     while (!queue.isEmpty()) {
       UndirectedGraphNode node = queue.poll();
-      if (visitedNodes.contains(node)) {
-        return null;
+
+      if (valueMap.get(node).equals(target)) {
+        return node;
       }
+      node.neighbors.forEach(n -> {
+        if (!visitedNodes.contains(n)) {
+          queue.offer(n);
+          visitedNodes.add(n);
+        }
+      });
     }
 
     return null;
