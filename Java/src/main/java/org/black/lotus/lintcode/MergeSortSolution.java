@@ -1,5 +1,11 @@
 package org.black.lotus.lintcode;
 
+/**
+ * MERGE SORT的特点如下
+ * 1) 它是先局部有序,再全局有序.
+ * 2) 它是稳定排序.
+ * 3) 它需要一个O(M+N)的空间.
+ * */
 public class MergeSortSolution {
 
   public void sortArray(int[] source) {
@@ -17,6 +23,7 @@ public class MergeSortSolution {
       return;
     }
 
+    // 注意merge sort的特点,它是局部有序,再全局有序.
     mergeSort(source, start, (start + end) / 2, temp);
     mergeSort(source, (start + end) / 2 + 1, end, temp);
     merge(source, start, end, temp);

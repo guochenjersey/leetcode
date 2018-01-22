@@ -8,6 +8,7 @@ import java.util.Set;
 public class Permutation {
 
   public List<List<Integer>> permute(int[] nums) {
+    // DFS 的套路,首先定义全部结果的结果集.
     List<List<Integer>> results = new ArrayList<>();
     if (nums == null) {
       return results;
@@ -17,9 +18,11 @@ public class Permutation {
       results.add(new ArrayList<>());
       return results;
     }
-
+    // 定义一个空的结果集
     List<Integer> permutation = new ArrayList<>();
+    // 定义一个保存走过路径的集合或者是链表
     Set<Integer> set = new HashSet<>();
+    // 递归解决问题
     helper(nums, permutation, set, results);
     return results;
   }
