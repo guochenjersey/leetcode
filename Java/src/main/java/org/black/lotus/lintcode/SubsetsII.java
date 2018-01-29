@@ -3,6 +3,7 @@ package org.black.lotus.lintcode;
 import java.time.Duration;
 import java.time.Instant;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -15,8 +16,10 @@ public class SubsetsII {
     if (nums == null) {
       return new ArrayList<>(results);
     }
+    Arrays.sort(nums);
     results.add(new ArrayList<>());
     List<Integer> subsets = new ArrayList<>(32);
+    // 我们可以用LIST来保存访问过的节点.也可以用数组来保存,数组的效率更高.
     List<Integer> position = new ArrayList<>();
     helper(nums, results, subsets, position);
 
@@ -35,7 +38,16 @@ public class SubsetsII {
       if (position.contains(i)) {
         continue;
       }
-      subsets.add(nums[i]);
+      if (subsets.isEmpty()) {
+        subsets.add(nums[i]);
+      } else {
+        Integer lastNum = subsets.get(subsets.size() - 1);
+        if (nums[i] >= lastNum) {
+          subsets.add(nums[i]);
+        } else {
+          continue;
+        }
+      }
       position.add(i);
       results.add(new ArrayList<>(subsets));
       helper(nums, results, subsets, position);
