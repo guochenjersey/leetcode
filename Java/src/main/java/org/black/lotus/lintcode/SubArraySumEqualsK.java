@@ -9,7 +9,7 @@ class Result {
  * TODO
  * */
 public class SubArraySumEqualsK {
-  
+
   public int subarraySum(int[] nums, int target) {
     Result result = new Result();
     search(result, 0, nums.length - 1, nums, target);
