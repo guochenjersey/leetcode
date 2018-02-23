@@ -1,24 +1,26 @@
 package org.black.lotus.lintcode;
 
-import java.util.HashMap;
-import java.util.Map;
+import org.black.lotus.marker.FirstRound;
+import org.black.lotus.marker.LintCode;
+import org.black.lotus.marker.NoIdeaOrBadIdeaInitially;
+import org.black.lotus.marker.NotAccepted;
 
+@NoIdeaOrBadIdeaInitially
+@NotAccepted
+@LintCode @FirstRound
 public class MaximumSubarray {
 
   public int maxSubArray(int[] nums) {
-    int sum = 0, prevSum = 0, startPoint = 0, maxSum = 0;
+    if (nums == null || nums.length == 0) {
+      return 0;
+    }
 
-    Map<Integer, Integer> sumsMap = new HashMap<>();
+    // min sum
+    int maxSum = Integer.MIN_VALUE, minSum = 0, sum = 0;
     for (int i = 0; i < nums.length; ++i) {
       sum += nums[i];
-      sumsMap.put(i, sum);
-      if (sum >= prevSum) {
-        prevSum = sum;
-      } else {
-        startPoint = i;
-      }
-      Integer startPointSum = sumsMap.get(startPoint);
-      maxSum = Math.max(prevSum - startPointSum, maxSum);
+      maxSum = Math.max(maxSum, sum - minSum);
+      minSum = Math.min(minSum, sum);
     }
 
     return maxSum;
