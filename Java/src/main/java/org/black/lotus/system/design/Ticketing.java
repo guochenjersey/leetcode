@@ -1,53 +1,89 @@
 package org.black.lotus.system.design;
 
-import com.lambdaworks.redis.Limit;
-import com.lambdaworks.redis.Range;
+import static org.black.lotus.system.design.Ticketing.INCUR_KEY;
+import static org.black.lotus.system.design.Ticketing.ZSET_KEY;
+
+import com.lambdaworks.redis.LettuceFutures;
 import com.lambdaworks.redis.RedisClient;
-import com.lambdaworks.redis.api.sync.RedisCommands;
+import com.lambdaworks.redis.RedisFuture;
+import com.lambdaworks.redis.api.StatefulRedisConnection;
+import com.lambdaworks.redis.api.async.RedisAsyncCommands;
 import java.time.Duration;
 import java.time.Instant;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
 
 public class Ticketing {
 
-  private static final String ZSET_KEY = "ZSET_KEY";
-  private static final String HASH_KEY = "HASH_KEY";
-  private static final String INCUR_KEY = "INCUR_KEY";
-  private static final String LAST_LOGIN = "RECENT_KEY";
+  static final String ZSET_KEY = "ZSET_KEY";
+  static final String HASH_KEY = "HASH_KEY";
+  static final String INCUR_KEY = "INCUR_KEY";
+  static final String LAST_LOGIN = "RECENT_KEY";
 
   public static void main(String... args) {
+    Executors.newSingleThreadScheduledExecutor().scheduleAtFixedRate(new Collector(), 5, 5, TimeUnit.SECONDS);
+    produce();
+  }
+
+  private static void produce() {
     RedisClient client = RedisClient.create("redis://localhost");
-    RedisCommands<String, String> sync = client.connect().sync();
-    operateOnZset(sync);
-    sync.close();
+    StatefulRedisConnection<String, String> connect = client.connect();
+    RedisAsyncCommands<String, String> asyncCommands = connect.async();
+    asyncCommands.setAutoFlushCommands(false);
+
+    List<RedisFuture<?>> futures = new ArrayList<>();
+    Instant start = Instant.now();
+    Random random = new Random(System.currentTimeMillis());
+    int counter = 5000;
+    while (--counter > 0) {
+      for (int i = 0; i < 100_000; i++) {
+        futures.add(asyncCommands.zadd(ZSET_KEY, random.nextDouble(), String.valueOf(random.nextDouble())));
+        futures.add(asyncCommands.incr(INCUR_KEY));
+      }
+
+      asyncCommands.flushCommands();
+      boolean successful = LettuceFutures
+          .awaitAll(10, TimeUnit.SECONDS,
+              futures.toArray(new RedisFuture[futures.size()]));
+      if (successful) {
+        Instant end = Instant.now();
+        System.out.println(Duration.between(start, end).getSeconds());
+        start = end;
+      } else {
+        System.out.println("Can't complete");
+      }
+    }
+    connect.close();
     client.shutdown();
   }
+}
 
-  private static void operateOnZset(RedisCommands<String, String> sync) {
-    sync.zadd(ZSET_KEY, 3.4f, "postId1");
-    sync.zadd(ZSET_KEY, 4.5f, "postId2");
-    sync.zadd(ZSET_KEY, 7.8f, "postId3");
-    System.out.println("Having " + sync.zcard(ZSET_KEY) + " in zset");
-    sync.zaddincr(ZSET_KEY, 9.8f, "postId1");
-    Range<Float> floatRange = Range.create(0f, 50f);
-    sync.zrangebyscore(ZSET_KEY, floatRange).forEach(System.out::println);
-    Limit limit = Limit.create(0, 10);
+class Collector implements Runnable {
 
-    int operator = 0;
-    Instant now = Instant.now();
-    while (true) {
-      if (operator % 10000 == 0) {
-        Instant end = Instant.now();
-        System.out.println(operator + " " + Duration.between(now, end).getSeconds());
-        now = end;
-      }
-      ++operator;
-      String token = "token" + operator;
-      sync.hset(HASH_KEY, "token1", "user1");
-      sync.hset(HASH_KEY, "token2", "user2");
-      sync.hset(HASH_KEY, "token3", "user3");
-      sync.zadd(LAST_LOGIN, System.currentTimeMillis(), token);
+  @Override
+  public void run() {
+    RedisClient client = RedisClient.create("redis://localhost");
+    StatefulRedisConnection<String, String> connect = client.connect();
+    RedisAsyncCommands<String, String> asyncCommands = connect.async();
+    asyncCommands.setAutoFlushCommands(false);
 
+    List<RedisFuture<?>> futures = new ArrayList<>();
+    Instant start = Instant.now();
+    futures.add(asyncCommands.get(INCUR_KEY));
+    RedisFuture<Long> zremrangebyscore = asyncCommands.zremrangebyscore(ZSET_KEY, 1, 5);
+    futures.add(zremrangebyscore);
+    asyncCommands.flushCommands();
+    boolean successful = LettuceFutures
+        .awaitAll(5, TimeUnit.SECONDS, futures.toArray(new RedisFuture[futures.size()]));
+    if (successful) {
+    } else {
+      System.out.println("Can't complete");
     }
-  }
 
+    connect.close();
+    client.shutdown();
+  }
 }
