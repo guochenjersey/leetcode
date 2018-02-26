@@ -1,10 +1,11 @@
 package org.black.lotus.lintcode;
 
+import org.black.lotus.marker.Accepted;
 import org.black.lotus.marker.FirstRound;
 import org.black.lotus.marker.LintCode;
 
 @FirstRound
-@LintCode
+@LintCode @Accepted
 public class SingleNumber {
   public int singleNumber(int[] A) {
     int i = A[0];
