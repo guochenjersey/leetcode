@@ -31,7 +31,7 @@ public class BinaryTree {
 }
 
 class TreeNode {
-  public Integer val;
+  public int val;
   public TreeNode left;
   public TreeNode right;
 }
