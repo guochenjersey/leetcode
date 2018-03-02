@@ -49,11 +49,5 @@ public class ValidParentheses {
         || (left.equals('[') && right.equals(']'))
         || (left.equals('{') && right.equals('}'));
   }
-
-  public static void main(String... args) {
-    ValidParentheses validParentheses = new ValidParentheses();
-    boolean valid = validParentheses.isValid("([)]");
-    System.out.println(valid);
-  }
 }
 

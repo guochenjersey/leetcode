@@ -2,6 +2,8 @@ package org.black.lotus.kata;
 
 import org.black.lotus.marker.FirstRound;
 import org.black.lotus.marker.LintCode;
+import org.black.lotus.marker.NoIdeaOrBadIdeaInitially;
+import org.black.lotus.marker.NotAccepted;
 
 /**
  * Given the root and two nodes in a Binary Tree.
@@ -14,11 +16,12 @@ import org.black.lotus.marker.LintCode;
  * */
 @LintCode
 @FirstRound
+@NotAccepted
+@NoIdeaOrBadIdeaInitially
 public class LCAIII {
 
   class Result {
     TreeNode resNode;
-    int level;
   }
 
   public TreeNode lowestCommonAncestor3(TreeNode root,
@@ -29,16 +32,34 @@ public class LCAIII {
     }
 
     Result res = new Result();
-    res.level = -1;
     TreeNode lowerBound = node1.val < node2.val ? node1 : node2;
     TreeNode upperBound = node1.val > node2.val ? node1 : node2;
-    dfs(lowerBound, upperBound, root, res, 0);
+    dfs(lowerBound, upperBound, root, res);
 
     return res.resNode;
   }
 
   private void dfs(TreeNode lowerBound, TreeNode upperBound,
-      TreeNode node, Result result, int level) {
+      TreeNode node, Result result) {
+      if (node == null) {
+          return;
+      }
 
+      if (node == upperBound || node == lowerBound) {
+          return;
+      }
+
+      if (node.val > lowerBound.val && node.val < upperBound.val) {
+          result.resNode = node;
+          return;
+      }
+
+      if (node.val < upperBound.val) {
+          dfs(lowerBound, upperBound, node.right, result);
+      }
+
+      if (node.val > lowerBound.val) {
+          dfs(lowerBound, upperBound, node.left, result);
+      }
   }
 }
