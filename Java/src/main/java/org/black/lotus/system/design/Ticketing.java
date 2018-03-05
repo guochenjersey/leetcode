@@ -1,89 +1,56 @@
 package org.black.lotus.system.design;
 
-import static org.black.lotus.system.design.Ticketing.INCUR_KEY;
-import static org.black.lotus.system.design.Ticketing.ZSET_KEY;
+import redis.clients.jedis.Jedis;
+import redis.clients.jedis.Pipeline;
 
-import com.lambdaworks.redis.LettuceFutures;
-import com.lambdaworks.redis.RedisClient;
-import com.lambdaworks.redis.RedisFuture;
-import com.lambdaworks.redis.api.StatefulRedisConnection;
-import com.lambdaworks.redis.api.async.RedisAsyncCommands;
 import java.time.Duration;
 import java.time.Instant;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
-import java.util.concurrent.Executors;
-import java.util.concurrent.TimeUnit;
 
 public class Ticketing {
 
   static final String ZSET_KEY = "ZSET_KEY";
-  static final String HASH_KEY = "HASH_KEY";
+  static final String HASH_KEY = "TICK_COLLECTION";
   static final String INCUR_KEY = "INCUR_KEY";
   static final String LAST_LOGIN = "RECENT_KEY";
+  static final String[] LPS = {"BOFA", "CITI", "JPMC", "GS", "ST", "UOB", "OCBC", "BARC", "UBS"};
+  static final String[] SYMBOLS = {"EUR/USD", "USD/JPY", "USD/CHF", "GBP/USD", "USD/CAD"};
 
   public static void main(String... args) {
-    Executors.newSingleThreadScheduledExecutor().scheduleAtFixedRate(new Collector(), 5, 5, TimeUnit.SECONDS);
     produce();
   }
 
   private static void produce() {
-    RedisClient client = RedisClient.create("redis://localhost");
-    StatefulRedisConnection<String, String> connect = client.connect();
-    RedisAsyncCommands<String, String> asyncCommands = connect.async();
-    asyncCommands.setAutoFlushCommands(false);
+    Jedis jedis = new Jedis("172.27.0.104");
+      Random random = new Random(System.currentTimeMillis());
+      Pipeline pipelined = jedis.pipelined();
+      Instant start = Instant.now();
+      for (String lp : LPS) {
+          Instant end = Instant.now();
+          System.out.println(Duration.between(start, end).getSeconds());
+          start = end;
+          for (int i = 0; i < 100_000; i++) {
+            for (String symbol : SYMBOLS) {
+                StringBuilder keyBuilder = new StringBuilder();
+                keyBuilder.append(lp);
+                keyBuilder.append("-");
+                keyBuilder.append(Instant.now());
+                keyBuilder.append("-").append(symbol);
 
-    List<RedisFuture<?>> futures = new ArrayList<>();
-    Instant start = Instant.now();
-    Random random = new Random(System.currentTimeMillis());
-    int counter = 5000;
-    while (--counter > 0) {
-      for (int i = 0; i < 100_000; i++) {
-        futures.add(asyncCommands.zadd(ZSET_KEY, random.nextDouble(), String.valueOf(random.nextDouble())));
-        futures.add(asyncCommands.incr(INCUR_KEY));
-      }
+                pipelined.zadd(ZSET_KEY, System.currentTimeMillis(), String.valueOf(random.nextFloat()));
+            }
+            if (i % 10_000 == 0) {
+                pipelined.sync();
+            }
+        }
 
-      asyncCommands.flushCommands();
-      boolean successful = LettuceFutures
-          .awaitAll(10, TimeUnit.SECONDS,
-              futures.toArray(new RedisFuture[futures.size()]));
-      if (successful) {
-        Instant end = Instant.now();
-        System.out.println(Duration.between(start, end).getSeconds());
-        start = end;
-      } else {
-        System.out.println("Can't complete");
-      }
-    }
-    connect.close();
-    client.shutdown();
-  }
-}
-
-class Collector implements Runnable {
-
-  @Override
-  public void run() {
-    RedisClient client = RedisClient.create("redis://localhost");
-    StatefulRedisConnection<String, String> connect = client.connect();
-    RedisAsyncCommands<String, String> asyncCommands = connect.async();
-    asyncCommands.setAutoFlushCommands(false);
-
-    List<RedisFuture<?>> futures = new ArrayList<>();
-    Instant start = Instant.now();
-    futures.add(asyncCommands.get(INCUR_KEY));
-    RedisFuture<Long> zremrangebyscore = asyncCommands.zremrangebyscore(ZSET_KEY, 1, 5);
-    futures.add(zremrangebyscore);
-    asyncCommands.flushCommands();
-    boolean successful = LettuceFutures
-        .awaitAll(5, TimeUnit.SECONDS, futures.toArray(new RedisFuture[futures.size()]));
-    if (successful) {
-    } else {
-      System.out.println("Can't complete");
     }
 
-    connect.close();
-    client.shutdown();
+      try {
+          Thread.sleep(1000 * 5000);
+      } catch (InterruptedException e) {
+          e.printStackTrace();
+      }
+      jedis.disconnect();
   }
 }
