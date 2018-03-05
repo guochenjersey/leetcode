@@ -1,0 +1,39 @@
+package org.black.lotus.kata;
+
+public class ValidPalindrome {
+
+    public boolean isPalindrome(String s) {
+        if (s == null) {
+            return false;
+        }
+        if (s.length() == 0) {
+            return true;
+        }
+
+        for (int i = 0, j = s.length() - 1; i < j;) {
+            if (!Character.isLetterOrDigit(s.charAt(i))) {
+                ++i;
+                continue;
+            }
+            if (!Character.isLetterOrDigit(s.charAt(j))) {
+                --j;
+                continue;
+            }
+
+            if (Character.toUpperCase(s.charAt(i)) != Character.toUpperCase(s.charAt(j))) {
+                return false;
+            }
+
+            ++i;
+            --j;
+        }
+
+        return true;
+    }
+
+    public static void main(String... args) {
+        ValidPalindrome validPalindrome = new ValidPalindrome();
+        boolean ab = validPalindrome.isPalindrome("1a2");
+        System.out.println(ab);
+    }
+}
