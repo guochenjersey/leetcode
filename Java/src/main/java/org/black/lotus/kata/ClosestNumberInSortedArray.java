@@ -1,5 +1,22 @@
 package org.black.lotus.kata;
 
+import org.black.lotus.marker.Important;
+import org.black.lotus.marker.LeetCode;
+import org.black.lotus.marker.NoIdeaOrBadIdeaInitially;
+
+/**
+ * Given a target number and an integer array A sorted in ascending order, find the index i in A such that A[i] is closest to the given target.
+
+ Return -1 if there is no element in the array.
+
+ Notice
+ There can be duplicate elements in the array, and we can return any of the indices with same value.
+ *
+ * */
+
+@Important
+@LeetCode
+@NoIdeaOrBadIdeaInitially
 public class ClosestNumberInSortedArray {
 
   /*
