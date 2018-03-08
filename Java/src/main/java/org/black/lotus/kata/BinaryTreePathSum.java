@@ -29,8 +29,10 @@ public class BinaryTreePathSum {
         if (node == null) {
             return;
         }
-        
-        if ((sum + node.val) == target && node.left == null && node.right == null) {
+
+        if ((sum + node.val) == target
+                && node.left == null
+                && node.right == null) {
             path.add(node.val);
             res.add(new ArrayList<>(path));
             return;
