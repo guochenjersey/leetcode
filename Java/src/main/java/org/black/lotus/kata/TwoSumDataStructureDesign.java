@@ -72,14 +72,4 @@ public class TwoSumDataStructureDesign {
             return obj;
         }
     }
-
-    public static void main(String... args) {
-        TwoSumDataStructureDesign twoSumDataStructureDesign = new TwoSumDataStructureDesign();
-        twoSumDataStructureDesign.add(1);
-        twoSumDataStructureDesign.add(3);
-        twoSumDataStructureDesign.add(5);
-
-        System.out.println(twoSumDataStructureDesign.find(4));
-        System.out.println(twoSumDataStructureDesign.find(7));
-    }
 }

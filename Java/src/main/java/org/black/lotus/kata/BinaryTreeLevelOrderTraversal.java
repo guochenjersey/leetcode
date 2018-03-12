@@ -1,5 +1,9 @@
 package org.black.lotus.kata;
 
+import org.black.lotus.marker.Accepted;
+import org.black.lotus.marker.FirstRound;
+import org.black.lotus.marker.LintCode;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.LinkedList;
@@ -9,6 +13,37 @@ import java.util.Queue;
 import java.util.TreeMap;
 import java.util.stream.Collectors;
 
+/**
+ * Given a binary tree, return the level order traversal of its nodes' values. (ie, from left to right, level by level).
+
+ Have you met this question in a real interview?
+ Example
+ Given binary tree {3,9,20,#,#,15,7},
+
+ 3
+ / \
+ 9  20
+ /  \
+ 15   7
+
+
+ return its level order traversal as:
+
+ [
+ [3],
+ [9,20],
+ [15,7]
+ ]
+ Challenge
+ Challenge 1: Using only 1 queue to implement it.
+
+ Challenge 2: Use DFS algorithm to do it.
+
+ Tags
+ * */
+@FirstRound
+@Accepted
+@LintCode
 public class BinaryTreeLevelOrderTraversal {
 
   class LevelNode {

@@ -1,5 +1,8 @@
 package org.black.lotus.kata;
 
+import org.black.lotus.marker.Accepted;
+import org.black.lotus.marker.FirstRound;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -7,6 +10,31 @@ import java.util.List;
 import java.util.Map;
 import java.util.Queue;
 
+/**
+ *
+ * Given a boolean 2D matrix, 0 is represented as the sea, 1 is represented as the island. If two 1 is adjacent, we consider them in the same island. We only consider up/down/left/right adjacent.
+
+ Find the number of islands.
+
+ Have you met this question in a real interview?
+ Example
+ Given graph:
+
+ [
+ [1, 1, 0, 0, 0],
+ [0, 1, 0, 0, 1],
+ [0, 0, 0, 1, 1],
+ [0, 0, 0, 0, 0],
+ [0, 0, 0, 0, 1]
+ ]
+ return 3.
+
+ Tags
+
+ *
+ * */
+@FirstRound
+@Accepted
 public class NumberOfIslands {
 
   private class Point {
@@ -112,21 +140,5 @@ public class NumberOfIslands {
     }
 
     return recordMap;
-  }
-
-  private void test() {
-    boolean[][] grid = {
-        {true, true, false, false, false},
-        {false, true, false, false, true},
-        {false, false, false, true, true},
-        {false, false, false, false, false},
-        {false, false, false, false, true}
-    };
-    System.out.println(numIslands(grid));
-  }
-
-  public static void main(String... args) {
-    NumberOfIslands numberOfIslands = new NumberOfIslands();
-    numberOfIslands.test();
   }
 }

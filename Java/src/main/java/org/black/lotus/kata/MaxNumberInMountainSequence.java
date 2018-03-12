@@ -1,5 +1,28 @@
 package org.black.lotus.kata;
 
+
+import org.black.lotus.marker.Accepted;
+import org.black.lotus.marker.FirstRound;
+import org.black.lotus.marker.LintCode;
+
+
+/**
+ *
+ * Find the last position of a target number in a sorted array. Return -1 if target does not exist.
+
+ Have you met this question in a real interview?
+ Example
+ Given [1, 2, 2, 4, 5, 5].
+
+ For target = 2, return 2.
+
+ For target = 5, return 5.
+
+ For target = 6, return -1.
+ * */
+@FirstRound
+@LintCode
+@Accepted
 public class MaxNumberInMountainSequence {
 
   public int mountainSequence(int[] source) {
@@ -38,12 +61,5 @@ public class MaxNumberInMountainSequence {
     return nums.length == 1
         || (nums.length == 2 && nums[mid] > nums[mid + 1])
         || (nums[mid] > nums[mid + 1] && nums[mid] > nums[mid - 1]);
-  }
-
-  public static void main(String... args) {
-    MaxNumberInMountainSequence maxNumberInMountainSequence = new MaxNumberInMountainSequence();
-    int[] source = {10, 9, 8, 7, 6};
-    int i = maxNumberInMountainSequence.mountainSequence(source);
-    System.out.println(i);
   }
 }
