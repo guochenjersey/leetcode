@@ -6,7 +6,27 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
+/**
+ *
+ * Given a sorted array, two integers k and x, find the k closest elements to x in the array. The result should also be sorted in ascending order. If there is a tie, the smaller elements are always preferred.
 
+ Example 1:
+ Input: [1,2,3,4,5], k=4, x=3
+ Output: [1,2,3,4]
+ Example 2:
+ Input: [1,2,3,4,5], k=4, x=-1
+ Output: [1,2,3,4]
+ Note:
+ The value k is positive and will always be smaller than the length of the sorted array.
+ Length of the given array is positive and will not exceed 104
+ Absolute value of elements in the array and x will not exceed 104
+ *
+ * 注意 最接近的那个数字必须满足以下条件中的一个
+ * 1) 和MIDDLE相等.
+ * 2) < MIDDLE && > middle - 1
+ * 3) > middle && < middle + 1
+ *
+ * */
 @FirstRound
 @LeetCode
 @NoIdeaOrBadIdeaInitially

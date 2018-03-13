@@ -1,6 +1,30 @@
 package org.black.lotus.kata;
 
+
+import org.black.lotus.marker.FirstRound;
+import org.black.lotus.marker.Important;
+import org.black.lotus.marker.LintCode;
+
+
+/**
+ *
+ * Given a sorted array of n integers, find the starting and ending position of a given target value.
+
+ If the target is not found in the array, return [-1, -1].
+
+ Have you met this question in a real interview?
+ Example
+ Given [5, 7, 7, 8, 8, 10] and target value 8,
+ return [3, 4].
+
+ Challenge
+ O(log n) time.
+ * */
+@FirstRound
+@LintCode
+@Important
 public class SearchForARange {
+
   private static int[] NOT_FOUND = {-1, -1};
 
   public int[] searchRange(int[] nums, int target) {

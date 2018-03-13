@@ -1,9 +1,6 @@
 package org.black.lotus.kata;
 
-import org.black.lotus.marker.FirstRound;
-import org.black.lotus.marker.Important;
-import org.black.lotus.marker.NoIdeaOrBadIdeaInitially;
-import org.black.lotus.marker.NotAccepted;
+import org.black.lotus.marker.*;
 
 /**
  * Find K-th largest element in an array.
@@ -11,7 +8,6 @@ import org.black.lotus.marker.NotAccepted;
  Notice
  You can swap elements in the array
 
- Have you met this question in a real interview?
  Example
  In array [9,3,2,4,8], the 3rd largest element is 4.
 
@@ -25,6 +21,7 @@ import org.black.lotus.marker.NotAccepted;
 @FirstRound
 @Important
 @NotAccepted
+@Medium
 @NoIdeaOrBadIdeaInitially
 public class KthLargestElement {
     public int kthLargestElement(int k, int[] nums) {
