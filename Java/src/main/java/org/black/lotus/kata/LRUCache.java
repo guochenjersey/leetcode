@@ -1,97 +1,64 @@
 package org.black.lotus.kata;
 
 import org.black.lotus.marker.Amazon;
+import org.black.lotus.marker.FirstRound;
 import org.black.lotus.marker.LintCode;
+import org.black.lotus.marker.Medium;
 
 import java.util.*;
 
+
+/**
+ *
+ * Design and implement a data structure for Least Recently Used (LRU) cache.
+ * It should support the following operations: get and set.
+ get(key) - Get the value (will always be positive) of the key if the key exists in the cache, otherwise return -1.
+ set(key, value) - Set or insert the value if the key is not already present. When the cache reached its capacity, it should invalidate the least recently used item before inserting a new item.
+
+ TODO
+ * */
 @Amazon
 @LintCode
+@FirstRound
+@Medium
 public class LRUCache {
 
     private int capacity;
-    private PriorityQueue<KeyWrapper> keys = new PriorityQueue<>();
-    private Map<Integer, KeyWrapper> keysMap = new HashMap<>();
-    private Map<Integer, Integer> cache = new HashMap<>();
-
-    static class KeyWrapper implements Comparable<KeyWrapper> {
-        int key;
-        int access;
-
-        KeyWrapper(int key) {
-            this.key = key;
-        }
-
-        @Override
-        public boolean equals(Object o) {
-            if (this == o) return true;
-            if (o == null || getClass() != o.getClass()) return false;
-
-            KeyWrapper that = (KeyWrapper) o;
-
-            return key == that.key;
-        }
-
-        @Override
-        public int hashCode() {
-            return key;
-        }
-
-        @Override
-        public int compareTo(KeyWrapper o) {
-            return this.access = o.access;
-        }
-    }
+    private DoubleLinkedNode head = new DoubleLinkedNode(-1, -1);
+    private DoubleLinkedNode tail = new DoubleLinkedNode(-1, -1);
+    private Map<Integer, DoubleLinkedNode> cache = new HashMap<>();
 
     public LRUCache(int capacity) {
         this.capacity = capacity;
+        this.tail.prev = head;
+        this.head.next = tail;
     }
 
     public int get(int key) {
-        keysMap.computeIfPresent(key, (k, v) -> {
-            ++v.access;
-            return v;
-        });
+        if (!cache.containsKey(key)) {
+            return  -1;
+        }
 
-        return cache.get(key);
+        DoubleLinkedNode current = cache.get(key);
+
+        return -1;
     }
 
 
     public void set(int key, int value) {
-        int currentSize = cache.size();
-        if (currentSize + 1 > capacity) {
-            KeyWrapper keyToRemove = keys.poll();
-            if (!keyToRemove.equals(new KeyWrapper(key))) {
-                keysMap.remove(keyToRemove.key);
-                cache.remove(keyToRemove.key);
-            } else {
-                cache.put(key, value);
-                KeyWrapper wrapper = new KeyWrapper(key);
-                keys.offer(wrapper);
-                keysMap.put(key, wrapper);
-                return;
-            }
-        }
-        keysMap.computeIfAbsent(key, (v) -> {
-            KeyWrapper keyWrapper = new KeyWrapper(key);
-            keyWrapper.access = 0;
-            return keyWrapper;
-        });
-
-        keys.offer(keysMap.get(key));
-        cache.put(key, value);
     }
+}
 
-    public static void main(String... args) {
-//        LRUCache lruCache = new LRUCache(10);
-//        for (int i = 0 ; i < 11; ++i) {
-//            lruCache.set(i, i);
-//        }
-//
-//        Random random = new Random();
-//        for (int i = 0; i < 10; ++i) {
-//            lruCache.get(random.nextInt(10));
-//        }
+class DoubleLinkedNode {
+    DoubleLinkedNode prev;
+    DoubleLinkedNode next;
+    int key;
+    int value;
 
+    DoubleLinkedNode(int key, int value) {
+        this.key = key;
+        this.value = value;
+        prev = null;
+        next = null;
     }
 }

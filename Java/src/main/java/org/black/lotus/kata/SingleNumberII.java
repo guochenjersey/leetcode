@@ -16,6 +16,7 @@ import java.util.Map;
 @NoIdeaOrBadIdeaInitially
 @NotAccepted
 @Important
+@Medium
 public class SingleNumberII {
 
     public int singleNumberII(int[] nums) {

@@ -23,7 +23,7 @@ import java.util.Map;
 @FirstRound
 @Important
 @NoIdeaOrBadIdeaInitially
-@NotAccepted
+@Google
 public class SubarraySumClosest {
 
     /**
