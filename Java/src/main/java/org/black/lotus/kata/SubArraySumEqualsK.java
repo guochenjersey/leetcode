@@ -1,13 +1,20 @@
 package org.black.lotus.kata;
 
+import jdk.internal.instrumentation.InstrumentationMethod;
+import org.black.lotus.marker.FirstRound;
+import org.black.lotus.marker.Important;
+import org.black.lotus.marker.LintCode;
+
 class Result {
   int res;
 }
 
 /**
- * !important
  * TODO
  * */
+@FirstRound
+@LintCode
+@Important
 public class SubArraySumEqualsK {
 
   public int subarraySum(int[] nums, int target) {
@@ -41,12 +48,5 @@ public class SubArraySumEqualsK {
     }
 
     return sum;
-  }
-
-  public static void main(String... args) {
-    int[] nums = {1, 2,1, 2, 1};
-    SubArraySumEqualsK subArraySumEqualsK = new SubArraySumEqualsK();
-    int i = subArraySumEqualsK.subarraySum(nums, 3);
-    System.out.println(i);
   }
 }

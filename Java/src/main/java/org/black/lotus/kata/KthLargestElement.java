@@ -16,7 +16,6 @@ import org.black.lotus.marker.*;
  Challenge
  O(n) time, O(1) extra memory.
 
- TODO
  * */
 @FirstRound
 @Important
@@ -24,6 +23,7 @@ import org.black.lotus.marker.*;
 @Medium
 @NoIdeaOrBadIdeaInitially
 public class KthLargestElement {
+
     public int kthLargestElement(int k, int[] nums) {
         return k;
     }

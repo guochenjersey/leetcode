@@ -15,11 +15,12 @@ public class MaximumSubarray {
       return 0;
     }
 
-    // min sum
+    // min sum. careful about the initial value set, minSum should be 0
     int maxSum = Integer.MIN_VALUE, minSum = 0, sum = 0;
     for (int i = 0; i < nums.length; ++i) {
       sum += nums[i];
       maxSum = Math.max(maxSum, sum - minSum);
+      // min sum calculation should be after max sum because we are finding sub array
       minSum = Math.min(minSum, sum);
     }
 

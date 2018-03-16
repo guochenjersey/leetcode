@@ -30,8 +30,8 @@ public class MaximumSubarrayTest {
 
   @Test
   public void should_find_maximum_subarray_if_only_two_element() {
-    int[] nums = {1, 2};
+    int[] nums = {-1, 2, 3};
     int maximumSubArraySum = maximumSubarray.maxSubArray(nums);
-    assertEquals(3, maximumSubArraySum);
+    assertEquals(6, maximumSubArraySum);
   }
 }
