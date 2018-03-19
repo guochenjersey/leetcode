@@ -5,8 +5,7 @@ import org.black.lotus.marker.FirstRound;
 import org.black.lotus.marker.LeetCode;
 import org.black.lotus.marker.NotAccepted;
 
-import java.util.Arrays;
-import java.util.BitSet;
+import java.util.*;
 
 /**
  *
@@ -40,15 +39,24 @@ import java.util.BitSet;
 @NotAccepted
 public class RemoveDuplicateInArray {
 
-    public int duplication(int[] nums) {
+    public int deduplication(int[] nums) {
         if (nums == null || nums.length == 0) {
             return 0;
         }
 
-        int nextAvailPos = 0;
-        int start = 0;
-        int end = nums.length - 1;
+        LinkedHashSet<Integer> res = new LinkedHashSet<>();
+        for (int i : nums) {
+            if (i != 0) {
+                res.add(i);
+            }
+        }
 
-        return nextAvailPos;
+        int j = 0;
+        for (int i : res) {
+            nums[j] = i;
+            ++j;
+        }
+
+        return j;
     }
 }
