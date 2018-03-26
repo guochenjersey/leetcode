@@ -51,6 +51,7 @@ public class RemoveDuplicateInArray {
             }
         }
 
+
         int j = 0;
         for (int i : res) {
             nums[j] = i;

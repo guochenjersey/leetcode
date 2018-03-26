@@ -23,17 +23,28 @@ public class RemoveDuplicatesFromSortedArrayII {
         if (nums == null || nums.length == 0) {
             return 0;
         }
-        Map<Integer, Integer> occurrenceCounterMap = new HashMap<>();
-        int nextAvailPos = 0;
-        for (int i = 0; i < nums.length; ++i) {
-            occurrenceCounterMap.putIfAbsent(nums[i], 0);
-            occurrenceCounterMap.put(nums[i], occurrenceCounterMap.get(nums[i]) + 1);
-            if (occurrenceCounterMap.get(nums[i]) <= 2) {
-                nums[nextAvailPos] = nums[i];
-                ++nextAvailPos;
+
+        int counter = 1;
+        int[] res = new int[nums.length];
+        res[0] = nums[0];
+        int j = 1;
+        for (int i = 1; i < nums.length; ++i) {
+            if (nums[i] == nums[i-1]) {
+
+                if (counter < 2) {
+                    ++counter;
+                    res[j] = nums[i];
+                    ++j;
+                }
+            } else {
+                res[j] = nums[i];
+                ++j;
+                counter = 1;
             }
         }
 
-        return nextAvailPos;
+        System.arraycopy(res, 0, nums, 0, nums.length);
+
+        return j;
     }
 }
