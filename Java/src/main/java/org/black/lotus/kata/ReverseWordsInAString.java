@@ -2,9 +2,11 @@ package org.black.lotus.kata;
 
 import org.black.lotus.marker.FirstRound;
 import org.black.lotus.marker.Medium;
+import org.black.lotus.marker.NeedToSubmit;
 
 @FirstRound
 @Medium
+@NeedToSubmit
 public class ReverseWordsInAString {
 
     public String reverse(String source) {
