@@ -17,24 +17,25 @@ public class ReOrderList {
         }
 
         ListNode node = head;
-        if (node.next == null || node.next.next == null) {
-            return;
+        int counter = 0;
+        while (node != null) {
+            ++counter;
+            node = node.next;
         }
 
-        ListNode slow = node;
-        ListNode fast = node.next.next;
-
-        while (fast != null && fast.next != null) {
-            slow = slow.next;
-            fast = fast.next.next;
-        }
+        counter /= 2;
 
         Deque<ListNode> stack = new ArrayDeque<>();
+        int step = 0;
+        ListNode slow = head;
         while (slow != null) {
-            stack.offerFirst(slow);
+            if (step >= counter && counter != 0) {
+                stack.offerFirst(slow);
+            }
             slow = slow.next;
+            ++step;
         }
-
+        ListNode temp = head;
         while (!stack.isEmpty()) {
             ListNode reverseNode = stack.pollFirst();
             ListNode headNext = head.next;
