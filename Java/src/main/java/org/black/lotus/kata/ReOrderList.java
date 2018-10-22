@@ -2,13 +2,27 @@ package org.black.lotus.kata;
 
 
 import org.black.lotus.marker.FirstRound;
-import org.black.lotus.marker.NeedToSubmit;
+import org.black.lotus.marker.LintCode;
 
 import java.util.ArrayDeque;
 import java.util.Deque;
 
+/**
+ * Given a singly linked list L: L0 → L1 → … → Ln-1 → Ln
+ * <p>
+ * reorder it to: L0 → Ln → L1 → Ln-1 → L2 → Ln-2 → …
+ * <p>
+ * Have you met this question in a real interview?
+ * Example
+ * Given 1->2->3->4->null, reorder it to 1->4->2->3->null.
+ * <p>
+ * Challenge
+ * Can you do this in-place without altering the nodes' values?
+ * <p>
+ * Tags
+ */
 @FirstRound
-@NeedToSubmit
+@LintCode
 public class ReOrderList {
 
     public void reorderList(ListNode head) {
@@ -22,8 +36,11 @@ public class ReOrderList {
             ++counter;
             node = node.next;
         }
-
-        counter /= 2;
+        if (counter % 2 == 0) {
+            counter /= 2;
+        } else {
+            counter = counter / 2 + 1;
+        }
 
         Deque<ListNode> stack = new ArrayDeque<>();
         int step = 0;
