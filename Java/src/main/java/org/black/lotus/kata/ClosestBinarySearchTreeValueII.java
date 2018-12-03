@@ -6,7 +6,10 @@ import org.black.lotus.marker.FirstRound;
 import org.black.lotus.marker.Hard;
 import org.black.lotus.marker.LintCode;
 
+import java.util.Comparator;
 import java.util.List;
+import java.util.PriorityQueue;
+import java.util.Queue;
 
 
 /**
@@ -33,6 +36,12 @@ import java.util.List;
 public class ClosestBinarySearchTreeValueII {
 
     public List<Integer> closestKValues(TreeNode root, double target, int k) {
+
+        Queue<TreeNode> results = new PriorityQueue<>((o1, o2) -> {
+            double diff1 = ((double) o1.val) - target;
+            double diff2 = ((double) o2.val) - target;
+            return (int)(Math.abs(diff1) - Math.abs(diff2));
+        });
         return null;
     }
 }

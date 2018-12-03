@@ -64,7 +64,7 @@ public class BinaryTreeLevelOrderTraversal {
     Queue<LevelNode> queue = new LinkedList<>();
     queue.offer(new LevelNode(0, root));
     traverse(queue, resultMap);
-    return resultMap.values().stream().collect(Collectors.toList());
+    return new ArrayList<>(resultMap.values());
   }
 
   private void traverse(Queue<LevelNode> queue, Map<Integer, List<Integer>> resultMap) {
