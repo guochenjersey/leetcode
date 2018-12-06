@@ -1,54 +1,72 @@
 package org.black.lotus.kata;
 
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
-import java.util.ListIterator;
+import org.black.lotus.marker.FirstRound;
+import org.black.lotus.marker.LintCode;
+import org.black.lotus.marker.Medium;
+
+import java.util.*;
 import java.util.stream.Collectors;
 
+/**
+ *
+ * Description
+ Merge k sorted linked lists and return it as one sorted list.
+
+ Analyze and describe its complexity.
+
+ Have you met this question in a real interview?
+ Example
+ Given lists:
+
+ [
+ 2->4->null,
+ null,
+ -1->null
+ ],
+ return -1->2->4->null.
+ *
+ *
+ * 我一开始的想法还是使用MIN HEAP来排序.
+ * */
+@LintCode
+@Medium
+@FirstRound
 public class MergeKSortedList {
-  public ListNode mergeKLists(ListNode[] lists) {
-    ListNode res = null;
-    if (lists == null || lists.length == 0) {
-      return res;
-    }
-    List<ListNode> nodes = new ArrayList<>();
-    for (ListNode node : lists) {
-      while (node != null) {
-        nodes.add(node);
-        node = node.next;
-      }
-    }
 
-    List<ListNode> sorted = nodes.stream()
-        .sorted(Comparator.comparingInt(l -> l.val))
-        .collect(Collectors.toList());
-    return arrange(sorted);
-  }
+    /**
+     * @param lists: a list of ListNode
+     * @return: The head of one sorted list.
+     */
+    public ListNode mergeKLists(List<ListNode> lists) {
+        if (lists == null || lists.size() == 0) {
+            return null;
+        }
 
-  private ListNode arrange(List<ListNode> nodes) {
-    if (nodes.size() == 0) {
-      return null;
+        Queue<ListNode> listNodesHeap = setupHeap(lists);
+        return convert(listNodesHeap);
     }
 
-    ListNode head = nodes.get(0);
-    ListNode curr = head;
-    ListIterator<ListNode> listIterator = nodes.listIterator();
-    while (listIterator.hasNext()) {
-      curr.next = listIterator.next();
-      curr = curr.next;
+    private Queue<ListNode> setupHeap(List<ListNode> lists) {
+        Queue<ListNode> priorityQueue = new PriorityQueue<>(Comparator.comparingInt(o -> o.val));
+        for (ListNode node : lists) {
+            while (node != null) {
+                priorityQueue.offer(node);
+                node = node.next;
+            }
+        }
+
+        return priorityQueue;
     }
 
-    curr.next = null;
-    return head;
-  }
+    private ListNode convert(Queue<ListNode> priorityQueue) {
+        ListNode headSentinel = new ListNode(-1);
+        ListNode current = headSentinel;
+        while (!priorityQueue.isEmpty()) {
+            current.next = priorityQueue.poll();
+            current = current.next;
+        }
 
-  public static void main(String... args) {
-    ListNode one = new ListNode(1);
-    ListNode two = new ListNode(0);
-
-    ListNode[] nodes = {one, two};
-    MergeKSortedList mergeKSortedList = new MergeKSortedList();
-    mergeKSortedList.mergeKLists(nodes);
-  }
+        current.next = null;
+        return headSentinel.next;
+    }
 }

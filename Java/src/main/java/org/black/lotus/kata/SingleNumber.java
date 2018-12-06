@@ -9,6 +9,7 @@ import org.black.lotus.marker.Medium;
 @LintCode @Accepted
 @Medium
 public class SingleNumber {
+
   public int singleNumber(int[] A) {
     int i = A[0];
     for (int j = 1; j < A.length; ++j) {

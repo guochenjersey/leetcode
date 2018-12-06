@@ -18,6 +18,9 @@ public class CarParkManagerImpl implements CarParkManager {
 
   @Override
   public void exit(Vehicle vehicle) {
-    pool.stream().filter(p -> p.isIn(vehicle)).findFirst().ifPresent(p -> p.returnLot(vehicle));
+    pool.stream()
+            .filter(p -> p.isIn(vehicle))
+            .findFirst()
+            .ifPresent(p -> p.returnLot(vehicle));
   }
 }
