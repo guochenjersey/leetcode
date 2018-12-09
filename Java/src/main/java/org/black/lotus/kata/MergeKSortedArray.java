@@ -1,6 +1,7 @@
 package org.black.lotus.kata;
 
 
+import org.black.lotus.marker.Accepted;
 import org.black.lotus.marker.LintCode;
 import org.black.lotus.marker.Medium;
 
@@ -32,6 +33,7 @@ import java.util.Queue;
  * */
 @LintCode
 @Medium
+@Accepted
 public class MergeKSortedArray {
 
     public int[] mergekSortedArrays(int[][] arrays) {
