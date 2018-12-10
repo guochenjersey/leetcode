@@ -3,8 +3,10 @@ package org.black.lotus.kata;
 import org.black.lotus.marker.FirstRound;
 import org.black.lotus.marker.LeetCode;
 import org.black.lotus.marker.Medium;
+import org.black.lotus.marker.RightButTimeout;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 
@@ -27,6 +29,32 @@ public class ThreeSumClosest {
             return -1;
         }
 
+        Arrays.sort(nums);
+        int res = nums[nums.length - 3] + nums[nums.length - 2] + nums[nums.length - 1];
+        for (int i = 0; i < nums.length - 2; ++i) {
+            for (int j = i + 1; j < nums.length - 1; ++j) {
+                for (int k = j + 1; k < nums.length; ++k) {
+                    int sum = nums[i] + nums[j] + nums[k];
+                    if (sum == target) {
+                        return target;
+                    }
+                    if (Math.abs(sum - target) < Math.abs(res - target)) {
+                        res = sum;
+                    }
+                }
+            }
+        }
+
+        return res;
+    }
+
+
+    @RightButTimeout
+    public int dfsSolution(int[] nums, int target) {
+        if (nums == null || nums.length <= 2) {
+            return -1;
+        }
+
         List<Integer> path = new ArrayList<>();
         int res = nums[0] + nums[1] + nums[2];
 
@@ -38,8 +66,9 @@ public class ThreeSumClosest {
                        int index,
                        int[] nums,
                        List<Integer> path) {
+        int sum = path.stream().mapToInt(i -> i).sum();
+
         if (path.size() == 3) {
-            int sum = path.stream().mapToInt(i -> i).sum();
             if (Math.abs(sum - target) < Math.abs(res - target)) {
                 return sum;
             } else {

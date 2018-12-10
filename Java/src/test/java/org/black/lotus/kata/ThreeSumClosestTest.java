@@ -12,7 +12,16 @@ public class ThreeSumClosestTest {
 
         int target = -132;
         ThreeSumClosest threeSumClosest = new ThreeSumClosest();
-        int i = threeSumClosest.threeSumClosest(nums, target);
+        int i = threeSumClosest.dfsSolution(nums, target);
         assertEquals(-132, i);
+    }
+
+    @Test
+    public void should_find_sum_closet() {
+        int[] nums = {-1, 2, 1, -4};
+        int target = 1;
+        ThreeSumClosest threeSumClosest = new ThreeSumClosest();
+        int res = threeSumClosest.threeSumClosest(nums, target);
+        assertEquals(2, res);
     }
 }
