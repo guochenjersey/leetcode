@@ -1,5 +1,6 @@
 package org.black.lotus.kata;
 
+import org.black.lotus.marker.Accepted;
 import org.black.lotus.marker.Easy;
 import org.black.lotus.marker.FirstRound;
 import org.black.lotus.marker.LeetCode;
@@ -35,6 +36,7 @@ import java.util.Map;
 @LeetCode
 @FirstRound
 @Easy
+@Accepted
 public class WordPattern {
 
     public boolean wordPattern(String pattern, String str) {

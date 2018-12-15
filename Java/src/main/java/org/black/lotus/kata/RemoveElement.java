@@ -3,6 +3,7 @@ package org.black.lotus.kata;
 import org.black.lotus.marker.Easy;
 import org.black.lotus.marker.FirstRound;
 import org.black.lotus.marker.LintCode;
+import org.black.lotus.marker.TwoPointer;
 
 /**
  * Given an array and a value, remove all occurrences of that value in place and return the new length.
@@ -19,6 +20,7 @@ import org.black.lotus.marker.LintCode;
 @FirstRound
 @LintCode
 @Easy
+@TwoPointer
 public class RemoveElement {
 
     public int removeElement(int[] nums, int target) {
