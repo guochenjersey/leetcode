@@ -1,5 +1,24 @@
 package org.black.lotus.kata;
 
+import org.black.lotus.marker.Easy;
+import org.black.lotus.marker.LeetCode;
+
+/**
+ *Given a string, determine if it is a palindrome, considering only alphanumeric characters and ignoring cases.
+
+ Note: For the purpose of this problem, we define empty string as valid palindrome.
+
+ Example 1:
+
+ Input: "A man, a plan, a canal: Panama"
+ Output: true
+ Example 2:
+
+ Input: "race a car"
+ Output: false
+ * */
+@LeetCode
+@Easy
 public class ValidPalindrome {
 
     public boolean isPalindrome(String s) {
@@ -29,11 +48,5 @@ public class ValidPalindrome {
         }
 
         return true;
-    }
-
-    public static void main(String... args) {
-        ValidPalindrome validPalindrome = new ValidPalindrome();
-        boolean ab = validPalindrome.isPalindrome("1a2");
-        System.out.println(ab);
     }
 }
