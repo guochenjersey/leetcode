@@ -5,6 +5,7 @@ import org.black.lotus.marker.FirstRound;
 import org.black.lotus.marker.LeetCode;
 import org.black.lotus.marker.Medium;
 import org.black.lotus.marker.Tree;
+import org.black.lotus.org.black.lotus.support.TreeNode;
 
 import java.util.LinkedList;
 import java.util.Queue;
@@ -41,26 +42,10 @@ public class SymmetricTree {
     }
 
     private boolean helper(TreeNode left, TreeNode right) {
-        if (left == null && right == null) {
-            return true;
-        }
+        return left == null && right == null || left != null
+                && right != null && left.val == right.val
+                && helper(left.left, right.right) && helper(left.right, right.left);
 
-        if (left == null) {
-            return false;
-        }
-
-        if (right == null) {
-            return false;
-        }
-
-        if (left.val != right.val) {
-            return false;
-        }
-
-        boolean isSameLeftRight = helper(left.left, right.right);
-        boolean isSameRightLeft = helper(left.right, right.left);
-
-        return isSameLeftRight && isSameRightLeft;
     }
 
     public boolean isSymmetricLevelTraverse(TreeNode root) {

@@ -4,6 +4,7 @@ import org.black.lotus.marker.Easy;
 import org.black.lotus.marker.FirstRound;
 import org.black.lotus.marker.Important;
 import org.black.lotus.marker.LintCode;
+import org.black.lotus.org.black.lotus.support.TreeNode;
 
 /**
  *

@@ -1,5 +1,6 @@
 package org.black.lotus.kata;
 
+import org.black.lotus.org.black.lotus.support.TreeNode;
 import org.junit.Test;
 
 import java.util.List;
@@ -10,19 +11,19 @@ public class BinaryTreePathSumTest {
 
     @Test
     public void should_find_binary_search_path() {
-        TreeNode node = new TreeNode();
+        TreeNode node = new TreeNode(1);
         node.val = 1;
 
-        TreeNode two = new TreeNode();
+        TreeNode two = new TreeNode(2);
         two.val = 2;
 
-        TreeNode four = new TreeNode();
+        TreeNode four = new TreeNode(4);
         four.val = 4;
 
-        TreeNode two2 = new TreeNode();
+        TreeNode two2 = new TreeNode(2);
         two2.val = 2;
 
-        TreeNode three = new TreeNode();
+        TreeNode three = new TreeNode(3);
         three.val = 3;
 
         node.left = two;

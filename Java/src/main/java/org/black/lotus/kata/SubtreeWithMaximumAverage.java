@@ -1,5 +1,7 @@
 package org.black.lotus.kata;
 
+import org.black.lotus.org.black.lotus.support.TreeNode;
+
 /**
  * TODO: The last check not understand properly.
  * */

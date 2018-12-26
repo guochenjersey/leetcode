@@ -4,6 +4,7 @@ import org.black.lotus.marker.FirstRound;
 import org.black.lotus.marker.LintCode;
 import org.black.lotus.marker.NoIdeaOrBadIdeaInitially;
 import org.black.lotus.marker.NotAccepted;
+import org.black.lotus.org.black.lotus.support.TreeNode;
 
 import java.util.Iterator;
 import java.util.LinkedList;

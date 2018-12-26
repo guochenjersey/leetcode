@@ -40,7 +40,7 @@ public class CompareVersionNumbers {
             Integer s1Version = Integer.parseInt(stripLeadingZero(part1[i]));
             Integer s2Version = Integer.parseInt(stripLeadingZero(part2[j]));
 
-            if (s1Version == s2Version) {
+            if (s1Version.equals(s2Version)) {
                 continue;
             }
 

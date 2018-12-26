@@ -2,6 +2,7 @@ package org.black.lotus.kata;
 
 import org.black.lotus.marker.LintCode;
 import org.black.lotus.marker.Medium;
+import org.black.lotus.org.black.lotus.support.TreeNode;
 
 import java.util.ArrayList;
 import java.util.LinkedList;

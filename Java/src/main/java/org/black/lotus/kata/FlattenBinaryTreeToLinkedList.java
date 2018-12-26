@@ -1,5 +1,7 @@
 package org.black.lotus.kata;
 
+import org.black.lotus.org.black.lotus.support.TreeNode;
+
 public class FlattenBinaryTreeToLinkedList {
 
   public void flatten(TreeNode root) {

@@ -1,5 +1,7 @@
 package org.black.lotus.kata;
 
+import org.black.lotus.org.black.lotus.support.TreeNode;
+
 import java.util.LinkedList;
 import java.util.Queue;
 
@@ -28,23 +30,4 @@ public class BinaryTree {
 
     return tradeNodeCounter;
   }
-}
-
-class TreeNode {
-  public int val;
-  public TreeNode left;
-  public TreeNode right;
-  public TreeNode(){};
-    public TreeNode(int val) {
-          this.val = val;
-          this.left = this.right = null;
-      }
-    @Override
-    public String toString() {
-        return "TreeNode{" +
-                "val=" + val +
-                ", left=" + left +
-                ", right=" + right +
-                '}';
-    }
 }
