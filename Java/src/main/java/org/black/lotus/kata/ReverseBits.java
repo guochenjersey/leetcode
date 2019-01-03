@@ -1,9 +1,6 @@
 package org.black.lotus.kata;
 
-import org.black.lotus.marker.Easy;
-import org.black.lotus.marker.FirstRound;
-import org.black.lotus.marker.LeetCode;
-import org.black.lotus.marker.NoIdeaOrBadIdeaInitially;
+import org.black.lotus.marker.*;
 
 /**
  * Reverse bits of a given 32 bits unsigned integer.
@@ -35,6 +32,7 @@ import org.black.lotus.marker.NoIdeaOrBadIdeaInitially;
 @LeetCode
 @Easy
 @FirstRound
+@Important
 @NoIdeaOrBadIdeaInitially
 public class ReverseBits {
 
