@@ -1,5 +1,6 @@
 package org.black.lotus.kata;
 
+import org.black.lotus.marker.Accepted;
 import org.black.lotus.marker.Easy;
 import org.black.lotus.marker.FirstRound;
 import org.black.lotus.marker.LeetCode;
@@ -37,6 +38,7 @@ import java.util.stream.Collectors;
 @LeetCode
 @Easy
 @FirstRound
+@Accepted
 public class SubdomainVisitCount {
 
     public List<String> subdomainVisits(String[] cpdomains) {
