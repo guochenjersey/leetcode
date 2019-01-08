@@ -29,6 +29,7 @@ public class DailyTemperatures {
         int[] res = new int[T.length];
         Stack<Integer> stack = new Stack<>();
         for (int i  = 0; i < T.length; ++i) {
+            // descending stack is used to track the passed array elements.
             while (!stack.isEmpty() && T[i] > T[stack.peek()]) {
                 Integer idx = stack.pop();
                 res[idx] = i - idx;
