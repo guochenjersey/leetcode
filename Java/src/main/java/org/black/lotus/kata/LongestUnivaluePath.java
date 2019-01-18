@@ -46,21 +46,28 @@ import java.util.Set;
 public class LongestUnivaluePath {
 
     public int longestUnivaluePath(TreeNode root) {
-        return traverse(root, new HashSet<>(), 0);
+        return traverse(root, 0);
     }
 
-    private int traverse(TreeNode node, Set<Integer> vals, int maxPath) {
+    private int traverse(TreeNode node, int maxPath) {
         if (node == null) {
             return maxPath;
         }
-        if (!vals.contains(node.val)) {
-            vals.add(node.val);
-        } else {
-            vals = new HashSet<>();
-            vals.add(node.val);
+
+        boolean leftChildSameAsNode = node.left != null && node.left.val == node.val;
+        boolean rightChildSameAsNode = node.right != null && node.right.val == node.val;
+        if (leftChildSameAsNode && rightChildSameAsNode) {
+            return Math.max(traverse(node.left, maxPath + 1), traverse(node.right, maxPath + 1));
         }
 
-        maxPath = Math.max(vals.size(), maxPath);
-        return Math.max(traverse(node.left, vals, maxPath), traverse(node.right, vals, maxPath));
+        if (leftChildSameAsNode) {
+            return Math.max(traverse(node.left, maxPath + 1), traverse(node.right, 0));
+        }
+
+        if (rightChildSameAsNode) {
+            return Math.max(traverse(node.right, maxPath + 1), traverse(node.left, 0));
+        }
+
+        return 0;
     }
 }

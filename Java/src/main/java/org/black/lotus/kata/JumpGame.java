@@ -36,7 +36,32 @@ import org.black.lotus.marker.NotAccepted;
 public class JumpGame {
 
     public boolean canJump(int[] nums) {
-        return canJump(nums);
+        int[] records = new int[nums.length];
+        return canJumpDP(0, nums, records);
+    }
+
+
+    private boolean canJumpDP(int i, int[] nums, int[] records) {
+        if (records[i] == 1) {
+            return true;
+        }
+
+        if (records[i] == 2) {
+            return false;
+        }
+
+        if (i + nums[i] >= nums.length - 1) {
+            return true;
+        }
+
+        for (int j = i + 1; j <= (i + nums[i]); ++j) {
+            if (canJumpDP(j, nums, records)) {
+                records[j] = 1;
+                return true;
+            }
+        }
+        records[i] = 2;
+        return false;
     }
 
     private boolean canJumpDfsSolution(int[] nums) {

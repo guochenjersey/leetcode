@@ -40,23 +40,22 @@ public class TopologicalSorting {
     class DirectedGraph {
         private Map<Integer, Vertex> directedGraph;
 
-        public DirectedGraph() {
+        DirectedGraph() {
             directedGraph = new HashMap<>();
         }
 
-        public void buildGraph(ArrayList<DirectedGraphNode> graphNodes) {
+        void buildGraph(ArrayList<DirectedGraphNode> graphNodes) {
             if (graphNodes == null || graphNodes.size() == 0) {
                 return;
             }
 
             graphNodes.stream()
-                    .forEach(node -> {
-                        directedGraph.computeIfAbsent(node.label, k -> {
-                            Vertex vertex = new Vertex(node.label);
-                            vertex.neighbors.addAll(node.neighbors);
-                            return vertex;
-                        });
-                    });
+                    .forEach(node ->
+                            directedGraph.computeIfAbsent(node.label, k -> {
+                        Vertex vertex = new Vertex(node.label);
+                        vertex.neighbors.addAll(node.neighbors);
+                        return vertex;
+                    }));
 
             for (Map.Entry<Integer, Vertex> v : directedGraph.entrySet()) {
                 v.getValue().neighbors.stream().forEach(neighbour -> {
@@ -65,7 +64,7 @@ public class TopologicalSorting {
             }
         }
 
-        public ArrayList<DirectedGraphNode> topologicalSearch() {
+        ArrayList<DirectedGraphNode> topologicalSearch() {
             ArrayList<DirectedGraphNode> result = new ArrayList<>();
             Queue<Vertex> queue = new LinkedList<>();
             directedGraph.values().stream()
@@ -90,9 +89,9 @@ public class TopologicalSorting {
     }
 
     class Vertex extends DirectedGraphNode {
-        public int inDegree;
+        int inDegree;
 
-        public Vertex(int label) {
+        Vertex(int label) {
             super(label);
         }
     }

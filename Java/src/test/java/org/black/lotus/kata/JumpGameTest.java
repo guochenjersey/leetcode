@@ -13,5 +13,10 @@ public class JumpGameTest {
         boolean res = jumpGame.canJump(nums);
 
         assertEquals(true, res);
+
+        int[] nums1 = {1, 2, 3};
+        boolean res2 = jumpGame.canJump(nums1);
+
+        assertEquals(true, res2);
     }
 }

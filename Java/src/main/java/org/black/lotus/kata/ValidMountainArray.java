@@ -3,6 +3,7 @@ package org.black.lotus.kata;
 import org.black.lotus.marker.Easy;
 import org.black.lotus.marker.FirstRound;
 import org.black.lotus.marker.LeetCode;
+import org.black.lotus.marker.TwoPointer;
 
 /**
  *
@@ -28,49 +29,54 @@ import org.black.lotus.marker.LeetCode;
 
  Input: [0,3,2,1]
  Output: true
+
+ Two pointer starting from both head and rear will be better solution for this question.
  * */
 @LeetCode
 @Easy
 @FirstRound
+@TwoPointer
 public class ValidMountainArray {
 
     public boolean validMountainArray(int[] A) {
         if (A == null || A.length < 3) {
             return false;
         }
-
-        boolean shouldBigger = true;
-        boolean firstSeen = true;
-        if (A[0] >= A[1]) {
+        int peak = findPeak(A);
+        if (peak == 0 || peak == A.length - 1) {
             return false;
         }
 
-        if (A[A.length - 2] <= A[A.length - 1]) {
-            return false;
-        }
-
-        boolean sawPeak = false;
-
-        for (int i = 0; i < A.length; ++i) {
-            if (i + 1 < A.length) {
-                if (A[i] < A[i + 1] ) {
-                    if (!sawPeak) {
-                        continue;
-                    } else {
-                        return false;
-                    }
-                } else {
-                    sawPeak = true;
-                }
-
-                if (sawPeak) {
-                    if (A[i] <= A[i+1]) {
-                        return false;
-                    }
-                }
+        for (int i = peak; i < A.length - 1; ++i) {
+            if (A[i + 1] < A[i]) {
+                continue;
             }
+
+            return false;
+        }
+
+        for (int i = peak; i > 0; --i) {
+            if (A[i - 1] < A[i]) {
+                continue;
+            }
+
+            return false;
         }
 
         return true;
+    }
+
+    private int findPeak(int[] A) {
+        int maxVal = A[0];
+        int i = 1;
+        int index = 0;
+        for (; i < A.length - 1; ++i) {
+            if (A[i] > maxVal) {
+                maxVal = A[i];
+                index = i;
+            }
+        }
+
+        return index;
     }
 }

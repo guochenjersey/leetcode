@@ -7,7 +7,7 @@ import java.util.List;
 
 public class BinaryTreePath {
 
-  public List<String> binaryTreePaths(TreeNode root) {
+  List<String> binaryTreePaths(TreeNode root) {
     List<String> paths = new ArrayList<>();
     helper(root, "", paths);
     return paths;

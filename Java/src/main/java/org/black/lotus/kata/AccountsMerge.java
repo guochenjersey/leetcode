@@ -4,6 +4,7 @@ package org.black.lotus.kata;
 import org.black.lotus.marker.FirstRound;
 import org.black.lotus.marker.LeetCode;
 import org.black.lotus.marker.Medium;
+import org.black.lotus.marker.UnionFind;
 
 import java.util.*;
 
@@ -36,6 +37,7 @@ import java.util.*;
 @FirstRound
 @LeetCode
 @Medium
+@UnionFind
 public class AccountsMerge {
 
     public List<List<String>> accountsMerge(List<List<String>> accounts) {
