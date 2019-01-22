@@ -1,10 +1,11 @@
 package org.black.lotus.kata;
 
-import java.util.HashMap;
-import java.util.Stack;
 import org.black.lotus.marker.Google;
 import org.black.lotus.marker.Important;
 import org.black.lotus.marker.NotAccepted;
+
+import java.util.HashMap;
+import java.util.Stack;
 
 /**
  *
@@ -44,27 +45,27 @@ public class LongestWordInDictionary {
   }
 }
 
-class Node {
+class TrieNode {
   char c;
-  HashMap<Character, Node> children = new HashMap();
+  HashMap<Character, TrieNode> children = new HashMap();
   int end;  // end非零表示这是一个终结节点，且end-1对应的就是该word在words中的索引
-  public Node(char c){
+  public TrieNode(char c){
     this.c = c;
   }
 }
 
 class Trie {
-  Node root;
-  String[] words;
+    TrieNode root;
+    String[] words;
   public Trie(String[] words) {
-    root = new Node('0');
+    root = new TrieNode('0');
     this.words = words;
   }
 
   public void insert(String word, int index) {
-    Node cur = root;
+      TrieNode cur = root;
     for (char c : word.toCharArray()) {
-      cur.children.putIfAbsent(c, new Node(c));
+      cur.children.putIfAbsent(c, new TrieNode(c));
       cur = cur.children.get(c);
     }
     cur.end = index;
@@ -72,10 +73,10 @@ class Trie {
 
   public String dfs() {
     String ans = "";
-    Stack<Node> stack = new Stack();
+    Stack<TrieNode> stack = new Stack();
     stack.push(root);
     while (!stack.empty()) {
-      Node node = stack.pop();
+        TrieNode node = stack.pop();
       if (node.end > 0 || node == root) {
         if (node != root) {
           String word = words[node.end - 1];
@@ -84,7 +85,7 @@ class Trie {
             ans = word;
           }
         }
-        for (Node nei: node.children.values()) {
+        for (TrieNode nei: node.children.values()) {
           stack.push(nei);
         }
       }
