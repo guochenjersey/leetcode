@@ -1,9 +1,6 @@
 package org.black.lotus.kata;
 
-import org.black.lotus.marker.FirstRound;
-import org.black.lotus.marker.LintCode;
-import org.black.lotus.marker.NoIdeaOrBadIdeaInitially;
-import org.black.lotus.marker.NotAccepted;
+import org.black.lotus.marker.*;
 import org.black.lotus.org.black.lotus.support.TreeNode;
 
 import java.util.Iterator;
@@ -38,42 +35,32 @@ import java.util.List;
  * */
 
 @FirstRound
-@LintCode
+@LeetCode
 @NoIdeaOrBadIdeaInitially
-@NotAccepted
+@Accepted
 public class ValidateBinarySearchTree {
 
   public boolean isValidBST(TreeNode root) {
-    List<TreeNode> res = new LinkedList<>();
-    inOrder(root, res);
-    return isAscending(res);
+      return isValid(root, Long.MIN_VALUE, Long.MAX_VALUE);
   }
 
-  private void inOrder(TreeNode node, List<TreeNode> res) {
-    if (node == null) {
-      return;
-    }
-
-    inOrder(node.left, res);
-    res.add(node);
-    inOrder(node.right, res);
-  }
-
-  private boolean isAscending(List<TreeNode> treeNodes) {
-    Iterator<TreeNode> iterator = treeNodes.iterator();
-    TreeNode prev = null;
-    while (iterator.hasNext()) {
-      TreeNode node = iterator.next();
-      if (prev == null) {
-        prev = node;
-      } else {
-        if (prev.val >= node.val) {
-          return false;
+    private boolean isValid(TreeNode node, long min , long max) {
+        if (node == null) {
+            return true;
         }
-        prev = node;
-      }
+        if (node.val <= min || node.val >= max) {
+            return false;
+        }
+
+        if (node.left != null && node.left.val >= node.val) {
+            return false;
+        }
+
+        if (node.right != null && node.right.val <= node.val) {
+            return false;
+        }
+
+        return isValid(node.left, min, node.val) && isValid(node.right, node.val, max);
     }
 
-    return true;
-  }
 }

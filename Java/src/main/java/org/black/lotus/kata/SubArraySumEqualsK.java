@@ -1,52 +1,38 @@
 package org.black.lotus.kata;
 
-import jdk.internal.instrumentation.InstrumentationMethod;
-import org.black.lotus.marker.FirstRound;
-import org.black.lotus.marker.Important;
-import org.black.lotus.marker.LintCode;
+import org.black.lotus.marker.*;
 
-class Result {
-  int res;
-}
+import java.util.HashMap;
+import java.util.Map;
 
 /**
- * TODO
+ * Given an array of integers and an integer k, you need to find the total number of continuous subarrays whose sum equals to k.
+
+ Example 1:
+ Input:nums = [1,1,1], k = 2
+ Output: 2
+ Note:
+ The length of the array is in range [1, 20,000].
+ The range of numbers in the array is [-1000, 1000] and the range of the integer k is [-1e7, 1e7].
  * */
 @FirstRound
-@LintCode
+@LeetCode
+@Medium
 @Important
 public class SubArraySumEqualsK {
 
-  public int subarraySum(int[] nums, int target) {
-    Result result = new Result();
-    search(result, 0, nums.length - 1, nums, target);
-    return result.res;
-  }
+    public int subarraySum(int[] nums, int k) {
+        int sum = 0, result = 0;
+        Map<Integer, Integer> preSum = new HashMap<>();
+        preSum.put(0, 1); // key initialization
 
-  private void search(Result result,
-      int startIndex,
-      int endIndex,
-      int[] nums,
-      int target) {
-
-    if (startIndex > nums.length - 1) {
-      return;
+        for (int i = 0; i < nums.length; i++) {
+            sum += nums[i];
+            if (preSum.containsKey(sum - k)) {
+                result += preSum.get(sum - k);
+            }
+            preSum.put(sum, preSum.getOrDefault(sum, 0) + 1);
+        }
+        return result;
     }
-
-    for (int end = startIndex; end < nums.length; ++end) {
-      if (sumOfSubArray(startIndex, endIndex, nums) == target) {
-        ++result.res;
-      }
-      search(result, startIndex + 1, end, nums, target);
-    }
-  }
-
-  private int sumOfSubArray(int i, int j, int[] nums) {
-    int sum = 0;
-    for (int k = i; k <= j; ++k) {
-      sum += nums[k];
-    }
-
-    return sum;
-  }
 }
