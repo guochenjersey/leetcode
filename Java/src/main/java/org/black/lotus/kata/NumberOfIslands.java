@@ -1,4 +1,4 @@
-package org.black.lotus.kata;
+ package org.black.lotus.kata;
 
 import org.black.lotus.marker.Accepted;
 import org.black.lotus.marker.FirstRound;
