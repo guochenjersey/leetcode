@@ -3,6 +3,7 @@ package org.black.lotus.kata;
 import org.black.lotus.marker.Easy;
 import org.black.lotus.marker.FirstRound;
 import org.black.lotus.marker.LeetCode;
+import org.black.lotus.marker.SlidingWindow;
 
 import java.util.*;
 
@@ -39,10 +40,12 @@ import java.util.*;
  * The substring with start index = 2 is "ab", which is an anagram of "ab".
  *
  * Need to understand how it works
+ * 双指针,滑动窗口
  */
 @LeetCode
 @Easy
 @FirstRound
+@SlidingWindow
 public class FindAllAnagramsInAString {
 
     public List<Integer> findAnagrams(String s, String p) {
