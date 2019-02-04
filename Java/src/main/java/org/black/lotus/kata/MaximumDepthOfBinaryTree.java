@@ -1,10 +1,18 @@
 package org.black.lotus.kata;
 
+import org.black.lotus.marker.Accepted;
+import org.black.lotus.marker.Easy;
+import org.black.lotus.marker.FirstRound;
+import org.black.lotus.marker.LeetCode;
 import org.black.lotus.org.black.lotus.support.TreeNode;
 
 import java.util.ArrayDeque;
 import java.util.Deque;
 
+@LeetCode
+@Easy
+@FirstRound
+@Accepted
 public class MaximumDepthOfBinaryTree {
   /**
    * @param root: The root of binary tree.
