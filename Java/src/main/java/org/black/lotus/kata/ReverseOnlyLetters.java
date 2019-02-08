@@ -26,7 +26,39 @@ import org.black.lotus.marker.LeetCode;
 @Easy
 public class ReverseOnlyLetters {
     public String reverseOnlyLetters(String s) {
-        return "";
+        if (s == null || s.length() == 0) {
+            return s;
+        }
+
+        char[] res = new char[s.length()];
+        System.arraycopy(s.toCharArray(), 0, res, 0, s.length());
+        int i = 0;
+        int j = s.length() - 1;
+        for (; i < j; ) {
+            if (shouldChange(s.charAt(i)) && shouldChange(s.charAt(j))) {
+                res[i] = s.charAt(j);
+                res[j] = s.charAt(i);
+                ++i;
+                --j;
+                continue;
+            }
+            if (!shouldChange(s.charAt(i))) {
+                res[i] = s.charAt(i);
+                ++i;
+            }
+
+            if (!shouldChange(s.charAt(j))) {
+                res[j] = s.charAt(j);
+                --j;
+            }
+        }
+
+        return new String(res);
+    }
+
+    private boolean shouldChange(char c) {
+        return (c >= 'a' && c <= 'z')
+                || (c >= 'A' && c <= 'Z');
     }
 
 }

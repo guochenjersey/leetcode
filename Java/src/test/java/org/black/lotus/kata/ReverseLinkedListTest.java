@@ -15,6 +15,6 @@ public class ReverseLinkedListTest {
         zero.next = one;
 //        one.next = two;
 
-        reverseLinkedList.reverse(zero);
+        reverseLinkedList.reverseList(zero);
     }
 }

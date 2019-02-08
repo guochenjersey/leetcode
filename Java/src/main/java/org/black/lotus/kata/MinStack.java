@@ -57,4 +57,8 @@ public class MinStack {
     public int min() {
         return minStack.peek();
     }
+
+    public int top() {
+        return stack.peek();
+    }
 }
