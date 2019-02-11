@@ -1,29 +1,30 @@
 package org.black.lotus.kata;
 
-import org.black.lotus.marker.FirstRound;
-import org.black.lotus.marker.LintCode;
-import org.black.lotus.marker.NoIdeaOrBadIdeaInitially;
-import org.black.lotus.marker.NotAccepted;
+import org.black.lotus.marker.*;
 
-@NoIdeaOrBadIdeaInitially
-@NotAccepted
-@LintCode @FirstRound
+@LeetCode
+@FirstRound
+@Easy
 public class MaximumSubarray {
 
-  public int maxSubArray(int[] nums) {
-    if (nums == null || nums.length == 0) {
-      return 0;
-    }
+    public int maxSubArray(int[] nums) {
+        if (nums == null || nums.length == 0) {
+            return 0;
+        }
+        if (nums.length == 1) {
+            return nums[0];
+        }
+        int sum = nums[0];
+        int res = nums[0];
+        for (int i = 1; i < nums.length; ++i) {
+            if (nums[i] > (nums[i] + sum)) {
+                sum = nums[i];
+            } else {
+                sum += nums[i];
+            }
+            res = Math.max(res, sum);
+        }
 
-    // min sum. careful about the initial value set, minSum should be 0
-    int maxSum = Integer.MIN_VALUE, minSum = 0, sum = 0;
-    for (int i = 0; i < nums.length; ++i) {
-      sum += nums[i];
-      maxSum = Math.max(maxSum, sum - minSum);
-      // min sum calculation should be after max sum because we are finding sub array
-      minSum = Math.min(minSum, sum);
+        return res;
     }
-
-    return maxSum;
-  }
 }
