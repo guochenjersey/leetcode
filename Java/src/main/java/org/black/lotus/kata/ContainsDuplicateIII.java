@@ -41,7 +41,7 @@ public class ContainsDuplicateIII {
         for (int i = 0; i < nums.length; i++) {
             Long left = (long) nums[i] - t;
             Long right = (long) nums[i] + t + 1;
-            /**  return set's value from [left, right)  */
+            /*  return set's value from [left, right)  */
             Set<Long> subSet = helper.subSet(left, right);
             if (!subSet.isEmpty())
                 return true;

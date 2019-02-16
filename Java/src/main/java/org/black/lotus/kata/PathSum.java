@@ -1,5 +1,6 @@
 package org.black.lotus.kata;
 
+import org.black.lotus.marker.Accepted;
 import org.black.lotus.marker.Easy;
 import org.black.lotus.marker.LeetCode;
 import org.black.lotus.marker.Tree;
@@ -28,6 +29,7 @@ import org.black.lotus.org.black.lotus.support.TreeNode;
 @LeetCode
 @Easy
 @Tree
+@Accepted
 public class PathSum {
 
     public boolean hasPathSum(TreeNode root, int sum) {
