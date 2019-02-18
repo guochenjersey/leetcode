@@ -56,29 +56,29 @@ public class PathSumIII {
         if (node == null)
             return;
         inOrder(node.left, target, res);
-        helper(node, target, new ArrayList<>(), res);
+        helper(node, target, 0, res);
         inOrder(node.right, target, res);
     }
 
 
     private void helper(TreeNode node,
                         int target,
-                        List<Integer> path,
+                        int sum,
                         NumberHolder res) {
         if (node == null) {
             return;
         }
-        path.add(node.val);
-        if (path.stream().mapToInt(i -> i).sum() == target) {
+        sum += node.val;
+        if (sum == target) {
             res.i++;
         }
 
         if (node.left != null) {
-            helper(node.left, target, new ArrayList<>(path), res);
+            helper(node.left, target, sum, res);
         }
 
         if (node.right != null) {
-            helper(node.right, target, new ArrayList<>(path), res);
+            helper(node.right, target, sum, res);
         }
     }
 
