@@ -6,9 +6,6 @@ import org.black.lotus.marker.FirstRound;
 import org.black.lotus.marker.LeetCode;
 import org.black.lotus.org.black.lotus.support.TreeNode;
 
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  * You are given a binary tree in which each node contains an integer value.
  * <p>

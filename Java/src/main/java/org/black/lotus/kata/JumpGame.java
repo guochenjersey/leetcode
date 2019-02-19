@@ -1,9 +1,6 @@
 package org.black.lotus.kata;
 
-import org.black.lotus.marker.LeetCode;
-import org.black.lotus.marker.Medium;
-import org.black.lotus.marker.NoIdeaOrBadIdeaInitially;
-import org.black.lotus.marker.NotAccepted;
+import org.black.lotus.marker.*;
 
 /**
  *
@@ -32,7 +29,6 @@ import org.black.lotus.marker.NotAccepted;
 @LeetCode
 @Medium
 @NoIdeaOrBadIdeaInitially
-@NotAccepted
 public class JumpGame {
 
     public boolean canJump(int[] nums) {
@@ -64,6 +60,7 @@ public class JumpGame {
         return false;
     }
 
+    @TLESolution
     private boolean canJumpDfsSolution(int[] nums) {
         if (nums == null && nums.length == 0) {
             return false;
