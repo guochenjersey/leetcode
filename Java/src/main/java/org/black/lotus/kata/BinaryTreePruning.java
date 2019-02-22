@@ -1,5 +1,6 @@
 package org.black.lotus.kata;
 
+import org.black.lotus.marker.Accepted;
 import org.black.lotus.marker.FirstRound;
 import org.black.lotus.marker.LeetCode;
 import org.black.lotus.marker.Medium;
@@ -15,6 +16,7 @@ import org.black.lotus.org.black.lotus.support.TreeNode;
 @LeetCode
 @Medium
 @FirstRound
+@Accepted
 public class BinaryTreePruning {
 
     public TreeNode pruneTree(TreeNode root) {
