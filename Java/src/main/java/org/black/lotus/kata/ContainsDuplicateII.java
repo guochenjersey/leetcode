@@ -1,5 +1,6 @@
 package org.black.lotus.kata;
 
+import org.black.lotus.marker.Easy;
 import org.black.lotus.marker.FirstRound;
 import org.black.lotus.marker.LeetCode;
 
@@ -28,6 +29,7 @@ import java.util.stream.Collectors;
  * */
 @LeetCode
 @FirstRound
+@Easy
 public class ContainsDuplicateII {
 
     public boolean containsNearbyDuplicate(int[] nums, int k) {
@@ -37,21 +39,11 @@ public class ContainsDuplicateII {
         Map<Integer, List<Integer>> map = new HashMap<>();
         for (int i = 0; i < nums.length; ++i) {
             map.putIfAbsent(nums[i], new ArrayList<>());
-            map.get(nums[i]).add(i);
-        }
-
-        List<List<Integer>> filteredList = map.values()
-                .stream()
-                .filter(l -> l.size() > 1)
-                .collect(Collectors.toList());
-
-        for (List<Integer> l : filteredList) {
-            Collections.sort(l);
-            for (int i = 0; i < l.size(); ++i) {
-                if (i + 1 < l.size()) {
-                    if (l.get(i + 1) - l.get(i) <= k) {
-                        return true;
-                    }
+            List<Integer> indices = map.get(nums[i]);
+            indices.add(i);
+            for (int j = indices.size() - 1; j > 0; --j) {
+                if (indices.get(j) - indices.get(j - 1) <= k) {
+                    return true;
                 }
             }
         }
