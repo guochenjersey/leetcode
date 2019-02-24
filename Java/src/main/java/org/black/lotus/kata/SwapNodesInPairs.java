@@ -1,9 +1,6 @@
 package org.black.lotus.kata;
 
-import org.black.lotus.marker.Accepted;
-import org.black.lotus.marker.FirstRound;
-import org.black.lotus.marker.LeetCode;
-import org.black.lotus.marker.Medium;
+import org.black.lotus.marker.*;
 import org.black.lotus.org.black.lotus.support.TreeNode;
 
 /**
@@ -19,6 +16,7 @@ import org.black.lotus.org.black.lotus.support.TreeNode;
 @Medium
 @FirstRound
 @Accepted
+@LinkedLists
 public class SwapNodesInPairs {
 
     public ListNode swapPairs(ListNode head) {
