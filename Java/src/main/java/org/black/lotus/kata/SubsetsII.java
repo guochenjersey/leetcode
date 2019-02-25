@@ -1,5 +1,9 @@
 package org.black.lotus.kata;
 
+import org.black.lotus.marker.FirstRound;
+import org.black.lotus.marker.LeetCode;
+import org.black.lotus.marker.Medium;
+
 import java.time.Duration;
 import java.time.Instant;
 import java.util.ArrayList;
@@ -9,6 +13,27 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+/**
+ * Given a collection of integers that might contain duplicates, nums, return all possible subsets (the power set).
+
+ Note: The solution set must not contain duplicate subsets.
+
+ Example:
+
+ Input: [1,2,2]
+ Output:
+ [
+ [2],
+ [1],
+ [1,2,2],
+ [2,2],
+ [1,2],
+ []
+ ]
+ * */
+@LeetCode
+@Medium
+@FirstRound
 public class SubsetsII {
 
   public List<List<Integer>> subsetsWithDup(int[] nums) {
