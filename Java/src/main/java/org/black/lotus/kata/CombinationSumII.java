@@ -1,71 +1,76 @@
 package org.black.lotus.kata;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import org.black.lotus.marker.*;
+
+import java.util.*;
 import java.util.stream.Collectors;
 
+/**
+ * Given a collection of candidate numbers (candidates) and a target number (target), find all unique combinations in candidates where the candidate numbers sums to target.
+ * <p>
+ * Each number in candidates may only be used once in the combination.
+ * <p>
+ * Note:
+ * <p>
+ * All numbers (including target) will be positive integers.
+ * The solution set must not contain duplicate combinations.
+ * Example 1:
+ * <p>
+ * Input: candidates = [10,1,2,7,6,1,5], target = 8,
+ * A solution set is:
+ * [
+ * [1, 7],
+ * [1, 2, 5],
+ * [2, 6],
+ * [1, 1, 6]
+ * ]
+ * Example 2:
+ * <p>
+ * Input: candidates = [2,5,2,1,2], target = 5,
+ * A solution set is:
+ * [
+ * [1,2,2],
+ * [5]
+ * ]
+ */
+@LeetCode
+@Medium
+@FirstRound
+@DFS
+@Accepted
 public class CombinationSumII {
 
-  public List<List<Integer>> combinationSum2(int[] nums, int target) {
-    List<List<Integer>> result = new ArrayList<>();
-    if (nums == null) {
-      return result;
-    }
-    List<Integer> path = new ArrayList<>();
-    Set<Integer> visitedIndex = new HashSet<>();
-    helper(result, nums, path, target, 0, visitedIndex);
-    return removeDuplicate(result);
-  }
-
-
-  List<List<Integer>> removeDuplicate(List<List<Integer>> res) {
-    Set<List<Integer>> resultSet = new HashSet<>();
-    for (List<Integer> l : res) {
-      resultSet.add(l.stream().sorted().collect(Collectors.toList()));
+    public List<List<Integer>> combinationSum2(int[] nums, int target) {
+        Set<List<Integer>> results = new HashSet<>();
+        if (nums == null) {
+            return new ArrayList<>(results);
+        }
+        Arrays.sort(nums);
+        List<Integer> path = new ArrayList<>();
+        helper(results, path, target, 0, nums, 0);
+        return new ArrayList<>(results);
     }
 
-    return new ArrayList<>(resultSet);
-  }
 
-  private void helper(List<List<Integer>> results,
-      int[] nums,
-      List<Integer> path,
-      int target,
-      int sum,
-      Set<Integer> visitedIndex) {
-    if (sum == target) {
-      results.add(new ArrayList<>(path));
-      return;
-    }
-    if (sum > target) {
-      return;
-    }
+    private void helper(Set<List<Integer>> results,
+                        List<Integer> path,
+                        int target,
+                        int sum,
+                        int[] nums,
+                        int startIndex) {
+        if (sum == target) {
+            results.add(path);
+            return;
+        }
 
-    for (int i = 0; i < nums.length; ++i) {
-      if (visitedIndex.contains(i)) {
-        continue;
-      }
-      visitedIndex.add(i);
-      path.add(nums[i]);
-      sum += nums[i];
-      helper(results, nums, path, target, sum, visitedIndex);
-      sum -= nums[i];
-      path.remove(path.size() - 1);
-      visitedIndex.remove(new Integer(i));
-    }
-  }
+        if (sum > target) {
+            return;
+        }
 
-  void test() {
-    int[] nums = {2, 3, 6, 7};
-    int target = 7;
-    List<List<Integer>> lists = combinationSum2(nums, target);
-    lists.stream().forEach(l -> {
-      l.stream().forEach(n -> {
-        System.out.print(n + " \t");
-      });
-      System.out.println();
-    });
-  }
+        for (int i = startIndex; i < nums.length; ++i) {
+            path.add(nums[i]);
+            helper(results, new ArrayList<>(path), target, sum + nums[i], nums, i + 1);
+            path.remove(path.size() - 1);
+        }
+    }
 }
