@@ -1,12 +1,9 @@
 package org.black.lotus.kata;
 
-import org.black.lotus.marker.FirstRound;
-import org.black.lotus.marker.LintCode;
-import org.black.lotus.marker.Medium;
+import org.black.lotus.marker.*;
 
 import java.util.ArrayList;
 import java.util.List;
-
 
 /**
  *
@@ -26,12 +23,12 @@ import java.util.List;
  [1,3],
  [1,4]
  ]
- *
- *
  * */
 @FirstRound
 @Medium
 @LintCode
+@DFS
+@Accepted
 public class Combinations {
 
     public List<List<Integer>> combine(int n, int k) {
@@ -41,7 +38,11 @@ public class Combinations {
         return results;
     }
 
-    private void dfs(List<List<Integer>> results, List<Integer> path, int n, int k, int startIndex) {
+    private void dfs(List<List<Integer>> results,
+                     List<Integer> path,
+                     int n,
+                     int k,
+                     int startIndex) {
         if (path.size() == k) {
             results.add(new ArrayList<>(path));
             return;
