@@ -9,6 +9,31 @@ import org.black.lotus.org.black.lotus.support.TreeNode;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ *
+ * onvert a binary search tree to doubly linked list with in-order traversal.
+
+ Example
+ Example 1：
+
+ Input:
+ 4
+ / \
+ 2   5
+ / \
+ 1   3
+
+ Output: 1<->2<->3<->4<->5
+ Example 2：
+
+ Input:
+ 3
+ / \
+ 4   1
+
+ Output:4<->3<->1
+ *
+ * */
 @LintCode
 @Facebook
 @Medium
