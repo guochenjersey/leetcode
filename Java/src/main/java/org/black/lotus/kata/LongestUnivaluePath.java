@@ -1,8 +1,6 @@
 package org.black.lotus.kata;
 
-import org.black.lotus.marker.Easy;
-import org.black.lotus.marker.LeetCode;
-import org.black.lotus.marker.NotAccepted;
+import org.black.lotus.marker.*;
 import org.black.lotus.org.black.lotus.support.TreeNode;
 
 import java.util.HashSet;
@@ -42,32 +40,40 @@ import java.util.Set;
  */
 @LeetCode
 @Easy
-@NotAccepted
+@NoIdeaOrBadIdeaInitially
+@Accepted
 public class LongestUnivaluePath {
-
+    //Global max
+    private int max;
     public int longestUnivaluePath(TreeNode root) {
-        return traverse(root, 0);
+        max = 0;
+        longestPath(root);
+        return max;
     }
 
-    private int traverse(TreeNode node, int maxPath) {
+    public int longestPath(TreeNode node) {
+        // Base case: if null node, return 0
         if (node == null) {
-            return maxPath;
+            return 0;
         }
-
-        boolean leftChildSameAsNode = node.left != null && node.left.val == node.val;
-        boolean rightChildSameAsNode = node.right != null && node.right.val == node.val;
-        if (leftChildSameAsNode && rightChildSameAsNode) {
-            return Math.max(traverse(node.left, maxPath + 1), traverse(node.right, maxPath + 1));
+        // Get the max length from left and right
+        int maxLeft = longestPath(node.left);
+        int maxRight = longestPath(node.right);
+        // Calculate the current max length
+        int maxLeftSoFar = 0;
+        int maxRightSoFar = 0;
+        // Compare parent node with child node
+        // If they are the same, extend the max length by one
+        if (node.left != null && node.left.val == node.val) {
+            maxLeftSoFar = maxLeft + 1;
         }
-
-        if (leftChildSameAsNode) {
-            return Math.max(traverse(node.left, maxPath + 1), traverse(node.right, 0));
+        if(node.right != null && node.right.val == node.val) {
+            maxRightSoFar = maxRight + 1;
         }
-
-        if (rightChildSameAsNode) {
-            return Math.max(traverse(node.right, maxPath + 1), traverse(node.left, 0));
-        }
-
-        return 0;
+        // Update the max with the sum of left and right length
+        max = Math.max(max, maxLeftSoFar + maxRightSoFar);
+        // Return the max from left and right to upper node
+        // since only one side path is valid, 最底下这行有点没看懂.
+        return Math.max(maxLeftSoFar,maxRightSoFar);
     }
 }
