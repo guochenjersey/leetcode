@@ -42,6 +42,7 @@ import java.util.Set;
 @Easy
 @NoIdeaOrBadIdeaInitially
 @Accepted
+@Tree
 public class LongestUnivaluePath {
     //Global max
     private int max;
