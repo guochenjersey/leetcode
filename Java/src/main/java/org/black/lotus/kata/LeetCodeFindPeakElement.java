@@ -50,7 +50,7 @@ public class LeetCodeFindPeakElement {
             if (nums[mid] > nums[mid -1] && nums[mid] > nums[mid + 1]) {
                 return mid;
             }
- 
+
             if (nums[mid] < nums[mid -1] && nums[mid] < nums[mid +1]) {
                 start = mid;
                 continue;
