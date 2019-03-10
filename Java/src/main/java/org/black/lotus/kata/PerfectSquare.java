@@ -21,10 +21,9 @@ import java.util.*;
 @LeetCode
 @Medium
 @FirstRound
-@Accepted
+@Accepted("Faster than 17.38%")
 @BFS
 public class PerfectSquare {
-
     public int numSquares(int n) {
         if (n < 1) {
             return 0;
