@@ -1,9 +1,6 @@
 package org.black.lotus.kata;
 
-import org.black.lotus.marker.FirstRound;
-import org.black.lotus.marker.LeetCode;
-import org.black.lotus.marker.Medium;
-import org.black.lotus.marker.Uber;
+import org.black.lotus.marker.*;
 
 import java.util.*;
 
@@ -28,22 +25,26 @@ import java.util.*;
 @Medium
 @FirstRound
 @Uber
+@NoIdeaOrBadIdeaInitially
+@Important
 public class EvaluateDvision {
 
     public double[] calcEquation(String[][] equations, double[] values, String[][] queries) {
         UndirectedMap undirectedMap = new UndirectedMap();
-        initMap(equations, values, undirectedMap);
+        Map<Symbol, Double> symbolMap = initMap(equations, values, undirectedMap);
 
-        return handleQueries(queries, undirectedMap);
+        return handleQueries(queries, undirectedMap, symbolMap);
     }
 
-    private double[] handleQueries(String[][] queries, UndirectedMap map) {
+    private double[] handleQueries(String[][] queries,
+                                   UndirectedMap map,
+                                   Map<Symbol, Double> symbolMap) {
         double[] res = new double[queries.length];
         for (int i = 0; i < queries.length; ++i) {
             String[] query = queries[i];
             if (map.knownString.contains(query[0])
                     && map.knownString.contains(query[1])) {
-                res[i] = handleQuery(map, query);
+                res[i] = handleQuery(map, query, symbolMap);
             } else {
                 res[i] = -1d;
             }
@@ -51,39 +52,61 @@ public class EvaluateDvision {
         return res;
     }
 
-    private double handleQuery(UndirectedMap map, String[] query) {
+    private double handleQuery(UndirectedMap map,
+                               String[] query,
+                               Map<Symbol, Double> symbolMap) {
         String base = query[0];
         String term = query[1];
-        Queue<Term> queue = new LinkedList<>();
-        
+        if (symbolMap.containsKey(new Symbol(base, term))) {
+            return symbolMap.get(new Symbol(base, term));
+        }
+
+        return -1;
     }
 
-    private void initMap(String[][] equations, double[] values, UndirectedMap undirectedMap) {
+    private double helper(Set<String> path,
+                          UndirectedMap map,
+                          String base,
+                          String term,
+                          Map<Symbol, Integer> symbolMap) {
+        if (symbolMap.containsKey(new Symbol(base, term))) {
+            return -1d;
+        }
+
+        return -1d;
+    }
+
+    private Map<Symbol, Double> initMap(String[][] equations, double[] values, UndirectedMap undirectedMap) {
         int i = 0;
+        Map<Symbol, Double> symbolValueMap = new HashMap<>();
         for (String[] equation : equations) {
             String base = equation[0];
             String term = equation[1];
+            symbolValueMap.put(new Symbol(base, term), values[i]);
+            symbolValueMap.put(new Symbol(term, base), 1 / values[i]);
             undirectedMap.knownString.add(base);
             undirectedMap.knownString.add(term);
             Node baseNode = undirectedMap.find(base);
             if (baseNode != null) {
-                baseNode.addTerm(new Term(term, values[i]));
+                baseNode.addTerm(term);
             } else {
                 Node n = new Node(base);
-                n.addTerm(new Term(term, values[i]));
+                n.addTerm(term);
                 undirectedMap.nodes.add(n);
             }
 
             Node termNode = undirectedMap.find(term);
             if (termNode != null) {
-                termNode.addTerm(new Term(base, 1 / values[i]));
+                termNode.addTerm(base);
             } else {
                 Node n = new Node(term);
-                n.addTerm(new Term(base, 1/ values[i]));
+                n.addTerm(base);
                 undirectedMap.nodes.add(n);
             }
             ++i;
         }
+
+        return symbolValueMap;
     }
 
     class UndirectedMap {
@@ -105,26 +128,44 @@ public class EvaluateDvision {
 
     class Node {
         private String base;
-        private Set<Term> terms;
+        private Set<String> terms;
 
         Node(String base) {
             this.base = base;
             this.terms = new HashSet<>();
         }
 
-        void addTerm(Term term) {
+        void addTerm(String term) {
             terms.add(term);
         }
 
     }
 
-    class Term {
+    class Symbol {
+        private String base;
         private String term;
-        private double value;
 
-        Term(String term, double value) {
+        public Symbol(String base, String term) {
+            this.base = base;
             this.term = term;
-            this.value = value;
+        }
+
+        @Override
+        public boolean equals(Object o) {
+            if (this == o) return true;
+            if (o == null || getClass() != o.getClass()) return false;
+
+            Symbol symbol = (Symbol) o;
+
+            if (base != null ? !base.equals(symbol.base) : symbol.base != null) return false;
+            return term != null ? term.equals(symbol.term) : symbol.term == null;
+        }
+
+        @Override
+        public int hashCode() {
+            int result = base != null ? base.hashCode() : 0;
+            result = 31 * result + (term != null ? term.hashCode() : 0);
+            return result;
         }
     }
 }
