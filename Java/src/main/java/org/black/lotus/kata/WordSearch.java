@@ -1,10 +1,7 @@
 package org.black.lotus.kata;
 
 import com.sun.tools.javac.comp.Check;
-import org.black.lotus.marker.DFS;
-import org.black.lotus.marker.LeetCode;
-import org.black.lotus.marker.Medium;
-import org.black.lotus.marker.NeedToSubmit;
+import org.black.lotus.marker.*;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -30,6 +27,7 @@ import java.util.Map;
 @LeetCode
 @Medium
 @DFS
+@Accepted("beat only 5.17%")
 public class WordSearch {
 
     public boolean exist(char[][] board, String word) {
@@ -91,37 +89,5 @@ public class WordSearch {
 
     private boolean validColumn(int j, char[][] board) {
         return j >= 0 && j < board[0].length;
-    }
-
-    class CheckedStatus {
-        int i;
-        int j;
-        int k;
-
-        CheckedStatus(int i, int j, int k) {
-            this.i = i;
-            this.j = j;
-            this.k = k;
-        }
-
-        @Override
-        public boolean equals(Object o) {
-            if (this == o) return true;
-            if (o == null || getClass() != o.getClass()) return false;
-
-            CheckedStatus that = (CheckedStatus) o;
-
-            if (i != that.i) return false;
-            if (j != that.j) return false;
-            return k == that.k;
-        }
-
-        @Override
-        public int hashCode() {
-            int result = i;
-            result = 31 * result + j;
-            result = 31 * result + k;
-            return result;
-        }
     }
 }
