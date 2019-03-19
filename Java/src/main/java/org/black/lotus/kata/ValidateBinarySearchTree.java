@@ -37,6 +37,7 @@ import java.util.List;
 @FirstRound
 @LeetCode
 @NoIdeaOrBadIdeaInitially
+@Important
 @Accepted
 public class ValidateBinarySearchTree {
 

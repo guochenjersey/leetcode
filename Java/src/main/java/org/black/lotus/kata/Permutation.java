@@ -1,10 +1,19 @@
 package org.black.lotus.kata;
 
+import org.black.lotus.marker.Accepted;
+import org.black.lotus.marker.Important;
+import org.black.lotus.marker.LeetCode;
+import org.black.lotus.marker.Medium;
+
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+@Important
+@LeetCode
+@Medium
+@Accepted
 public class Permutation {
 
   public List<List<Integer>> permute(int[] nums) {

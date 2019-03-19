@@ -1,10 +1,17 @@
 package org.black.lotus.kata;
 
+import org.black.lotus.marker.Accepted;
+import org.black.lotus.marker.LeetCode;
+import org.black.lotus.marker.Medium;
+
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+@LeetCode
+@Medium
+@Accepted("very slow beat only 5%")
 public class PermutationII {
 
   public List<List<Integer>> permuteUnique(int[] nums) {
@@ -36,15 +43,5 @@ public class PermutationII {
       position.remove(new Integer(i));
       permutation.remove(permutation.size() - 1);
     }
-  }
-
-  public static void main(String... args) {
-    int[] nums = {1, 2, 2};
-    PermutationII permutationII = new PermutationII();
-    permutationII.permuteUnique(nums)
-        .stream().forEach(l -> {
-          l.stream().forEach(System.out::print);
-      System.out.println();
-    });
   }
 }
