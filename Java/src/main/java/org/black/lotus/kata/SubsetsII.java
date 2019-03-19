@@ -1,9 +1,5 @@
 package org.black.lotus.kata;
 
-import org.black.lotus.marker.FirstRound;
-import org.black.lotus.marker.LeetCode;
-import org.black.lotus.marker.Medium;
-
 import java.time.Duration;
 import java.time.Instant;
 import java.util.ArrayList;
@@ -12,25 +8,20 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
+import org.black.lotus.marker.FirstRound;
+import org.black.lotus.marker.LeetCode;
+import org.black.lotus.marker.Medium;
 
 /**
- * Given a collection of integers that might contain duplicates, nums, return all possible subsets (the power set).
-
- Note: The solution set must not contain duplicate subsets.
-
- Example:
-
- Input: [1,2,2]
- Output:
- [
- [2],
- [1],
- [1,2,2],
- [2,2],
- [1,2],
- []
- ]
- * */
+ * Given a collection of integers that might contain duplicates, nums, return all possible subsets
+ * (the power set).
+ *
+ * <p>Note: The solution set must not contain duplicate subsets.
+ *
+ * <p>Example:
+ *
+ * <p>Input: [1,2,2] Output: [ [2], [1], [1,2,2], [2,2], [1,2], [] ]
+ */
 @LeetCode
 @Medium
 @FirstRound
@@ -51,10 +42,8 @@ public class SubsetsII {
     return removeDuplicate(results);
   }
 
-  private void helper(int[] nums,
-                      List<List<Integer>> results,
-                      List<Integer> subsets,
-                      List<Integer> position) {
+  private void helper(
+      int[] nums, List<List<Integer>> results, List<Integer> subsets, List<Integer> position) {
     if (position.size() == nums.length) {
       return;
     }
@@ -91,17 +80,21 @@ public class SubsetsII {
   }
 
   void testResult() {
-    int[] nums = {1,2,3,4,5,6,7,8,10,0};
+    int[] nums = {1, 2, 3, 4, 5, 6, 7, 8, 10, 0};
     List<List<Integer>> result = subsetsWithDup(nums);
     System.out.println(result.size());
-    result.stream().forEach(l -> {
-      l.forEach(i -> {
-        System.out.print(i);
-        System.out.print("\t");
-      });
+    result
+        .stream()
+        .forEach(
+            l -> {
+              l.forEach(
+                  i -> {
+                    System.out.print(i);
+                    System.out.print("\t");
+                  });
 
-      System.out.println();
-    });
+              System.out.println();
+            });
   }
 
   public static void main(String... args) {

@@ -17,6 +17,5 @@ public class TotalOccurrenceOfTargetTest {
   @Test
   public void should_find_all_occurance() {
     int[] nums = {0, 1, 2, 3, 4, 5};
-
   }
 }

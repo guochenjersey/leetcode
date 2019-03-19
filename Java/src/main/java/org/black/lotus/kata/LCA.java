@@ -35,12 +35,9 @@ public class LCA {
     return prev;
   }
 
-
-  /**
-   * DFS a binary tree and record the path.
-   * */
-  private boolean findPath(List<TreeNode> result, List<TreeNode> path,
-      TreeNode root, TreeNode node) {
+  /** DFS a binary tree and record the path. */
+  private boolean findPath(
+      List<TreeNode> result, List<TreeNode> path, TreeNode root, TreeNode node) {
 
     if (root == null) {
       return false;
@@ -52,7 +49,7 @@ public class LCA {
       return true;
     }
 
-    return findPath(result, new ArrayList<>(path), root.left, node) ||
-        findPath(result, new ArrayList<>(path), root.right, node);
+    return findPath(result, new ArrayList<>(path), root.left, node)
+        || findPath(result, new ArrayList<>(path), root.right, node);
   }
 }

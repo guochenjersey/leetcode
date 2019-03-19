@@ -9,6 +9,4 @@ import org.black.lotus.marker.NeedToSubmit;
 @LintCode
 @NeedToSubmit
 @Medium
-public class WordLadder {
-
-}
+public class WordLadder {}

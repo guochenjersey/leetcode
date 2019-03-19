@@ -7,14 +7,10 @@ import org.black.lotus.marker.NotAccepted;
 import org.black.lotus.org.black.lotus.support.TreeNode;
 
 /**
- * Given the root and two nodes in a Binary Tree.
- * Find the lowest common ancestor(LCA) of the two nodes.
- * The lowest common ancestor is the node with largest depth which is the ancestor of both nodes.
- * Return null if LCA does not exist.
- * Notice
- * node A or node B may not exist in tree.
- *
- * */
+ * Given the root and two nodes in a Binary Tree. Find the lowest common ancestor(LCA) of the two
+ * nodes. The lowest common ancestor is the node with largest depth which is the ancestor of both
+ * nodes. Return null if LCA does not exist. Notice node A or node B may not exist in tree.
+ */
 @LintCode
 @FirstRound
 @NotAccepted
@@ -25,9 +21,7 @@ public class LCAIII {
     TreeNode resNode;
   }
 
-  public TreeNode lowestCommonAncestor3(TreeNode root,
-      TreeNode node1,
-      TreeNode node2) {
+  public TreeNode lowestCommonAncestor3(TreeNode root, TreeNode node1, TreeNode node2) {
     if (node1 == node2) {
       return node1;
     }
@@ -40,27 +34,26 @@ public class LCAIII {
     return res.resNode;
   }
 
-  private void dfs(TreeNode lowerBound, TreeNode upperBound,
-      TreeNode node, Result result) {
-      if (node == null) {
-          return;
-      }
+  private void dfs(TreeNode lowerBound, TreeNode upperBound, TreeNode node, Result result) {
+    if (node == null) {
+      return;
+    }
 
-      if (node == upperBound || node == lowerBound) {
-          return;
-      }
+    if (node == upperBound || node == lowerBound) {
+      return;
+    }
 
-      if (node.val > lowerBound.val && node.val < upperBound.val) {
-          result.resNode = node;
-          return;
-      }
+    if (node.val > lowerBound.val && node.val < upperBound.val) {
+      result.resNode = node;
+      return;
+    }
 
-      if (node.val < upperBound.val) {
-          dfs(lowerBound, upperBound, node.right, result);
-      }
+    if (node.val < upperBound.val) {
+      dfs(lowerBound, upperBound, node.right, result);
+    }
 
-      if (node.val > lowerBound.val) {
-          dfs(lowerBound, upperBound, node.left, result);
-      }
+    if (node.val > lowerBound.val) {
+      dfs(lowerBound, upperBound, node.left, result);
+    }
   }
 }

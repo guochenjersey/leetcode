@@ -1,13 +1,12 @@
 package org.black.lotus.kata;
 
-import org.black.lotus.marker.Accepted;
-import org.black.lotus.marker.LeetCode;
-import org.black.lotus.marker.Medium;
-
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import org.black.lotus.marker.Accepted;
+import org.black.lotus.marker.LeetCode;
+import org.black.lotus.marker.Medium;
 
 @LeetCode
 @Medium
@@ -24,10 +23,8 @@ public class PermutationII {
     return new ArrayList<>(results);
   }
 
-  private void helper(int[] nums,
-                      List<Integer> permutation,
-                      Set<List<Integer>> results,
-                      List<Integer> position) {
+  private void helper(
+      int[] nums, List<Integer> permutation, Set<List<Integer>> results, List<Integer> position) {
     if (permutation.size() == nums.length) {
       results.add(new ArrayList<>(permutation));
       return;

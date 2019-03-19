@@ -6,7 +6,8 @@ import org.black.lotus.marker.Google;
 import org.black.lotus.marker.MySolutionSameWithAnswer;
 import org.black.lotus.org.black.lotus.support.TreeNode;
 
-@Google @MySolutionSameWithAnswer
+@Google
+@MySolutionSameWithAnswer
 public class SearchRangeInBinarySearchTree {
 
   public List<Integer> searchRange(TreeNode root, int k1, int k2) {

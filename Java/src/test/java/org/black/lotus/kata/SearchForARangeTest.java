@@ -22,7 +22,7 @@ public class SearchForARangeTest {
     int target = 2;
     SearchForARange searchForARange = new SearchForARange();
     int[] res = searchForARange.searchRange(nums, target);
-    assertEquals(0, res[0] );
+    assertEquals(0, res[0]);
     assertEquals(1, res[1]);
   }
 
@@ -32,7 +32,7 @@ public class SearchForARangeTest {
     int target = 1;
     SearchForARange searchForARange = new SearchForARange();
     int[] res = searchForARange.searchRange(nums, target);
-    assertEquals(0, res[0] );
+    assertEquals(0, res[0]);
     assertEquals(0, res[1]);
   }
 }

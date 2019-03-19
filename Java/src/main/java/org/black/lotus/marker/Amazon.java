@@ -7,5 +7,4 @@ import java.lang.annotation.Target;
 
 @Retention(RetentionPolicy.CLASS)
 @Target(ElementType.TYPE)
-public @interface Amazon {
-}
+public @interface Amazon {}

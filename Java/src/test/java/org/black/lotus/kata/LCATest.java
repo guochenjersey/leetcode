@@ -1,7 +1,6 @@
 package org.black.lotus.kata;
 
 import java.math.BigInteger;
-
 import org.black.lotus.org.black.lotus.support.TreeNode;
 import org.junit.Test;
 
@@ -17,15 +16,12 @@ public class LCATest {
     TreeNode right2 = new TreeNode(1);
     right2.val = 1;
 
-
     root.left = left1;
     root.right = right2;
 
     LCA lca = new LCA();
     TreeNode treeNode = lca.lowestCommonAncestor(root, left1, right2);
-
   }
-
 
   @Test
   public void should_handle_1() {

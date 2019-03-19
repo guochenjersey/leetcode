@@ -15,7 +15,7 @@ public class DegreeOfAnArrayTest {
 
   @Test
   public void should_pass_test_case_2() {
-    int[] nums = {1,2,2,3,1,4,2};
+    int[] nums = {1, 2, 2, 3, 1, 4, 2};
     degreeOfAnArray.findShortestSubArray(nums);
   }
 

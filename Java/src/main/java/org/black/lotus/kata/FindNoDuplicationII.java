@@ -4,10 +4,7 @@ import org.black.lotus.marker.Amazon;
 import org.black.lotus.marker.Important;
 import org.black.lotus.marker.NotAccepted;
 
-/**
- * Array with 2n + 2, n has duplicate,
- * find those 2 having no duplicate
- * */
+/** Array with 2n + 2, n has duplicate, find those 2 having no duplicate */
 @Amazon
 @NotAccepted
 @Important
@@ -19,7 +16,6 @@ public class FindNoDuplicationII {
     for (int i = 0; i < nums.length; ++i) {
       temp ^= nums[i];
     }
-
 
     return result;
   }

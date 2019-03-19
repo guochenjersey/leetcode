@@ -9,13 +9,9 @@ import java.util.Set;
 import java.util.TreeSet;
 
 /**
- *
- * !important
- * Difference between Tree and Graph are
- * 1) graph has circle.
- * 2) visited nodes equals all nodes number. All nodes must be reachable.
- *
- * */
+ * !important Difference between Tree and Graph are 1) graph has circle. 2) visited nodes equals all
+ * nodes number. All nodes must be reachable.
+ */
 public class GraphValidTree {
 
   class Path {
@@ -37,8 +33,8 @@ public class GraphValidTree {
        * undirected graph route comparision.
        * */
       Path that = (Path) toCheck;
-      return (that.from.equals(from) && that.to.equals(to)) ||
-          (that.from.equals(to) && that.to.equals(from));
+      return (that.from.equals(from) && that.to.equals(to))
+          || (that.from.equals(to) && that.to.equals(from));
     }
 
     @Override
@@ -62,7 +58,8 @@ public class GraphValidTree {
     return helper(map, queue, visitedNodes, visitedPaths) && visitedNodes.size() == n;
   }
 
-  private boolean helper(Map<Integer, Set<Integer>> map,
+  private boolean helper(
+      Map<Integer, Set<Integer>> map,
       Queue<Integer> queue,
       Set<Integer> visitedNodes,
       Set<Path> visitedPaths) {
@@ -74,23 +71,22 @@ public class GraphValidTree {
       }
       visitedNodes.add(node);
       Set<Integer> successorNodes = map.get(node);
-      successorNodes.forEach(successor -> {
-        /*
-         * Say if 0 -> 1 visited, 1 as successor shouldn't add 1 -> 0 anymore.
-         * */
-        if (!visitedPaths.contains(new Path(node, successor))) {
-          visitedPaths.add(new Path(node, successor));
-          queue.offer(successor);
-        }
-      });
+      successorNodes.forEach(
+          successor -> {
+            /*
+             * Say if 0 -> 1 visited, 1 as successor shouldn't add 1 -> 0 anymore.
+             * */
+            if (!visitedPaths.contains(new Path(node, successor))) {
+              visitedPaths.add(new Path(node, successor));
+              queue.offer(successor);
+            }
+          });
     }
 
     return true;
   }
 
-  /**
-   * convert from edges to node -> nodes it can reach
-   */
+  /** convert from edges to node -> nodes it can reach */
   private Map<Integer, Set<Integer>> toMap(int[][] edges) {
     Map<Integer, Set<Integer>> res = new HashMap<>();
     for (int[] edge : edges) {

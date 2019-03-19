@@ -6,7 +6,8 @@ import org.black.lotus.marker.FirstRound;
 import org.black.lotus.marker.LintCode;
 
 @FirstRound
-@LintCode @Accepted
+@LintCode
+@Accepted
 public class MinSubArray {
 
   public int minSubArray(List<Integer> nums) {

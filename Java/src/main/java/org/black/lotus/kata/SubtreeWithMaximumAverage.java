@@ -2,9 +2,7 @@ package org.black.lotus.kata;
 
 import org.black.lotus.org.black.lotus.support.TreeNode;
 
-/**
- * TODO: The last check not understand properly.
- * */
+/** TODO: The last check not understand properly. */
 public class SubtreeWithMaximumAverage {
 
   private int maxSum = Integer.MIN_VALUE;
@@ -20,9 +18,9 @@ public class SubtreeWithMaximumAverage {
     }
   }
   /*
-     * @param root: the root of binary tree
-     * @return: the root of the maximum average of subtree
-         */
+   * @param root: the root of binary tree
+   * @return: the root of the maximum average of subtree
+   */
   public TreeNode findSubtree2(TreeNode root) {
     // write your code here
     if (root == null) {
@@ -52,5 +50,4 @@ public class SubtreeWithMaximumAverage {
 
     return new Tuple(sum, nodeNumFromSubTree);
   }
-
 }

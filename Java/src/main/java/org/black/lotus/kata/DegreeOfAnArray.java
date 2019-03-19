@@ -6,7 +6,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
-
 import org.black.lotus.marker.Accepted;
 import org.black.lotus.marker.Google;
 import org.black.lotus.marker.HaveNotCheckAnswer;
@@ -24,7 +23,7 @@ public class DegreeOfAnArray {
     int fromIndex;
     int endIndex;
 
-    Tuple (int i, int j) {
+    Tuple(int i, int j) {
       this.fromIndex = i;
       this.endIndex = j;
     }
@@ -58,8 +57,8 @@ public class DegreeOfAnArray {
         mostAppearence = entry.getValue();
         shortestSubArrayLength = rangeMap.get(entry.getKey()).distance();
       } else if (entry.getValue() == mostAppearence) {
-        shortestSubArrayLength = Math
-            .min(shortestSubArrayLength, rangeMap.get(entry.getKey()).distance());
+        shortestSubArrayLength =
+            Math.min(shortestSubArrayLength, rangeMap.get(entry.getKey()).distance());
       }
     }
 
@@ -96,17 +95,20 @@ public class DegreeOfAnArray {
     return shortestSet.get(0);
   }
 
-  private Map<Integer, Integer> numsHavingBiggestFrequency (Map<Integer, Integer> frequencyMap) {
+  private Map<Integer, Integer> numsHavingBiggestFrequency(Map<Integer, Integer> frequencyMap) {
     Map<Integer, Integer> res = new HashMap<>();
     ArrayList<Integer> list = new ArrayList<>(frequencyMap.values());
     Collections.sort(list);
     Integer mostFrequent = list.get(list.size() - 1);
-    frequencyMap.entrySet().stream()
-        .forEach(entry -> {
-          if (entry.getValue().equals(mostFrequent)) {
-            res.put(entry.getKey(), entry.getValue());
-          }
-        });
+    frequencyMap
+        .entrySet()
+        .stream()
+        .forEach(
+            entry -> {
+              if (entry.getValue().equals(mostFrequent)) {
+                res.put(entry.getKey(), entry.getValue());
+              }
+            });
     return res;
   }
 

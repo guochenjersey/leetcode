@@ -51,7 +51,6 @@ class Coordinate {
     return Optional.empty();
   }
 
-
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -87,7 +86,6 @@ class Chessboard {
   private int currentZombie;
   private Map<Coordinate, Integer> chessBoard;
 
-
   Chessboard(int[][] grid) {
     chessBoard = new HashMap<>();
     for (int i = 0; i < grid.length; ++i) {
@@ -111,22 +109,27 @@ class Chessboard {
 
       ++zombieBreedingDays;
       currentZombie = zombies.size();
-      zombies.forEach(zombie -> {
-        zombie.left().ifPresent(this::markZombie);
-        zombie.right().ifPresent(this::markZombie);
-        zombie.up().ifPresent(this::markZombie);
-        zombie.down().ifPresent(this::markZombie);
-      });
+      zombies.forEach(
+          zombie -> {
+            zombie.left().ifPresent(this::markZombie);
+            zombie.right().ifPresent(this::markZombie);
+            zombie.up().ifPresent(this::markZombie);
+            zombie.down().ifPresent(this::markZombie);
+          });
     }
   }
 
   List<Coordinate> getCooridinates(Integer key) {
     List<Coordinate> coordinates = new ArrayList<>();
-    chessBoard.entrySet().stream().forEach(entry -> {
-      if (entry.getValue().equals(key)) {
-        coordinates.add(entry.getKey());
-      }
-    });
+    chessBoard
+        .entrySet()
+        .stream()
+        .forEach(
+            entry -> {
+              if (entry.getValue().equals(key)) {
+                coordinates.add(entry.getKey());
+              }
+            });
     return coordinates;
   }
 
@@ -147,8 +150,7 @@ class Chessboard {
 
   int getZombieBreedingResult() {
     zombieBreeding();
-    return isAllMarked()
-        ? zombieBreedingDays : -1;
+    return isAllMarked() ? zombieBreedingDays : -1;
   }
 
   boolean isAllMarked() {
@@ -157,7 +159,6 @@ class Chessboard {
     return chessBoard.keySet().size() == (zombies.size() + walls.size());
   }
 }
-
 
 public class ZombieInMatrix {
 
@@ -170,9 +171,9 @@ public class ZombieInMatrix {
 
   public static void main(String... args) {
     int[][] grid = {
-        {0, 1, 2, 0, 0},
-        {1, 0, 0, 2, 1},
-        {0, 1, 0, 0, 0}
+      {0, 1, 2, 0, 0},
+      {1, 0, 0, 2, 1},
+      {0, 1, 0, 0, 0}
     };
 
     ZombieInMatrix zombieInMatrix = new ZombieInMatrix();

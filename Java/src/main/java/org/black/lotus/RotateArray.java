@@ -4,7 +4,9 @@ import org.black.lotus.marker.Accepted;
 import org.black.lotus.marker.Amazon;
 import org.black.lotus.marker.LeetCode;
 
-@LeetCode @Amazon @Accepted
+@LeetCode
+@Amazon
+@Accepted
 public class RotateArray {
 
   public void rotate(int[] nums, int k) {
@@ -23,7 +25,6 @@ public class RotateArray {
     System.arraycopy(res, 0, nums, 0, res.length);
   }
 
-
   public void o1Rotate(int[] nums, int k) {
     if (nums == null || nums.length == 0) {
       return;
@@ -32,7 +33,7 @@ public class RotateArray {
     int numsLength = nums.length;
     k = k % numsLength;
 
-    for (int i = numsLength - k, j= 0; i < numsLength; ++i, ++j) {
+    for (int i = numsLength - k, j = 0; i < numsLength; ++i, ++j) {
       toTargetPos(j, i, nums);
     }
   }

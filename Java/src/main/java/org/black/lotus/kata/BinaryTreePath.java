@@ -1,9 +1,8 @@
 package org.black.lotus.kata;
 
-import org.black.lotus.org.black.lotus.support.TreeNode;
-
 import java.util.ArrayList;
 import java.util.List;
+import org.black.lotus.org.black.lotus.support.TreeNode;
 
 public class BinaryTreePath {
 

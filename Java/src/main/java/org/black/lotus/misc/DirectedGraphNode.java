@@ -3,11 +3,11 @@ package org.black.lotus.misc;
 import java.util.ArrayList;
 
 public class DirectedGraphNode {
-    public int label;
-    public ArrayList<DirectedGraphNode> neighbors;
+  public int label;
+  public ArrayList<DirectedGraphNode> neighbors;
 
-    public DirectedGraphNode(int x) {
-        label = x;
-        neighbors = new ArrayList<DirectedGraphNode>();
-    }
+  public DirectedGraphNode(int x) {
+    label = x;
+    neighbors = new ArrayList<DirectedGraphNode>();
+  }
 }

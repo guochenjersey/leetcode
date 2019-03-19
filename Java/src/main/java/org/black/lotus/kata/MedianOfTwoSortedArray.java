@@ -1,9 +1,6 @@
 package org.black.lotus.kata;
 
-/**
- *
- * TODO No idea how to do that. Should be binary search.
- * */
+/** TODO No idea how to do that. Should be binary search. */
 public class MedianOfTwoSortedArray {
 
   public double findMedianSortedArray(int[] nums1, int[] nums2) {
@@ -16,9 +13,7 @@ public class MedianOfTwoSortedArray {
     while (num1Start + 1 < num1End) {
       int num1Middle = num1Start + (num1End - num1Start) / 2;
       int num2Middle = num2Start + (num2End - num2Start) / 2;
-      if (nums1[num1Middle] >= nums2[num2Middle]) {
-
-      }
+      if (nums1[num1Middle] >= nums2[num2Middle]) {}
     }
 
     return 0.0d;

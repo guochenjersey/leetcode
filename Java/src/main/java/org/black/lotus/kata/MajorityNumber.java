@@ -9,15 +9,15 @@ import org.black.lotus.marker.FirstRound;
 import org.black.lotus.marker.LintCode;
 
 /**
- * Given an array of integers, the majority number is the number that occurs more than half of the size of the array. Find it.
- *  Notice
- You may assume that the array is non-empty and the majority number always exist in the array.
+ * Given an array of integers, the majority number is the number that occurs more than half of the
+ * size of the array. Find it. Notice You may assume that the array is non-empty and the majority
+ * number always exist in the array.
  *
- * Challenge
- O(n) time and O(1) extra space
- * */
-
-@FirstRound @LintCode @Accepted
+ * <p>Challenge O(n) time and O(1) extra space
+ */
+@FirstRound
+@LintCode
+@Accepted
 public class MajorityNumber {
 
   public int majorityNumber(List<Integer> nums) {

@@ -9,7 +9,7 @@ public class MissingNumber {
   public int missingNumber(int[] nums) {
     long target = targetSum(nums);
     long l = target - Arrays.stream(nums).sum();
-    return (int)l;
+    return (int) l;
   }
 
   private long targetSum(int[] nums) {

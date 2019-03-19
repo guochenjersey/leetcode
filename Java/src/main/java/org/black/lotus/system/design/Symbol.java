@@ -4,9 +4,9 @@ import lombok.Data;
 
 @Data
 public class Symbol {
-    private String currencyPair;
+  private String currencyPair;
 
-    public Symbol(String currencyPair) {
-        this.currencyPair = currencyPair;
-    }
+  public Symbol(String currencyPair) {
+    this.currencyPair = currencyPair;
+  }
 }

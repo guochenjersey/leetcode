@@ -6,8 +6,7 @@ import org.junit.Test;
 
 public class TwoSumGreaterThanTargetTest {
 
-  private TwoSumGreaterThanTarget twoSumGreaterThanTarget
-      = new TwoSumGreaterThanTarget();
+  private TwoSumGreaterThanTarget twoSumGreaterThanTarget = new TwoSumGreaterThanTarget();
 
   @Test
   public void test_case_1() {

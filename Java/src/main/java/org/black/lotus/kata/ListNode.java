@@ -3,10 +3,13 @@ package org.black.lotus.kata;
 public class ListNode {
   public int val;
   public ListNode next;
-  public ListNode(int x) { val = x; }
 
-    @Override
-    public String toString() {
-        return String.valueOf(val);
-    }
+  public ListNode(int x) {
+    val = x;
+  }
+
+  @Override
+  public String toString() {
+    return String.valueOf(val);
+  }
 }

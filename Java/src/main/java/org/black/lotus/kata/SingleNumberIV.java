@@ -9,7 +9,7 @@ import org.black.lotus.marker.*;
 @NotAccepted
 public class SingleNumberIV {
 
-    public int getSingleNumber(int[] nums) {
-        return 0;
-    }
+  public int getSingleNumber(int[] nums) {
+    return 0;
+  }
 }

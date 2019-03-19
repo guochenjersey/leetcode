@@ -5,15 +5,13 @@ import org.black.lotus.marker.FirstRound;
 import org.black.lotus.marker.LeetCode;
 
 /**
+ * Merge two sorted linked lists and return it as a new list. The new list should be made by
+ * splicing together the nodes of the first two lists.
  *
+ * <p>Example:
  *
- Merge two sorted linked lists and return it as a new list. The new list should be made by splicing together the nodes of the first two lists.
-
- Example:
-
- Input: 1->2->4, 1->3->4
- Output: 1->1->2->3->4->4
- * */
+ * <p>Input: 1->2->4, 1->3->4 Output: 1->1->2->3->4->4
+ */
 @LeetCode
 @FirstRound
 @Easy
@@ -64,8 +62,6 @@ public class MergeTwoSortedLists {
       }
     }
 
-
     return head;
   }
-
 }

@@ -1,13 +1,12 @@
 package org.black.lotus.kata;
 
+import java.util.ArrayDeque;
+import java.util.Deque;
 import org.black.lotus.marker.Accepted;
 import org.black.lotus.marker.Easy;
 import org.black.lotus.marker.FirstRound;
 import org.black.lotus.marker.LeetCode;
 import org.black.lotus.org.black.lotus.support.TreeNode;
-
-import java.util.ArrayDeque;
-import java.util.Deque;
 
 @LeetCode
 @Easy
@@ -46,7 +45,7 @@ public class MaximumDepthOfBinaryTree {
     int treeHeight = 0;
     while (!deque.isEmpty()) {
       int size = deque.size();
-      for (int i = 0; i < size ; ++i) {
+      for (int i = 0; i < size; ++i) {
         TreeNode node = deque.pollFirst();
         if (node.left != null) {
           deque.offerLast(node.left);

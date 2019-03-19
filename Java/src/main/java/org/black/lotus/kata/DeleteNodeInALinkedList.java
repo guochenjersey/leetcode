@@ -1,6 +1,5 @@
 package org.black.lotus.kata;
 
-
 import org.black.lotus.marker.Easy;
 import org.black.lotus.marker.FirstRound;
 import org.black.lotus.marker.LeetCode;
@@ -10,7 +9,5 @@ import org.black.lotus.marker.LeetCode;
 @FirstRound
 public class DeleteNodeInALinkedList {
 
-    public void deleteNode(ListNode node) {
-
-    }
+  public void deleteNode(ListNode node) {}
 }

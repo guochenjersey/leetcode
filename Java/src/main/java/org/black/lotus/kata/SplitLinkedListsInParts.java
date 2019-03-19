@@ -1,8 +1,6 @@
 package org.black.lotus.kata;
 
-/**
- * TODO
- * */
+/** TODO */
 public class SplitLinkedListsInParts {
 
   public ListNode[] splitListToParts(ListNode root, int k) {

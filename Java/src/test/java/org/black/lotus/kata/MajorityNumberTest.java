@@ -19,10 +19,8 @@ public class MajorityNumberTest {
   @Test
   public void should_find_majority_number() {
     int[] nums = {1, 1, 1, 1, 2, 2, 2};
-    int i = majorityNumber.majorityNumber(Arrays.stream(nums).boxed()
-        .collect(Collectors.toList()));
+    int i = majorityNumber.majorityNumber(Arrays.stream(nums).boxed().collect(Collectors.toList()));
 
     assertEquals(1, i);
-
   }
 }

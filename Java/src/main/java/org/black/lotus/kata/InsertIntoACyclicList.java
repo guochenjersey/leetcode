@@ -3,9 +3,7 @@ package org.black.lotus.kata;
 import java.util.HashSet;
 import java.util.Set;
 
-/**
- * TODO
- * */
+/** TODO */
 public class InsertIntoACyclicList {
 
   public ListNode insert(ListNode node, int x) {
@@ -39,7 +37,7 @@ public class InsertIntoACyclicList {
           return insertNode;
         }
 
-        if (x >= maxNode.val && slow.val == maxNode.val ) {
+        if (x >= maxNode.val && slow.val == maxNode.val) {
           insertNode = new ListNode(x);
           slow.next = insertNode;
           insertNode.next = fast;

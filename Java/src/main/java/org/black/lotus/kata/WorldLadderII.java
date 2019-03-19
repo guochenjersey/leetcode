@@ -1,17 +1,14 @@
 package org.black.lotus.kata;
 
+import java.util.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import java.util.*;
 
-/**
- * TODO
- * */
+/** TODO */
 public class WorldLadderII {
-  public List<List<String>> findLadders(String start, String end,
-      Set<String> dict) {
+  public List<List<String>> findLadders(String start, String end, Set<String> dict) {
     List<List<String>> ladders = new ArrayList<List<String>>();
     Map<String, List<String>> map = new HashMap<String, List<String>>();
     Map<String, Integer> distance = new HashMap<String, Integer>();
@@ -28,8 +25,12 @@ public class WorldLadderII {
     return ladders;
   }
 
-  void dfs(List<List<String>> ladders, List<String> path, String crt,
-      String start, Map<String, Integer> distance,
+  void dfs(
+      List<List<String>> ladders,
+      List<String> path,
+      String crt,
+      String start,
+      Map<String, Integer> distance,
       Map<String, List<String>> map) {
     path.add(crt);
     if (crt.equals(start)) {
@@ -46,8 +47,12 @@ public class WorldLadderII {
     path.remove(path.size() - 1);
   }
 
-  void bfs(Map<String, List<String>> map, Map<String, Integer> distance,
-      String start, String end, Set<String> dict) {
+  void bfs(
+      Map<String, List<String>> map,
+      Map<String, Integer> distance,
+      String start,
+      String end,
+      Set<String> dict) {
     Queue<String> q = new LinkedList<String>();
     q.offer(start);
     distance.put(start, 0);
@@ -75,8 +80,7 @@ public class WorldLadderII {
     for (int i = 0; i < crt.length(); i++) {
       for (char ch = 'a'; ch <= 'z'; ch++) {
         if (ch != crt.charAt(i)) {
-          String expanded = crt.substring(0, i) + ch
-              + crt.substring(i + 1);
+          String expanded = crt.substring(0, i) + ch + crt.substring(i + 1);
           if (dict.contains(expanded)) {
             expansion.add(expanded);
           }

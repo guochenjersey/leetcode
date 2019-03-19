@@ -5,9 +5,7 @@ import java.util.List;
 
 public class PalindromePartitioning {
 
-  /**
-   * 这道题目的关键是顺序移动.
-   * */
+  /** 这道题目的关键是顺序移动. */
   public List<List<String>> partition(String s) {
     List<List<String>> results = new ArrayList<>();
     List<String> result = new ArrayList<>();
@@ -16,11 +14,7 @@ public class PalindromePartitioning {
     return results;
   }
 
-
-  private void helper(String s,
-      int startIndexes,
-      List<List<String>> results,
-      List<String> result) {
+  private void helper(String s, int startIndexes, List<List<String>> results, List<String> result) {
 
     if (startIndexes == s.length()) {
       results.add(new ArrayList<>(result));
@@ -39,15 +33,13 @@ public class PalindromePartitioning {
     }
   }
 
-  /**
-   * Check if string is palindrome
-   * */
+  /** Check if string is palindrome */
   boolean isPalindrome(String toCheck) {
     if ("".equals(toCheck)) {
       return true;
     }
 
-    for (int i = 0, j = toCheck.length() -1 ; i < j ; ++i, --j) {
+    for (int i = 0, j = toCheck.length() - 1; i < j; ++i, --j) {
       if (toCheck.charAt(i) != toCheck.charAt(j)) {
         return false;
       }

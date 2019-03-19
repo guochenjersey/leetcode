@@ -9,7 +9,7 @@ import org.black.lotus.marker.LeetCode;
 @Easy
 public class MinimumMovesToEqualArrayElements {
 
-    public int minMoves(int[] nums) {
-        return 0;
-    }
+  public int minMoves(int[] nums) {
+    return 0;
+  }
 }

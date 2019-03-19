@@ -17,7 +17,6 @@ public class FindMinimumSubTree {
     return miniumSumTreeNode;
   }
 
-
   private int subTreeSum(TreeNode node) {
     if (node == null) {
       return 0;

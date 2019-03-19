@@ -1,7 +1,4 @@
- package org.black.lotus.kata;
-
-import org.black.lotus.marker.Accepted;
-import org.black.lotus.marker.FirstRound;
+package org.black.lotus.kata;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -9,30 +6,22 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Queue;
+import org.black.lotus.marker.Accepted;
+import org.black.lotus.marker.FirstRound;
 
 /**
+ * Given a boolean 2D matrix, 0 is represented as the sea, 1 is represented as the island. If two 1
+ * is adjacent, we consider them in the same island. We only consider up/down/left/right adjacent.
  *
- * Given a boolean 2D matrix, 0 is represented as the sea, 1 is represented as the island. If two 1 is adjacent, we consider them in the same island. We only consider up/down/left/right adjacent.
-
- Find the number of islands.
-
- Have you met this question in a real interview?
- Example
- Given graph:
-
- [
- [1, 1, 0, 0, 0],
- [0, 1, 0, 0, 1],
- [0, 0, 0, 1, 1],
- [0, 0, 0, 0, 0],
- [0, 0, 0, 0, 1]
- ]
- return 3.
-
- Tags
-
+ * <p>Find the number of islands.
  *
- * */
+ * <p>Have you met this question in a real interview? Example Given graph:
+ *
+ * <p>[ [1, 1, 0, 0, 0], [0, 1, 0, 0, 1], [0, 0, 0, 1, 1], [0, 0, 0, 0, 0], [0, 0, 0, 0, 1] ] return
+ * 3.
+ *
+ * <p>Tags
+ */
 @FirstRound
 @Accepted
 public class NumberOfIslands {
@@ -70,11 +59,12 @@ public class NumberOfIslands {
       return result;
     }
   }
+
   private static int[][] directions = {
-      {1, 0},
-      {-1, 0},
-      {0, 1},
-      {0, -1}
+    {1, 0},
+    {-1, 0},
+    {0, 1},
+    {0, -1}
   };
 
   private static int ROW_NUM;
@@ -109,10 +99,12 @@ public class NumberOfIslands {
   private void mark(Map<Point, Boolean> recordMap, Queue<Point> queue) {
     while (!queue.isEmpty()) {
       Point point = queue.poll();
-      getAdjecentIslands(point, recordMap).forEach(p -> {
-        queue.offer(p);
-        recordMap.put(p, false);
-      });
+      getAdjecentIslands(point, recordMap)
+          .forEach(
+              p -> {
+                queue.offer(p);
+                recordMap.put(p, false);
+              });
     }
   }
 

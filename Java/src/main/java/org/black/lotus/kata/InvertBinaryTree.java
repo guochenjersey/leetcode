@@ -1,9 +1,8 @@
 package org.black.lotus.kata;
 
-import org.black.lotus.org.black.lotus.support.TreeNode;
-
 import java.util.ArrayDeque;
 import java.util.Queue;
+import org.black.lotus.org.black.lotus.support.TreeNode;
 
 public class InvertBinaryTree {
   public TreeNode invertTree(TreeNode r) {

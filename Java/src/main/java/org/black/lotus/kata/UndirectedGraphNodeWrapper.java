@@ -21,7 +21,6 @@ class UndirectedGraphNodeWrapper {
 
     return this.undirectedGraphNode.label == that.undirectedGraphNode.label
         && this.undirectedGraphNode.neighbors.equals(that.undirectedGraphNode.neighbors);
-
   }
 
   @Override

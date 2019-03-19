@@ -7,25 +7,25 @@ import org.black.lotus.marker.FirstRound;
 import org.black.lotus.marker.LintCode;
 
 /**
- * Given the root and two nodes in a Binary Tree. Find the lowest common ancestor(LCA) of the two nodes.
- The lowest common ancestor is the node with largest depth which is the ancestor of both nodes.
- The node has an extra attribute parent which point to the father of itself. The root's parent is null.
- * */
+ * Given the root and two nodes in a Binary Tree. Find the lowest common ancestor(LCA) of the two
+ * nodes. The lowest common ancestor is the node with largest depth which is the ancestor of both
+ * nodes. The node has an extra attribute parent which point to the father of itself. The root's
+ * parent is null.
+ */
 @LintCode
 @FirstRound
 @Accepted
 public class LCAII {
   /*
-     * @param root: The root of the tree
-     * @param A: node in the tree
-     * @param B: node in the tree
-     * @return: The lowest common ancestor of A and B
-     */
-  public ParentTreeNode lowestCommonAncestorII(ParentTreeNode root,
-      ParentTreeNode A,
-      ParentTreeNode B) {
+   * @param root: The root of the tree
+   * @param A: node in the tree
+   * @param B: node in the tree
+   * @return: The lowest common ancestor of A and B
+   */
+  public ParentTreeNode lowestCommonAncestorII(
+      ParentTreeNode root, ParentTreeNode A, ParentTreeNode B) {
     if (root == null) {
-      return  null;
+      return null;
     }
 
     List<ParentTreeNode> path1 = new ArrayList<>();

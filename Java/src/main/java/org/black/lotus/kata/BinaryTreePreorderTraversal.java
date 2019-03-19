@@ -1,12 +1,11 @@
 package org.black.lotus.kata;
 
+import java.util.LinkedList;
+import java.util.List;
 import org.black.lotus.marker.Accepted;
 import org.black.lotus.marker.Easy;
 import org.black.lotus.marker.LeetCode;
 import org.black.lotus.org.black.lotus.support.TreeNode;
-
-import java.util.LinkedList;
-import java.util.List;
 
 @LeetCode
 @Easy
@@ -28,5 +27,4 @@ public class BinaryTreePreorderTraversal {
     preOrder(node.left, res);
     preOrder(node.right, res);
   }
-
 }

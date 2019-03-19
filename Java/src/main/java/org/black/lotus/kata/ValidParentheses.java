@@ -50,4 +50,3 @@ public class ValidParentheses {
         || (left.equals('{') && right.equals('}'));
   }
 }
-

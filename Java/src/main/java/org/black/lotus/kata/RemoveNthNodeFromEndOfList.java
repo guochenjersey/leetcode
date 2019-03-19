@@ -7,16 +7,15 @@ import org.black.lotus.marker.NotAccepted;
 
 /**
  * Given a linked list, remove the n-th node from the end of list and return its head.
-
- Example:
-
- Given linked list: 1->2->3->4->5, and n = 2.
-
- After removing the second node from the end, the linked list becomes 1->2->3->5.
- Note:
-
- Given n will always be valid.
- * */
+ *
+ * <p>Example:
+ *
+ * <p>Given linked list: 1->2->3->4->5, and n = 2.
+ *
+ * <p>After removing the second node from the end, the linked list becomes 1->2->3->5. Note:
+ *
+ * <p>Given n will always be valid.
+ */
 @LeetCode
 @NotAccepted
 @FirstRound
@@ -33,10 +32,10 @@ public class RemoveNthNodeFromEndOfList {
         forwardNode = forwardNode.next;
         counter++;
       } else {
-          forwardNode = forwardNode.next;
-          if (forwardNode != null) {
-              node = node.next;
-          }
+        forwardNode = forwardNode.next;
+        if (forwardNode != null) {
+          node = node.next;
+        }
       }
     }
 
@@ -46,9 +45,9 @@ public class RemoveNthNodeFromEndOfList {
       return head;
     }
 
-      if (node.next == null) {
-        return null;
-      }
+    if (node.next == null) {
+      return null;
+    }
     node.next = node.next.next;
     return head;
   }

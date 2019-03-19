@@ -1,11 +1,6 @@
 package org.black.lotus.kata;
 
-/**
- * MERGE SORT的特点如下
- * 1) 它是先局部有序,再全局有序.
- * 2) 它是稳定排序.
- * 3) 它需要一个O(M+N)的空间.
- * */
+/** MERGE SORT的特点如下 1) 它是先局部有序,再全局有序. 2) 它是稳定排序. 3) 它需要一个O(M+N)的空间. */
 public class MergeSortSolution {
 
   public void sortArray(int[] source) {
@@ -64,5 +59,4 @@ public class MergeSortSolution {
       System.out.println(aSourceArray);
     }
   }
-
 }

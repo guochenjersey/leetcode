@@ -9,9 +9,7 @@ import org.black.lotus.marker.NotAccepted;
 @FirstRound
 @NoIdeaOrBadIdeaInitially
 @NotAccepted
-/**
- * TODO
- * */
+/** TODO */
 public class MaximumSubarrayDifference {
 
   public int maxDiffSubArrays(int[] nums) {

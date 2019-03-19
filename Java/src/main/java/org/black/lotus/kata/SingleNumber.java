@@ -6,7 +6,8 @@ import org.black.lotus.marker.LintCode;
 import org.black.lotus.marker.Medium;
 
 @FirstRound
-@LintCode @Accepted
+@LintCode
+@Accepted
 @Medium
 public class SingleNumber {
 

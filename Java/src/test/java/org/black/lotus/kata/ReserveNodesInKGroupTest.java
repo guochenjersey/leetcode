@@ -62,6 +62,6 @@ public class ReserveNodesInKGroupTest {
     assertThat(res.val, equalTo(2));
     assertThat(res.next.val, equalTo(1));
     assertThat(res.next.next.val, equalTo(4));
-    assertThat(res.next.next.next.val,equalTo(3));
+    assertThat(res.next.next.next.val, equalTo(3));
   }
 }

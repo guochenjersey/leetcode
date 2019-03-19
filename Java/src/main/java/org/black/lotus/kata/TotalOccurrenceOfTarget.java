@@ -48,11 +48,7 @@ public class TotalOccurrenceOfTarget {
     return occurance;
   }
 
-  private int findBound(int start,
-      int end,
-      int target,
-      int[] source,
-      boolean lowerBound) {
+  private int findBound(int start, int end, int target, int[] source, boolean lowerBound) {
     int index = -1;
     while (start + 1 < end) {
       int middle = start + (end - start) / 2;

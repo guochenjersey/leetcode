@@ -4,19 +4,14 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
-
 public class SortList {
 
-  /**
-   * TODO
-   * */
+  /** TODO */
   public ListNode sortList(ListNode head) {
     return null;
   }
 
-  /**
-   * Quick sort version.
-   * */
+  /** Quick sort version. */
   public ListNode quickSort(ListNode head) {
     if (head == null) {
       return head;
