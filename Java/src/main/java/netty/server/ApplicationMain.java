@@ -2,5 +2,7 @@ package netty.server;
 
 public class ApplicationMain {
 
-  public static void main(String... args) {}
+  public static void main(String... args) {
+
+  }
 }
