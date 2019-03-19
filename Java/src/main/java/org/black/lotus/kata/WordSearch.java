@@ -1,8 +1,13 @@
 package org.black.lotus.kata;
 
+import com.sun.tools.javac.comp.Check;
+import org.black.lotus.marker.DFS;
 import org.black.lotus.marker.LeetCode;
 import org.black.lotus.marker.Medium;
 import org.black.lotus.marker.NeedToSubmit;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Given a 2D board and a word, find if the word exists in the grid.
@@ -24,13 +29,14 @@ import org.black.lotus.marker.NeedToSubmit;
  */
 @LeetCode
 @Medium
-@NeedToSubmit
+@DFS
 public class WordSearch {
 
     public boolean exist(char[][] board, String word) {
         if (board == null || board.length == 0) {
             return false;
         }
+
         char[] words = word.toCharArray();
         for (int i = 0; i < board.length; ++i) {
             for (int j = 0; j < board[0].length; ++j) {
@@ -65,15 +71,18 @@ public class WordSearch {
             return true;
         }
 
+        boolean res = false;
+        visited[i][j] = true;
         if (sameChar) {
-            visited[i][j] = true;
-            return helper(visited, board, i + 1, j, words, wordsIdx + 1)
+            res = helper(visited, board, i + 1, j, words, wordsIdx + 1)
                     || helper(visited, board, i - 1, j, words, wordsIdx + 1)
                     || helper(visited, board, i, j + 1, words, wordsIdx + 1)
                     || helper(visited, board, i, j - 1, words, wordsIdx + 1);
         }
 
-        return false;
+        visited[i][j] = false;
+
+        return res;
     }
 
     private boolean validRow(int i, char[][] board) {
@@ -82,5 +91,37 @@ public class WordSearch {
 
     private boolean validColumn(int j, char[][] board) {
         return j >= 0 && j < board[0].length;
+    }
+
+    class CheckedStatus {
+        int i;
+        int j;
+        int k;
+
+        CheckedStatus(int i, int j, int k) {
+            this.i = i;
+            this.j = j;
+            this.k = k;
+        }
+
+        @Override
+        public boolean equals(Object o) {
+            if (this == o) return true;
+            if (o == null || getClass() != o.getClass()) return false;
+
+            CheckedStatus that = (CheckedStatus) o;
+
+            if (i != that.i) return false;
+            if (j != that.j) return false;
+            return k == that.k;
+        }
+
+        @Override
+        public int hashCode() {
+            int result = i;
+            result = 31 * result + j;
+            result = 31 * result + k;
+            return result;
+        }
     }
 }
