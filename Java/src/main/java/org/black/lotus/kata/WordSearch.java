@@ -1,10 +1,6 @@
 package org.black.lotus.kata;
 
-import com.sun.tools.javac.comp.Check;
 import org.black.lotus.marker.*;
-
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * Given a 2D board and a word, find if the word exists in the grid.
