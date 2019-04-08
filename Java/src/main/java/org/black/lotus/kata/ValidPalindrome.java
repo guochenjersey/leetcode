@@ -1,5 +1,6 @@
 package org.black.lotus.kata;
 
+import org.black.lotus.marker.Accepted;
 import org.black.lotus.marker.Easy;
 import org.black.lotus.marker.LeetCode;
 
@@ -11,12 +12,15 @@ import org.black.lotus.marker.LeetCode;
  *
  * <p>Example 1:
  *
- * <p>Input: "A man, a plan, a canal: Panama" Output: true Example 2:
+ * <p>Input: "A man, a plan, a canal: Panama" Output: true
+ *
+ * <p></>Example 2:
  *
  * <p>Input: "race a car" Output: false
  */
 @LeetCode
 @Easy
+@Accepted
 public class ValidPalindrome {
 
   public boolean isPalindrome(String s) {

@@ -1,21 +1,18 @@
 package org.black.lotus.kata;
 
-import org.black.lotus.marker.Easy;
-import org.black.lotus.marker.LeetCode;
-import org.black.lotus.marker.NoIdeaOrBadIdeaInitially;
-import org.black.lotus.marker.NotAccepted;
+import org.black.lotus.marker.*;
 
 /**
  * Given a non-empty string s, you may delete at most one character. Judge whether you can make it a
  * palindrome.
  *
- * <p>Example 1: Input: "aba" Output: True Example 2: Input: "abca" Output: True Explanation: You
+ * <p>Example 1: Input: "aba" Output: True Example 2: Input: "abca" Output: True
+ * Explanation: You
  * could delete the character 'c'.
  */
 @LeetCode
 @Easy
-@NotAccepted
-@NoIdeaOrBadIdeaInitially
+@Accepted("faster than 99%")
 public class ValidPalindromeII {
 
   public boolean validPalindrome(String s) {
@@ -27,41 +24,31 @@ public class ValidPalindromeII {
       return true;
     }
 
-    int start = 0;
-    int end = s.length() - 1;
+    for (int i = 0, j = s.length() - 1; i < j; ) {
+        if (s.charAt(i) == s.charAt(j)) {
+            ++i;
+            --j;
+            continue;
+        }
 
-    while (start < end) {
-      if (s.charAt(start) == s.charAt(end)) {
-        ++start;
-        --end;
-        continue;
-      }
+        if (i + 1 == j) {
+            return true;
+        }
 
-      String skipStart = s.substring(start + 1, end + 1);
-      if (isValidPalindrome(skipStart)) {
-        return true;
-      }
-
-      String skipEnd = s.substring(start, end);
-      if (isValidPalindrome(skipEnd)) {
-        return true;
-      }
-
-      return false;
+        return isValidPalindrome(s.substring(i + 1, j + 1))
+                || isValidPalindrome(s.substring(i, j));
     }
 
     return true;
   }
 
   private boolean isValidPalindrome(String s) {
-    int start = 0;
-    int end = s.length() - 1;
-    while (start < end) {
-      if (s.charAt(start) != s.charAt(end)) {
-        return false;
-      }
-      ++start;
-      --end;
+    for (int i = 0, j = s.length() - 1; i < j;) {
+        if (s.charAt(i) != s.charAt(j)) {
+            return false;
+        }
+        ++i;
+        --j;
     }
 
     return true;

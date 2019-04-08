@@ -5,6 +5,9 @@ import org.black.lotus.marker.FirstRound;
 import org.black.lotus.marker.LintCode;
 import org.black.lotus.marker.NoIdeaOrBadIdeaInitially;
 
+import java.util.HashSet;
+import java.util.Set;
+
 /**
  * Given the prime number n, output the number of prime numbers
  *
@@ -20,10 +23,21 @@ import org.black.lotus.marker.NoIdeaOrBadIdeaInitially;
 @FirstRound
 @Easy
 @LintCode
-@NoIdeaOrBadIdeaInitially
 public class KthPrimeNumber {
 
   public int kthPrime(int n) {
-    return 0;
+
+      Set<Integer> nonPrimeNumbers = new HashSet<>();
+      Set<Integer> primeNumbers = new HashSet<>();
+      for (int i = 2; i <= n; ++i) {
+          if (!nonPrimeNumbers.contains(i)) {
+              primeNumbers.add(i);
+          }
+          int t = n / i;
+          for (int j = 2; j <= t; ++j) {
+              nonPrimeNumbers.add(i * j);
+          }
+      }
+      return primeNumbers.size();
   }
 }
