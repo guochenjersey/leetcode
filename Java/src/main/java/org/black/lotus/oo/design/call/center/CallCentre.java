@@ -1,5 +1,8 @@
 package org.black.lotus.oo.design.call.center;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Imagine you have a call center with three levels of employees: respondent, manager, and director.
  * An incoming telephone call must be first allocated to a respondent who is free.
@@ -10,7 +13,17 @@ package org.black.lotus.oo.design.call.center;
  */
 public class CallCentre {
 
-    public void dispatch() {
+    private List<AbstractCallHandlerPool> callHandlersPool;
 
+    public CallCentre() {
+        callHandlersPool = new ArrayList<>();
+        callHandlersPool.add(new RespondentPool());
+        callHandlersPool.add(new ManagerPool());
+        callHandlersPool.add(new DirectorPool());
+    }
+
+    public boolean dispatch(CallEvent event) {
+        return callHandlersPool.stream()
+                .anyMatch(p -> p.handleEvent(event));
     }
 }

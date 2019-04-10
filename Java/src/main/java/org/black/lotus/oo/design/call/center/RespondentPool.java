@@ -1,4 +1,4 @@
 package org.black.lotus.oo.design.call.center;
 
-public class RespondentPool {
+class RespondentPool extends AbstractCallHandlerPool<Respondent> {
 }

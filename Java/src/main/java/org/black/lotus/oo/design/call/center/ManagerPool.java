@@ -1,20 +1,9 @@
 package org.black.lotus.oo.design.call.center;
 
-import org.black.lotus.kata.Employee;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-
-public class ManagerPool {
-    private List<? super CallHandler> managerList;
+class ManagerPool extends AbstractCallHandlerPool<Manager> {
 
     public ManagerPool() {
-        managerList = new ArrayList<>();
-        managerList.add(new Manager());
-    }
-
-    public Optional<Manager> findNextAvaliableManager() {
-        return null;
+        for (int i = 0; i < 10; ++i)
+            add(new Manager());
     }
 }
