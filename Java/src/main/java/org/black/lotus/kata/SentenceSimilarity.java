@@ -1,6 +1,5 @@
 package org.black.lotus.kata;
 
-import com.sun.org.apache.xpath.internal.operations.String;
 import java.util.*;
 import org.black.lotus.marker.Easy;
 import org.black.lotus.marker.LintCode;

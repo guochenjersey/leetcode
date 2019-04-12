@@ -1,4 +1,4 @@
-package org.black.lotus.oo.design;
+package org.black.lotus.oo.design.parking.lot;
 
 import org.black.lotus.marker.LintCode;
 
@@ -30,6 +30,5 @@ import org.black.lotus.marker.LintCode;
  parkVehicle("Bus_1") // return true
  *
  * */
-@LintCode
 public class ParkingLot {
 }
