@@ -1,38 +1,63 @@
 package org.black.lotus.kata;
 
+import org.black.lotus.marker.*;
+
 import java.util.HashMap;
 
+@LeetCode
+@Medium
+@Accepted
+@NoIdeaOrBadIdeaInitially
+@Important
 public class CopyListWithRandomPointer {
-  public RandomListNode copyRandomList(RandomListNode head) {
-    if (head == null) {
-      return null;
-    }
 
-    HashMap<RandomListNode, RandomListNode> map = new HashMap<>();
-    RandomListNode dummy = new RandomListNode(0);
-    RandomListNode pre = dummy, newNode;
-    while (head != null) {
-      if (map.containsKey(head)) {
-        newNode = map.get(head);
-      } else {
-        newNode = new RandomListNode(head.label);
-        map.put(head, newNode);
-      }
-      pre.next = newNode;
-
-      if (head.random != null) {
-        if (map.containsKey(head.random)) {
-          newNode.random = map.get(head.random);
-        } else {
-          newNode.random = new RandomListNode(head.random.label);
-          map.put(head.random, newNode.random);
+    public Node copyRandomList(Node head) {
+        if (head == null) {
+            return null;
         }
-      }
 
-      pre = newNode;
-      head = head.next;
+        HashMap<Node, Node> map = new HashMap<>();
+        Node resHead = null;
+        Node node = head;
+        Node dummy = new Node();
+        while (node != null) {
+            Node n = new Node();
+            n.val = node.val;
+            n.next = node.next;
+            if (resHead == null) {
+                resHead = n;
+            }
+            dummy.next = n;
+            map.put(node, n);
+
+            dummy = dummy.next;
+            node = node.next;
+        }
+
+        node = head;
+        dummy = resHead;
+        while (node != null) {
+            dummy.random = map.get(node.random);
+
+            dummy = dummy.next;
+            node = node.next;
+        }
+
+        return resHead;
     }
 
-    return dummy.next;
-  }
+    private class Node {
+        public int val;
+        public Node next;
+        public Node random;
+
+        public Node() {
+        }
+
+        public Node(int _val, Node _next, Node _random) {
+            val = _val;
+            next = _next;
+            random = _random;
+        }
+    }
 }
