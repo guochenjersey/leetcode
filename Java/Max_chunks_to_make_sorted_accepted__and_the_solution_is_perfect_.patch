@@ -1,0 +1,24 @@
+Index: Java/src/main/java/org/black/lotus/kata/MaxChunksToMakeSorted.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- Java/src/main/java/org/black/lotus/kata/MaxChunksToMakeSorted.java	(revision c8e17223973e4fd3704884abca709edf1bcf5b85)
++++ Java/src/main/java/org/black/lotus/kata/MaxChunksToMakeSorted.java	(date 1561648107182)
+@@ -40,6 +40,16 @@
+     /**
+      * We only need to consider whether the maxmium value in the previous range(include current position)
+      * equals to the current index.
++     * 由于题目规定了数组是数[0, N - 1]的排列，所以最终排好序后，数组下标为i的数一定是i，即arr[i] == i。那么在初始数组中，如果arr[i] != i，为了让arr[i]回到对应的下标上，我们必须将下标i和下标arr[i]放到同一个分组中。
++     *
++     * 具体地，例如[1, 2, 0, 3, 4]，从左往右遍历数组，分组数初始化res = 0：
++     *
++     * 第一步，下标0上的数是1，1要位于下标1的位置上， 所以当前分组包含的下标最大值应为1，而当前下标为0，所以当前无法分组，res = 0；
++     * 第二步，下标1上的数是2，2要位于下标2的位置上，所以当前分组包含的下标最大值应为2，而当前下标为1，所以当前无法分组，res = 0；
++     * 第三步，下标2上的数是0，0要位于下标0的位置上，所以当前分组包含的下标最大值仍应为2，当前下标也为2，说明此位置之前的数中不包含比2大的数，可以在当前位置分组，res = 1；
++     * 第四步，下标3上的数是3，3已经位于下标3的位置上，所以当前分组包含的下标最大值应为3，当前下标也为3，说明此位置之前的数中不包含比3大的数，可以在当前位置分组，res = 2；
++     * 第五步，下标4上的数是4，4已经位于下标4的位置上，所以当前分组包含的下标最大值应为4，当前下标也为4，说明此位置之前的数中不包含比4大的数，可以在当前位置分组，res = 3；
++     *
+      * */
+     public int maxChunksToSorted(int[] arr) {
+         int count = 0, max = 0;
