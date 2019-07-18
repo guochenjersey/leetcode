@@ -14,6 +14,7 @@ public class TickProducer {
         TickConsumer tickConsumer = new TickConsumer();
         Observable.from(Arrays.asList(TickUitls.createTick()))
                 .subscribeOn(Schedulers.computation())
+                .observeOn(Schedulers.io())
                 .subscribe(tickConsumer);
     }
 
