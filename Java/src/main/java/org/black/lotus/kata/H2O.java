@@ -1,12 +1,14 @@
 package org.black.lotus.kata;
 
 import org.apache.commons.lang3.RandomUtils;
+import org.black.lotus.marker.MultiThread;
 
 import java.util.concurrent.Semaphore;
 
 /**
  * Need to 2 Hydrogen and 1 oxygen to create a H2O
  * */
+@MultiThread
 public class H2O {
 
     public static void main(String... args) throws InterruptedException {
