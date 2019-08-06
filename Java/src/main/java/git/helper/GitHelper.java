@@ -70,26 +70,3 @@ public class GitHelper {
 
     }
 }
-
-//class SshTransportConfigCallback implements TransportConfigCallback {
-//
-//    private final ThreadLocal<SshSessionFactory> sshSessionFactory = ThreadLocal.withInitial(() -> new JschConfigSessionFactory() {
-//        @Override
-//        protected void configure(OpenSshConfig.Host hc, Session session) {
-//            session.setConfig("StrictHostKeyChecking", "no");
-//        }
-//
-//        @Override
-//        protected JSch createDefaultJSch(FS fs) throws JSchException {
-//            JSch jSch = super.createDefaultJSch(fs);
-//            jSch.addIdentity("/Users/chenguo/.ssh/id_rsa", "password".getBytes());
-//            return jSch;
-//        }
-//    });
-//
-//    @Override
-//    public void configure(Transport transport) {
-//        SshTransport sshTransport = (SshTransport) transport;
-//        sshTransport.setSshSessionFactory(sshSessionFactory.get());
-//    }
-//}
