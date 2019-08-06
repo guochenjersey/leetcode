@@ -49,7 +49,7 @@ import java.util.Stack;
 @Medium
 @NoIdeaOrBadIdeaInitially
 @Accepted("beat 95%")
-public class DecodeString {
+public class  DecodeString {
 
     public String decodeString(String s) {
         String res = "";
