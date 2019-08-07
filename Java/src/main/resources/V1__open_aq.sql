@@ -69,3 +69,10 @@ CREATE TABLE yellow_cab_record (
   tolls_amount          NUMERIC(32, 2),
   total_amount          NUMERIC(32, 2)
 );
+
+CREATE TABLE zone_lookup (
+  zone_lookup_id SERIAL PRIMARY KEY,
+  borough        VARCHAR(64),
+  zone           VARCHAR(64),
+  service_zone   VARCHAR(64)
+);
