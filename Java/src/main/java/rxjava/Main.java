@@ -71,7 +71,7 @@ public class Main {
     }
 
     private static Connection connection() throws SQLException {
-        String url = "jdbc:postgresql://localhost:8001/maxxdb";
+        String url = "jdbc:postgresql://172.17.8.101:5432/maxxdb";
         Properties props = new Properties();
         props.setProperty("user","maxxsys");
         props.setProperty("password","Flex123!");
