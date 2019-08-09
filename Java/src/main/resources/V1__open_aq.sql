@@ -47,7 +47,7 @@ INSERT INTO payment_type (payment_type_id, payment_type_description) VALUES (4, 
 INSERT INTO payment_type (payment_type_id, payment_type_description) VALUES (5, 'Unknown');
 INSERT INTO payment_type (payment_type_id, payment_type_description) VALUES (6, 'Voided trip');
 
-CREATE TABLE yellow_cab_record (
+CREATE TABLE IF NOT EXISTS yellow_cab_record (
   yellow_cab_record_id  SERIAL8 PRIMARY KEY,
   vendor_id             INT,
   -- date and time meter engaged
@@ -68,7 +68,14 @@ CREATE TABLE yellow_cab_record (
   tip_amount            NUMERIC(32, 2),
   tolls_amount          NUMERIC(32, 2),
   total_amount          NUMERIC(32, 2)
-);
+) PARTITION BY RANGE (tpep_pickup_datetime);
+
+
+CREATE TABLE IF NOT EXISTS yellow_cab_record_q1 PARTITION OF yellow_cab_record FOR VALUES FROM ('2018-01-01 00:00:00') TO ('2018-04-01 00:00:00');
+CREATE TABLE IF NOT EXISTS yellow_cab_record_q2 PARTITION OF yellow_cab_record FOR VALUES FROM ('2018-04-01 00:00:01') TO ('2018-07-01 00:00:00');
+CREATE TABLE IF NOT EXISTS yellow_cab_record_q3 PARTITION OF yellow_cab_record FOR VALUES FROM ('2018-07-01 00:00:01') TO ('2018-10-01 00:00:00');
+CREATE TABLE IF NOT EXISTS yellow_cab_record_q4 PARTITION OF yellow_cab_record FOR VALUES FROM ('2018-10-01 00:00:01') TO ('2018-12-31 23:59:59');
+
 
 CREATE TABLE zone_lookup (
   zone_lookup_id SERIAL PRIMARY KEY,
