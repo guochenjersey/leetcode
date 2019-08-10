@@ -1,4 +1,4 @@
-CREATE TABLE aq (
+CREATE TABLE IF NOT EXISTS aq (
   aq_id      SERIAL8 PRIMARY KEY,
   location   VARCHAR(256)                NOT NULL,
   city       VARCHAR(128)                NOT NULL,
@@ -14,7 +14,7 @@ CREATE TABLE aq (
 
 CREATE INDEX aq_city_index ON AQ USING HASH(city);
 
-CREATE TABLE vendor (
+CREATE TABLE IF NOT EXISTS vendor (
   vendor_id INT PRIMARY KEY,
   vendor_name VARCHAR(128) NOT NULL
 );
@@ -22,7 +22,7 @@ CREATE TABLE vendor (
 INSERT INTO vendor (vendor_id, vendor_name) VALUES (1, 'Creative Mobile Technologies');
 INSERT INTO vendor (vendor_id, vendor_name) VALUES (2, 'VeriFone Inc');
 
-CREATE TABLE rate_code (
+CREATE TABLE IF NOT EXISTS rate_code (
   rate_code_id          INT PRIMARY KEY,
   rate_code_description VARCHAR(64)
 );
@@ -35,7 +35,7 @@ INSERT INTO rate_code (rate_code_id, rate_code_description) VALUES (5, 'Negotiti
 INSERT INTO rate_code (rate_code_id, rate_code_description) VALUES (6, 'Group rate');
 
 
-CREATE TABLE payment_type (
+CREATE TABLE IF NOT EXISTS payment_type (
   payment_type_id          INT PRIMARY KEY,
   payment_type_description VARCHAR(32)
 );
@@ -77,7 +77,7 @@ CREATE TABLE IF NOT EXISTS yellow_cab_record_q3 PARTITION OF yellow_cab_record F
 CREATE TABLE IF NOT EXISTS yellow_cab_record_q4 PARTITION OF yellow_cab_record FOR VALUES FROM ('2018-10-01 00:00:01') TO ('2018-12-31 23:59:59');
 
 
-CREATE TABLE zone_lookup (
+CREATE TABLE IF NOT EXISTS zone_lookup (
   zone_lookup_id SERIAL PRIMARY KEY,
   borough        VARCHAR(64),
   zone           VARCHAR(64),
