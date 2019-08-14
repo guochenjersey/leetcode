@@ -21,7 +21,7 @@ import java.util.Arrays;
 import java.util.Properties;
 
 public class Main {
-    
+
     public static void main(String... args) throws IOException, SQLException {
         Connection connection = connection();
         Arrays.stream(args)
