@@ -5,6 +5,7 @@ import java.util.Deque;
 import org.black.lotus.marker.Accepted;
 import org.black.lotus.marker.Easy;
 import org.black.lotus.marker.FirstRound;
+import org.black.lotus.marker.Important;
 import org.black.lotus.marker.LeetCode;
 import org.black.lotus.org.black.lotus.support.TreeNode;
 
@@ -12,6 +13,7 @@ import org.black.lotus.org.black.lotus.support.TreeNode;
 @Easy
 @FirstRound
 @Accepted
+@Important
 public class MaximumDepthOfBinaryTree {
   /**
    * @param root: The root of binary tree.

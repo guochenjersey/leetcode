@@ -2,6 +2,7 @@ package org.black.lotus.kata;
 
 import lombok.val;
 import org.black.lotus.marker.Accepted;
+import org.black.lotus.marker.HighFrequency;
 import org.black.lotus.marker.LeetCode;
 import org.black.lotus.marker.Medium;
 import org.black.lotus.marker.NoIdeaOrBadIdeaInitially;
@@ -27,6 +28,7 @@ import java.util.Queue;
 @Medium
 @NoIdeaOrBadIdeaInitially
 @Accepted
+@HighFrequency
 public class PopulatingNextRightPointersInEachNode {
 
     public Node connect(Node root) {
