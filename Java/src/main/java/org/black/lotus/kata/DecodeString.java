@@ -1,6 +1,8 @@
 package org.black.lotus.kata;
 
 import org.black.lotus.marker.Accepted;
+import org.black.lotus.marker.HighFrequency;
+import org.black.lotus.marker.Important;
 import org.black.lotus.marker.LeetCode;
 import org.black.lotus.marker.Medium;
 import org.black.lotus.marker.NoIdeaOrBadIdeaInitially;
@@ -49,6 +51,8 @@ import java.util.Stack;
 @Medium
 @NoIdeaOrBadIdeaInitially
 @Accepted("beat 95%")
+@Important
+@HighFrequency
 public class  DecodeString {
 
     public String decodeString(String s) {
