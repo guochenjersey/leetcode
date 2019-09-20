@@ -10,6 +10,6 @@ public class ThreeSumTest {
     int[] nums = {-1, 0, 1, 2, -1, -4};
     ThreeSum threeSum = new ThreeSum();
     List<List<Integer>> lists = threeSum.threeSum(nums);
-    System.out.println("test");
+    lists.stream().forEach(list -> System.out.println(list));
   }
 }
