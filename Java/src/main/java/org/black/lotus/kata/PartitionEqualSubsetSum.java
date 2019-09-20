@@ -40,8 +40,13 @@ import org.black.lotus.marker.TLESolution;
 @NoIdeaOrBadIdeaInitially
 public class PartitionEqualSubsetSum {
 
-    @TLESolution
     public boolean canPartition(int[] nums) {
+
+        return false;
+    }
+
+    @TLESolution
+    public boolean scanPartition(int[] nums) {
         int sum = 0;
         for (int i : nums) {
             sum += i;
