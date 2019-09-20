@@ -16,12 +16,14 @@ import org.black.lotus.marker.*;
 @LeetCode
 @Medium
 @Important
+@Accepted
 public class SubArraySumEqualsK {
 
   public int subarraySum(int[] nums, int k) {
     int sum = 0, result = 0;
+    // 这个MAP存的是SUM和SUM出现的次数
     Map<Integer, Integer> preSum = new HashMap<>();
-    preSum.put(0, 1); // key initialization
+    preSum.put(0, 1); // key initialization 0的数值出现了一次
 
     for (int i = 0; i < nums.length; i++) {
       sum += nums[i];
