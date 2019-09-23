@@ -1,6 +1,7 @@
 package org.black.lotus.kata;
 
 
+import org.black.lotus.marker.Accepted;
 import org.black.lotus.marker.Easy;
 import org.black.lotus.marker.LeetCode;
 
@@ -32,6 +33,7 @@ import java.util.Map;
  */
 @LeetCode
 @Easy
+@Accepted
 public class ClaimingStairs {
 
     public int climbStairs(int n) {
