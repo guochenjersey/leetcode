@@ -11,7 +11,7 @@ public interface LimitOrderBook<T extends LimitOrder> {
 
     boolean remove(T order);
 
-    List<T> handle(List<Tick> ticks);
+    List<T> handle(Tick ticks);
 
     int size();
 }

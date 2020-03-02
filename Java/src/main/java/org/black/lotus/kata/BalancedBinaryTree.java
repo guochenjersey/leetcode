@@ -1,5 +1,7 @@
 package org.black.lotus.kata;
 
+import org.black.lotus.marker.Accepted;
+import org.black.lotus.marker.LeetCode;
 import org.black.lotus.org.black.lotus.support.TreeNode;
 
 /**
@@ -35,6 +37,8 @@ import org.black.lotus.org.black.lotus.support.TreeNode;
  *  4   4
  * Return false.
  * */
+@LeetCode
+@Accepted
 public class BalancedBinaryTree {
 
   public boolean isBalanced(TreeNode root) {

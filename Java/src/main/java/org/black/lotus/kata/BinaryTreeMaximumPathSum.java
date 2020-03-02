@@ -1,5 +1,6 @@
 package org.black.lotus.kata;
 
+import org.black.lotus.marker.Accepted;
 import org.black.lotus.marker.Hard;
 import org.black.lotus.marker.HighFrequency;
 import org.black.lotus.marker.Important;
@@ -10,10 +11,38 @@ import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.List;
 
+/**
+ * Given a non-empty binary tree, find the maximum path sum.
+ *
+ * For this problem, a path is defined as any sequence of nodes from some starting node to any node in the tree along the parent-child connections.
+ * The path must contain at least one node and does not need to go through the root.
+ *
+ * Example 1:
+ *
+ * Input: [1,2,3]
+ *
+ *        1
+ *       / \
+ *      2   3
+ *
+ * Output: 6
+ * Example 2:
+ *
+ * Input: [-10,9,20,null,null,15,7]
+ *
+ *    -10
+ *    / \
+ *   9  20
+ *     /  \
+ *    15   7
+ *
+ * Output: 42
+ * */
 @LeetCode
 @Hard
 @HighFrequency
 @Important
+@Accepted
 public class BinaryTreeMaximumPathSum {
 
     public int maxPathSum(TreeNode root) {

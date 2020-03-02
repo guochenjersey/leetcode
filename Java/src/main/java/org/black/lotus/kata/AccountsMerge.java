@@ -1,6 +1,7 @@
 package org.black.lotus.kata;
 
 import java.util.*;
+
 import org.black.lotus.marker.FirstRound;
 import org.black.lotus.marker.LeetCode;
 import org.black.lotus.marker.Medium;
@@ -36,7 +37,7 @@ import org.black.lotus.marker.UnionFind;
  * <p>Algorithm
  *
  * @link https://zh.wikipedia.org/wiki/%E5%B9%B6%E6%9F%A5%E9%9B%86
- *     https://blog.csdn.net/liujian20150808/article/details/50848646
+ * https://blog.csdn.net/liujian20150808/article/details/50848646
  */
 @FirstRound
 @LeetCode
@@ -44,56 +45,59 @@ import org.black.lotus.marker.UnionFind;
 @UnionFind
 public class AccountsMerge {
 
-  public List<List<String>> accountsMerge(List<List<String>> accounts) {
-    Map<String, Integer> m = new HashMap<>();
-    int[] adj = new int[accounts.size()];
-    for (int i = 0; i < adj.length; i++) {
-      adj[i] = i; // 这里最好不设成-1
-    }
-
-    for (int i = 0; i < accounts.size(); i++) {
-      List<String> l = accounts.get(i);
-      // union，这里可能会发生多次的union
-      for (int k = 1; k < l.size(); k++) {
-        if (m.containsKey(l.get(k))) {
-          union(adj, i, m.get(l.get(k)));
-        }
-        m.put(l.get(k), i);
-      }
-    }
-
-    List<List<String>> ret = new ArrayList<>();
-    boolean[] marked = new boolean[adj.length];
-    for (int i = 0; i < adj.length; i++) {
-      if (!marked[i]) {
-        Set<String> t = new HashSet<>();
-        // 这里需要遍历一遍
-        for (int j = 0; j < adj.length; j++) {
-          if (adj[j] == i) {
-            marked[j] = true;
-            for (int k = 1; k < accounts.get(j).size(); k++) t.add(accounts.get(j).get(k));
-          }
+    public List<List<String>> accountsMerge(List<List<String>> allAccounts) {
+        Map<String, Integer> m = new HashMap<>();
+        int[] adj = new int[allAccounts.size()];
+        for (int i = 0; i < adj.length; i++) {
+            adj[i] = i; // 这里最好不设成-1
         }
 
-        if (t.size() == 0) continue;
-        List<String> l = new ArrayList<>();
-        l.add(accounts.get(i).get(0));
-        List<String> l2 = new ArrayList<>(t);
-        Collections.sort(l2);
-        l.addAll(l2);
-        ret.add(l);
-      }
+        for (int i = 0; i < allAccounts.size(); i++) {
+            List<String> userAccount = allAccounts.get(i);
+            // union，这里可能会发生多次的union
+            for (int k = 1; k < userAccount.size(); k++) {
+                if (m.containsKey(userAccount.get(k))) {
+                    union(adj, i, m.get(userAccount.get(k)));
+                }
+                m.put(userAccount.get(k), i);
+            }
+        }
+
+        List<List<String>> ret = new ArrayList<>();
+        boolean[] marked = new boolean[adj.length];
+        for (int i = 0; i < adj.length; i++) {
+            if (!marked[i]) {
+                Set<String> t = new HashSet<>();
+                // 这里需要遍历一遍
+                for (int j = 0; j < adj.length; j++) {
+                    if (adj[j] == i) {
+                        marked[j] = true;
+                        for (int k = 1; k < allAccounts.get(j).size(); k++)
+                            t.add(allAccounts.get(j).get(k));
+                    }
+                }
+
+                if (t.size() == 0) continue;
+                List<String> l = new ArrayList<>();
+                l.add(allAccounts.get(i).get(0));
+                List<String> l2 = new ArrayList<>(t);
+                Collections.sort(l2);
+                l.addAll(l2);
+                ret.add(l);
+            }
+        }
+        return ret;
     }
-    return ret;
-  }
 
-  private void union(int[] adj, int i, int j) {
-    int f1 = find(adj, i), f2 = find(adj, j);
-    for (int k = 0; k < adj.length; k++) if (adj[k] == f1) adj[k] = f2; // set
-  }
+    private void union(int[] adj, int i, int j) {
+        int f1 = find(adj, i), f2 = find(adj, j);
+        for (int k = 0; k < adj.length; k++)
+          if (adj[k] == f1) adj[k] = f2; // set
+    }
 
-  private int find(int[] adj, int i) {
-    while (adj[i] != i) i = adj[i];
-    return i;
-  }
+    private int find(int[] adj, int i) {
+        while (adj[i] != i)
+          i = adj[i];
+        return i;
+    }
 }

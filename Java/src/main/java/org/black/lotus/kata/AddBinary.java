@@ -1,5 +1,6 @@
 package org.black.lotus.kata;
 
+import org.black.lotus.marker.Accepted;
 import org.black.lotus.marker.FirstRound;
 import org.black.lotus.marker.LeetCode;
 
@@ -16,6 +17,7 @@ import org.black.lotus.marker.LeetCode;
  */
 @LeetCode
 @FirstRound
+@Accepted
 public class AddBinary {
   public String addBinary(String a, String b) {
     String res = "";

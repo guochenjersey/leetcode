@@ -8,4 +8,5 @@ public interface Tick {
 
     Symbol getSymbol();
     PriceSide getPriceSide();
+    double getPrice();
 }

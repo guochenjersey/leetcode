@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
+
+import org.black.lotus.marker.Accepted;
 import org.black.lotus.marker.LintCode;
 import org.black.lotus.marker.Medium;
 import org.black.lotus.org.black.lotus.support.TreeNode;
@@ -22,6 +24,7 @@ import org.black.lotus.org.black.lotus.support.TreeNode;
  */
 @LintCode
 @Medium
+@Accepted
 public class BinaryTreeLevelOrderTraversalII {
 
   public List<List<Integer>> levelOrderBottom(TreeNode root) {
