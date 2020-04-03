@@ -36,7 +36,7 @@ public class Ticketing {
               es.submit(
                   () -> {
                     try {
-                      Jedis jedis = new Jedis("192.168.1.8");
+                      Jedis jedis = new Jedis("192.168.56.111", 6379);
                       Pipeline pipelined = jedis.pipelined();
                       prices.forEach(
                           p -> {
@@ -61,7 +61,7 @@ public class Ticketing {
         () -> {
           try {
             Instant now = Instant.now();
-            Jedis jedis = new Jedis("192.168.1.8");
+            Jedis jedis = new Jedis("node1");
             Set<String> prices = jedis.zrange("EUR/USD", 0, now.toEpochMilli());
             Instant oneSecAgo = now.minusSeconds(10);
 

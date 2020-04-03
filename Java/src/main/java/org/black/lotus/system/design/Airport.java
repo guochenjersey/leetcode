@@ -1,34 +1,29 @@
 package org.black.lotus.system.design;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.PriorityQueue;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
-import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-import java.util.concurrent.LinkedBlockingDeque;
-import java.util.concurrent.ThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
 
 public class Airport {
 
-    private List<Plane> landingRequestPlanes;
-    private List<Plane> takeOffRequestPlanes;
+    private PriorityQueue<Plane> landRequestQueue;
+    private PriorityQueue<Plane> takeOffRequestQueue;
     private RunwayPool runwayPool;
     private ExecutorService scheduler;
 
     public Airport() {
-        this.landingRequestPlanes = new ArrayList<>();
-        this.takeOffRequestPlanes = new ArrayList<>();
+        this.landRequestQueue = new PriorityQueue<>(10);
+        this.takeOffRequestQueue = new PriorityQueue<>(10);
         this.runwayPool = new RunwayPool();
         this.scheduler = Executors.newFixedThreadPool(100);
     }
 
     public void handleLanding(Plane landingPlane) {
         landingPlane.acknowledge();
-        landingRequestPlanes.add(landingPlane);
+        landRequestQueue.add(landingPlane);
         scheduler.submit(() -> {
             Runway runway = runwayPool.acquire();
             landingPlane.land(runway);
@@ -36,15 +31,18 @@ public class Airport {
     }
 }
 
-class Plane {
+class Plane implements Comparable<Plane> {
     private int planeId;
 
     void acknowledge() {
         System.out.println("Has been acked");
     }
 
-    void land(Runway runway) {
+    void land(Runway runway) {}
 
+    @Override
+    public int compareTo(Plane o) {
+        return planeId - o.planeId;
     }
 }
 
@@ -61,17 +59,18 @@ class RunwayPool {
 
     Runway acquire() {
         try {
-            return pool.take();
+            return pool.poll(5, TimeUnit.SECONDS);
         } catch (InterruptedException e) {
             return null;
         }
     }
 
-    void releaseRunway(Runway runway) {
+    boolean releaseRunway(Runway runway) {
         try {
-            pool.put(runway);
+            return pool.offer(runway, 5, TimeUnit.SECONDS);
         } catch (InterruptedException e) {
             e.printStackTrace();
+            return false;
         }
     }
 }
