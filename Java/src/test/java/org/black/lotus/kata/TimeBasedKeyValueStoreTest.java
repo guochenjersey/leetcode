@@ -2,6 +2,8 @@ package org.black.lotus.kata;
 
 import org.junit.Test;
 
+import java.util.TreeSet;
+
 import static org.junit.Assert.*;
 
 public class TimeBasedKeyValueStoreTest {
@@ -15,5 +17,15 @@ public class TimeBasedKeyValueStoreTest {
         assertEquals("bar", store.get("foo", 3));
         store.set("foo", "bar2", 5);
         assertEquals("bar2", store.get("foo", 6));
+    }
+
+    @Test
+    public void test_tree_set() {
+        TreeSet<Integer> treeSet = new TreeSet<>();
+        treeSet.add(1);
+        treeSet.add(3);
+        treeSet.add(2);
+        treeSet.forEach(System.out::println);
+
     }
 }
