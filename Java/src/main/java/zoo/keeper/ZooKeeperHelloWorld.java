@@ -9,6 +9,7 @@ import org.apache.curator.framework.recipes.cache.NodeCacheListener;
 import org.apache.curator.framework.recipes.cache.PathChildrenCache;
 import org.apache.curator.framework.recipes.cache.PathChildrenCacheEvent;
 import org.apache.curator.framework.recipes.cache.PathChildrenCacheListener;
+import org.apache.curator.framework.recipes.locks.InterProcessMutex;
 import org.apache.curator.retry.ExponentialBackoffRetry;
 import org.apache.zookeeper.CreateMode;
 import org.apache.zookeeper.ZooKeeper;
@@ -17,6 +18,7 @@ import org.apache.zookeeper.data.Stat;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
 
 public class ZooKeeperHelloWorld {
 
@@ -112,5 +114,27 @@ public class ZooKeeperHelloWorld {
         Thread.sleep(10 * 1000);
         pool.shutdown();
         client.close();
+    }
+
+    /**
+     * 分布式加锁
+     * */
+    private static void doWithLock(CuratorFramework client) {
+        InterProcessMutex lock = new InterProcessMutex(client, "/lock/path");
+        try {
+            if (lock.acquire(10 * 1000, TimeUnit.SECONDS)) {
+                System.out.println(Thread.currentThread().getName() + " hold lock");
+                Thread.sleep(5000L);
+                System.out.println(Thread.currentThread().getName() + " release lock");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                lock.release();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
     }
 }
