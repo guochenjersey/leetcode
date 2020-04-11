@@ -122,6 +122,13 @@
             <version>4.3.0</version>
         </dependency>
 
+        <dependency>
+            <groupId>org.apache.kafka</groupId>
+            <artifactId>kafka_2.13</artifactId>
+            <version>2.4.1</version>
+        </dependency>
+
+
         <!-- start tst dependencies -->
         <dependency>
             <groupId>junit</groupId>
