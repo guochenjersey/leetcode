@@ -14,7 +14,7 @@ import java.util.concurrent.TimeUnit;
  * doesn't exist and proceed.
  * */
 public class CuratorBarrier {
-    private static final String ZK_CONNECT = "node1:2181,node2:2181:node3:2181";
+    private static final String ZK_CONNECT = "node1:2181,node2:2181,node3:2181";
     private static final String ZK_BARRIER_PATH = "/barrier";
 
     public static void main(String... args) throws InterruptedException {
