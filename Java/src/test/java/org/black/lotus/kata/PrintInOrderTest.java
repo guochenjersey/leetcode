@@ -1,5 +1,9 @@
 package org.black.lotus.kata;
 
+import org.apache.commons.lang3.event.EventUtils;
+import org.apache.commons.lang3.reflect.MethodUtils;
+import sun.misc.Unsafe;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
@@ -33,5 +37,26 @@ public class PrintInOrderTest {
                 e.printStackTrace();
             }
         });
+
+        Source source = new Source();
+
+        EventUtils.addEventListener(source, Listener.class, new Listener());
+        source.doSth();
+        System.out.println();
+        Unsafe.getUnsafe().compareAndSwapInt(source, 1, 1, 2);
+    }
+
+    static class Listener {
+
+    }
+
+    static class Source {
+        public void addListener(Listener listener) {
+
+        }
+
+        public void doSth() {
+            System.out.println("dosth");
+        }
     }
 }
