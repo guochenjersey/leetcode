@@ -1,5 +1,9 @@
 package org.black.lotus.kata;
 
+import org.black.lotus.marker.Accepted;
+import org.black.lotus.marker.Easy;
+import org.black.lotus.marker.LeetCode;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
@@ -11,6 +15,9 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
+@LeetCode
+@Easy
+@Accepted
 public class RelativeSortArray {
 
     public int[] relativeSortArray(int[] toSort, int[] template) {
