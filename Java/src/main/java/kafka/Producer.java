@@ -1,5 +1,6 @@
 package kafka;
 
+import kafka.tools.ConsoleConsumer;
 import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.clients.producer.ProducerRecord;
@@ -14,7 +15,7 @@ import java.util.Properties;
 import java.util.concurrent.Callable;
 
 public class Producer implements Callable<Boolean> {
-    private static int MAX_MSG = 500;
+    private static int MAX_MSG = 1000000;
     private final int id;
 
     public Producer(int i) {
@@ -28,6 +29,10 @@ public class Producer implements Callable<Boolean> {
             props.put(ProducerConfig.CLIENT_ID_CONFIG, "client" + id);
             props.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, IntegerSerializer.class.getName());
             props.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, StringSerializer.class.getName());
+            props.put(ProducerConfig.RETRIES_CONFIG, 3); // retry is a must because no one can ensure the sending is successful for sure
+            props.put(ProducerConfig.COMPRESSION_TYPE_CONFIG, "gzip"); // use compression for data
+            props.put(ProducerConfig.ACKS_CONFIG, "all"); // 1 means if leaders ack receiving this message, considering successful,
+            // if using the default 0, the performance could double
 
             KafkaProducer<Integer, String> producer = new KafkaProducer<>(props);
             int msgCnt = 0;
@@ -35,7 +40,7 @@ public class Producer implements Callable<Boolean> {
                 ProducerRecord<Integer, String> record = new ProducerRecord<>("my-replicated-topic-3",
                         msgCnt % 3, msgCnt,
                         "This is record " + msgCnt);
-                RecordMetadata recordMetadata = producer.send(record).get();
+                producer.send(record);
                 ++msgCnt;
             }
 

@@ -15,11 +15,11 @@ import java.util.concurrent.Executors;
 public class App {
 
     public static void main(String... args) throws InterruptedException {
-        ExecutorService es = Executors.newFixedThreadPool(2000);
+        ExecutorService es = Executors.newFixedThreadPool(200);
         Set<ListenableFutureTask<Boolean>> tasks = new HashSet<>();
         ListeningExecutorService les = MoreExecutors.listeningDecorator(es);
         Instant start = Instant.now();
-        for (int i = 0; i < 2000; ++i) {
+        for (int i = 0; i < 200; ++i) {
             ListenableFutureTask<Boolean> task = ListenableFutureTask.create(new Producer(i));
             tasks.add(task);
             les.submit(task);
@@ -27,7 +27,7 @@ public class App {
 
         Futures.whenAllComplete(tasks).run(() -> {
             Instant end = Instant.now();
-            System.out.println(Duration.between(start, end).toMillis() / 1000);
+            System.out.println("Completed the whole messages in " + Duration.between(start, end).toMillis() / 1000);
         }, es);
 
         Thread.sleep(Integer.MAX_VALUE);
